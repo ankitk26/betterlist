@@ -7,7 +7,7 @@ import SidebarPlaylists from "./sidebar-playlists";
 
 export default function SideBar() {
   return (
-    <aside className="col-span-2 flex h-[calc(100dvh-5.5rem)] flex-col rounded-lg bg-card px-2 text-card-foreground">
+    <aside className="col-span-2 flex h-[calc(100dvh-5.5rem)] flex-col rounded-lg border bg-card px-2 text-card-foreground dark:border-none">
       <div className="mt-2 flex flex-col rounded-lg px-2 py-4">
         <div className="flex items-center gap-3 text-muted-foreground text-sm">
           <Layers className="size-5" />

@@ -17,8 +17,7 @@ export default function SearchFilters() {
         const href = `/search/$query/${tag.link}`;
         return (
           <Link
-            activeProps={{ className: "bg-input/30" }}
-            className="rounded-full px-4 py-1 font-medium transition-colors"
+            className="rounded-full bg-secondary px-4 py-1 font-medium transition-colors"
             key={tag.label}
             params={{ query }}
             to={href}

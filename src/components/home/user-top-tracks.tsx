@@ -17,7 +17,7 @@ export default function UserTopTracks() {
 
   return data?.map((track) => (
     <div
-      className="group/item col-span-4 flex items-center justify-between truncate rounded-md bg-input/30 pr-4 text-secondary-foreground hover:bg-secondary"
+      className="group/item col-span-4 flex items-center justify-between truncate rounded-md border bg-input/30 pr-4 text-secondary-foreground hover:bg-secondary dark:border-none"
       key={track.id}
     >
       <div className="flex items-center gap-4">

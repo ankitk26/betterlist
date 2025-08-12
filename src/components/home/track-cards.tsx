@@ -12,7 +12,7 @@ export default function TrackCards({ tracks }: Props) {
         ?.filter((track) => track !== null)
         .map((track: Track) => (
           <div
-            className="group/item h-full rounded-lg bg-input/30 p-4 text-secondary-foreground transition duration-300 hover:bg-secondary"
+            className="group/item h-full rounded-lg border bg-input/30 p-4 text-secondary-foreground transition duration-300 hover:bg-secondary dark:border-none"
             key={track.id}
           >
             <div className="relative">

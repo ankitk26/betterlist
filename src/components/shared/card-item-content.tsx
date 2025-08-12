@@ -12,7 +12,7 @@ type Props = {
 
 export default function CardItemContent({ item }: Props) {
   return (
-    <div className="h-full cursor-pointer rounded-lg bg-input/30 p-4 transition duration-300 hover:bg-secondary">
+    <div className="h-full cursor-pointer rounded-lg border bg-input/30 p-4 transition duration-300 hover:bg-secondary dark:border-none">
       {item.image ? (
         <img
           alt={item.title}

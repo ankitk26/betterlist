@@ -20,7 +20,7 @@ export default function SearchInput() {
       onSubmit={handleSubmit}
     >
       <Input
-        className="w-full flex-grow border-none"
+        className="w-full flex-grow border-border dark:border-none"
         onChange={(e) => setSearchInput(e.target.value)}
         placeholder="Artists, Songs, Playlists"
         spellCheck={false}
