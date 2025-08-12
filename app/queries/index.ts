@@ -30,6 +30,7 @@ import {
 export const authSessionQuery = queryOptions({
   queryKey: ["auth", "session"],
   queryFn: ({ signal }) => getAuthSession({ signal }),
+  staleTime: 1000 * 60 * 15, // 15 minutes
 });
 
 export const likedSongsCountQuery = queryOptions({
