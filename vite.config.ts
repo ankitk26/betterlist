@@ -10,7 +10,6 @@ export default defineConfig({
     tailwindcss(),
     tanstackStart({
       customViteReactPlugin: true,
-      target: "vercel",
     }),
     viteReact(),
   ],
