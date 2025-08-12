@@ -11,6 +11,7 @@ export function createRouter() {
     scrollRestoration: true,
     context: { queryClient, session: null },
     defaultPreload: "intent",
+    defaultNotFoundComponent: () => <p>Not found</p>,
   });
 
   return routerWithQueryClient(router, queryClient);
