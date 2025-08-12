@@ -6,11 +6,11 @@ export default function SearchInput() {
   const navigate = useNavigate();
   const searchInput = useGlobalStore((store) => store.searchInput);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     e.stopPropagation();
     if (searchInput !== "") {
-      await navigate({ to: "/search/$query", params: { query: searchInput } });
+      navigate({ to: "/search/$query", params: { query: searchInput } });
     }
   };
 

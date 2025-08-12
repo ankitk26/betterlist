@@ -11,7 +11,7 @@
       },
       "performance": {
         "noImgElement": "off",
-        "noNamespaceImport": "warn"
+        "noNamespaceImport": "off"
       }
     }
   },
