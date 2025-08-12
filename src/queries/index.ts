@@ -4,6 +4,7 @@ import { getArtistAlbums } from "~/server-fns/get-artist-albums";
 import { getArtistAppearsOn } from "~/server-fns/get-artist-appears-on";
 import { getArtistById } from "~/server-fns/get-artist-by-id";
 import { getArtistCompilation } from "~/server-fns/get-artist-compilation";
+import { getArtistDiscography } from "~/server-fns/get-artist-discography";
 import { getArtistSingles } from "~/server-fns/get-artist-singles";
 import { getArtistTopTracks } from "~/server-fns/get-artist-top-tracks";
 import { getAuthSession } from "~/server-fns/get-auth-session";
@@ -92,6 +93,12 @@ export const artistAlbumsQuery = (artistId: string) =>
   queryOptions({
     queryKey: ["artist", "albums", artistId],
     queryFn: () => getArtistAlbums({ data: artistId }),
+  });
+
+export const artistDiscographyQuery = (artistId: string) =>
+  queryOptions({
+    queryKey: ["artist", "discography", artistId],
+    queryFn: () => getArtistDiscography({ data: artistId }),
   });
 
 export const artistSinglesQuery = (artistId: string) =>
