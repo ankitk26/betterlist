@@ -22,9 +22,11 @@ export default function SideBar() {
 
         <div>
           <ScrollArea className="h-[calc(100dvh-15rem)] w-full pr-3">
-            <SidebarPlaylists />
-            <SidebarAlbums />
-            <SidebarArtists />
+            <div className="space-y-2">
+              <SidebarPlaylists />
+              <SidebarAlbums />
+              <SidebarArtists />
+            </div>
           </ScrollArea>
         </div>
       </div>

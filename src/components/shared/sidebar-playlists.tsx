@@ -10,9 +10,9 @@ export default function SidebarPlaylists() {
   }
 
   return (
-    <div className="space-y-0.5">
+    <>
       <SidebarLikedSongs />
       <UserPlaylists />
-    </div>
+    </>
   );
 }
