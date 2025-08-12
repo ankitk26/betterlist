@@ -36,7 +36,7 @@ function RouteComponent() {
   }
 
   return (
-    <>
+    <div className="space-y-8">
       <div className="flex items-end gap-6">
         {playlist && (
           <>
@@ -68,7 +68,7 @@ function RouteComponent() {
                   <>
                     <Dot />
                     <span>
-                      {playlist.followers.total.toLocaleString()} {" "}
+                      {playlist.followers.total.toLocaleString()}{" "}
                       {playlist.followers.total > 1 ? "likes" : "like"}
                     </span>
                   </>
@@ -85,7 +85,7 @@ function RouteComponent() {
         )}
       </div>
 
-      <div className="mt-8">
+      <div>
         {playlist?.tracks && (
           <TracksTable
             showAlbum
@@ -96,7 +96,6 @@ function RouteComponent() {
           />
         )}
       </div>
-    </>
+    </div>
   );
 }
-

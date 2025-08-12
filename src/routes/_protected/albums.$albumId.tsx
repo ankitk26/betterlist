@@ -35,7 +35,7 @@ function RouteComponent() {
   }
 
   return (
-    <>
+    <div className="space-y-8">
       <div className="flex items-end gap-6">
         {album && (
           <>
@@ -85,6 +85,6 @@ function RouteComponent() {
         showSubtitle
         tracks={album ? album.tracks.items : []}
       />
-    </>
+    </div>
   );
 }
