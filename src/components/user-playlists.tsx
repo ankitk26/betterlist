@@ -19,7 +19,7 @@ export default function UserPlaylists() {
   return data?.map((playlist) => (
     <SidebarLibraryItem
       id={playlist.id}
-      image={playlist.images[0].url ?? ""}
+      image={playlist.images?.[0]?.url ?? ""}
       key={`playlist__${playlist.id}`}
       title={playlist.name ?? ""}
     />

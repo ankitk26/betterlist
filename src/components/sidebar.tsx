@@ -1,10 +1,10 @@
-import { LayersIcon, PlusIcon } from "lucide-react";
+import { LayersIcon } from "lucide-react";
 import { useSidebarStore } from "~/stores/sidebar-store";
+import AddPlaylistDialog from "./add-playlist-dialog";
 import LibraryBadge from "./library-badge";
 import SidebarAlbums from "./sidebar-albums";
 import SidebarArtists from "./sidebar-artists";
 import SidebarPlaylists from "./sidebar-playlists";
-import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
 
 export default function SideBar() {
@@ -18,11 +18,7 @@ export default function SideBar() {
             <LayersIcon className="size-5" />
             <h4 className="text-sm">Your Library</h4>
           </div>
-          {library === "playlists" && (
-            <Button className="size-7" size="icon" variant="ghost">
-              <PlusIcon className="size-4" />
-            </Button>
-          )}
+          {library === "playlists" && <AddPlaylistDialog />}
         </div>
 
         <div className="my-6 grid grid-cols-3 items-center gap-2">

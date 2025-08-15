@@ -52,11 +52,12 @@ const refreshTokenFromSpotify = async (
   return response.data.access_token;
 };
 
-export const getAccessToken = createServerFn({ method: "GET" })
+export const getUserAccount = createServerFn({ method: "GET" })
   .validator((session: Session) => session)
   .handler(async ({ data: session }) => {
     const accountData = await db
       .select({
+        accountId: account.accountId,
         accessToken: account.accessToken,
         accessTokenExpiresAt: account.accessTokenExpiresAt,
         refreshToken: account.refreshToken,
@@ -68,7 +69,7 @@ export const getAccessToken = createServerFn({ method: "GET" })
 
     // Return null if no account is found
     if (!accountData) {
-      return null;
+      return { token: null, accountId: null };
     }
 
     // check expiry date of access token
@@ -83,8 +84,8 @@ export const getAccessToken = createServerFn({ method: "GET" })
         accountData.refreshToken as string,
         session.userId
       );
-      return newAccessToken;
+      return { token: newAccessToken, accountId: accountData.accountId };
     }
 
-    return accountData.accessToken;
+    return { token: accountData.accessToken, accountId: accountData.accountId };
   });

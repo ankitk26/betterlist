@@ -36,7 +36,10 @@ export default function TracksTableTitleColumn({
               />
             </div>
           ) : (
-            <MusicIcon className="h-10 w-10 rounded bg-input/30 p-2" size={16} />
+            <MusicIcon
+              className="h-10 w-10 rounded bg-input/30 p-2"
+              size={16}
+            />
           ))}
 
         <div className="w-full truncate pr-3">

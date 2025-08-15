@@ -16,7 +16,7 @@ export const getLikedSongs = createServerFn({ method: "GET" }).handler(
   async () => {
     const session = await getAuthSession();
 
-    const endpoint = "/me/tracks?limit=50";
+    const endpoint = "/me/tracks?limit=5";
 
     const res = await betterFetch<LikedSongs>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
@@ -35,23 +35,23 @@ export const getLikedSongs = createServerFn({ method: "GET" }).handler(
     }
 
     const finalData = { total: resData.total, items: resData.items };
-    let currUrl = resData?.next;
+    // let currUrl = resData?.next;
 
-    while (currUrl !== null) {
-      // biome-ignore lint/nursery/noAwaitInLoop: Ignore lint
-      const nextData = await betterFetch<LikedSongs>(currUrl, {
-        headers: {
-          Authorization: `Bearer ${session?.user.accessToken}`,
-        },
-      }).then((nextRes) => nextRes.data);
+    // while (currUrl !== null) {
+    //   // biome-ignore lint/nursery/noAwaitInLoop: Ignore lint
+    //   const nextData = await betterFetch<LikedSongs>(currUrl, {
+    //     headers: {
+    //       Authorization: `Bearer ${session?.user.accessToken}`,
+    //     },
+    //   }).then((nextRes) => nextRes.data);
 
-      if (!nextData) {
-        continue;
-      }
+    //   if (!nextData) {
+    //     continue;
+    //   }
 
-      finalData.items.push(...nextData.items);
-      currUrl = nextData.next;
-    }
+    //   finalData.items.push(...nextData.items);
+    //   currUrl = nextData.next;
+    // }
 
     return {
       total: finalData.total,

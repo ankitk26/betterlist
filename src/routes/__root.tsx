@@ -8,7 +8,7 @@ import {
 } from "@tanstack/react-router";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ReactNode } from "react";
-
+import { Toaster } from "~/components/ui/sonner";
 import { authSessionQuery } from "~/queries";
 import type { getAuthSession } from "~/server-fns/get-auth-session";
 import appCss from "../app.css?url";
@@ -74,6 +74,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           enableSystem
         >
           {children}
+          <Toaster />
           <ReactQueryDevtools />
         </NextThemesProvider>
         <Scripts />

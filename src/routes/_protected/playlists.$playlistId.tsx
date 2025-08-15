@@ -40,17 +40,17 @@ function RouteComponent() {
       <div className="flex items-end gap-6">
         {playlist && (
           <>
-            {playlist.images.length > 0 ? (
+            {(playlist.images?.length ?? 0) > 0 ? (
               <img
                 alt={playlist.name}
-                className="h-60 w-60 rounded-sm object-contain"
-                height={240}
-                src={playlist.images[0].url}
-                width={240}
+                className="h-64 w-64 rounded-lg object-cover shadow-xl ring-1 ring-border"
+                height={256}
+                src={playlist.images?.[0].url || "/placeholder.svg"}
+                width={256}
               />
             ) : (
-              <div className="h-40 w-full">
-                <MusicIcon className="h-full w-full bg-neutral-800" size={160} />
+              <div className="flex h-64 w-64 items-center justify-center rounded-lg bg-muted shadow-xl ring-1 ring-border">
+                <MusicIcon className="h-24 w-24 text-muted-foreground" />
               </div>
             )}
 
@@ -90,7 +90,7 @@ function RouteComponent() {
       </div>
 
       <div>
-        {playlist?.tracks && (
+        {playlist?.tracks && playlist?.tracks.length > 0 ? (
           <TracksTable
             showAlbum
             showCover
@@ -98,6 +98,15 @@ function RouteComponent() {
             showSubtitle
             tracks={playlist?.tracks.filter((track) => track !== null)}
           />
+        ) : (
+          <div className="rounded-lg bg-muted p-12 shadow-sm">
+            <div className="flex flex-col items-center space-y-3 text-center">
+              <p className="text-foreground">No tracks yet</p>
+              <p className="text-muted-foreground text-sm">
+                This playlist is empty
+              </p>
+            </div>
+          </div>
         )}
       </div>
     </div>

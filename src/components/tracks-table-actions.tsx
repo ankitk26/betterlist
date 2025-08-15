@@ -11,6 +11,9 @@ export default function TracksTableActions() {
       <Button disabled={isTracksSelected} size="sm" variant="secondary">
         Add to playlist
       </Button>
+      <Button disabled={isTracksSelected} size="sm" variant="secondary">
+        Rename playlist
+      </Button>
       <Button disabled={isTracksSelected} size="sm" variant="destructive">
         Remove from playlist
       </Button>

@@ -48,7 +48,7 @@ export interface Playlist {
   followers: {
     total: number;
   };
-  images: Image[];
+  images: Image[] | null;
   name: string;
   owner: {
     id: string;

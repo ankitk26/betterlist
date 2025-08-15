@@ -3,7 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { customSession } from "better-auth/plugins";
 import { db } from "~/db";
 import { account, session, user, verification } from "~/db/auth-schema";
-import { getAccessToken } from "./get-access-token";
+import { getUserAccount } from "./get-user-account";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -37,18 +37,20 @@ export const auth = betterAuth({
         "user-read-private",
         "user-library-read",
         "playlist-read-collaborative",
+        "playlist-modify-public",
+        "playlist-modify-private",
       ],
     },
   },
 
   plugins: [
     customSession(async ({ session: authSession, user: authUser }) => {
-      const accessToken = await getAccessToken({ data: authSession });
-
+      const { token, accountId } = await getUserAccount({ data: authSession });
       return {
         user: {
           ...authUser,
-          accessToken,
+          accessToken: token,
+          accountId,
         },
         session: authSession,
       };

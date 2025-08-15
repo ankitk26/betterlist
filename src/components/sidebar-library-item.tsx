@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { MusicIcon } from "lucide-react";
 import { cn } from "~/lib/utils";
 import { useSidebarStore } from "~/stores/sidebar-store";
 
@@ -27,16 +28,22 @@ export default function SidebarLibraryItem({
       className="flex items-center gap-3 rounded-md p-2 hover:bg-secondary"
       to={href}
     >
-      <img
-        alt={title}
-        className={cn(
-          "aspect-square object-cover",
-          library === "artists" ? "rounded-full" : "rounded-md"
-        )}
-        height={50}
-        src={image}
-        width={50}
-      />
+      {image ? (
+        <img
+          alt={title}
+          className={cn(
+            "aspect-square object-cover",
+            library === "artists" ? "rounded-full" : "rounded-md"
+          )}
+          height={48}
+          src={image}
+          width={48}
+        />
+      ) : (
+        <div className="flex aspect-square h-12 items-center justify-center rounded-md border bg-muted dark:border-muted">
+          <MusicIcon className="size-6 rounded-md" />
+        </div>
+      )}
 
       <div className="truncate">
         <h6 className="w-full truncate font-semibold text-sm">{title}</h6>
