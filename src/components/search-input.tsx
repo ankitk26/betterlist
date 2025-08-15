@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { setSearchInput, useGlobalStore } from "~/stores/global-store";
-import { Input } from "../ui/input";
+import { Input } from "./ui/input";
 
 export default function SearchInput() {
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { Dot } from "lucide-react";
-import TracksTable from "~/components/shared/tracks-table";
-import TracksTableSkeleton from "~/components/shared/tracks-table-skeleton";
+import TracksTable from "~/components/tracks-table";
+import TracksTableSkeleton from "~/components/tracks-table-skeleton";
 import { Skeleton } from "~/components/ui/skeleton";
 import { authClient } from "~/lib/auth-client";
 import { likedSongsQuery } from "~/queries";

@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { artistDiscographyQuery } from "~/queries";
-import CardItem from "../shared/card-item";
-import SquareSkeletons from "../shared/square-skeleton";
+import CardItem from "./card-item";
+import SquareSkeletons from "./square-skeleton";
 
 export default function ArtistDiscography() {
   const { artistId } = useParams({ from: "/_protected/artists/$artistId" });

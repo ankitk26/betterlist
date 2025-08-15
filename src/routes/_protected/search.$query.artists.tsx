@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import CardItem from "~/components/shared/card-item";
-import SquareSkeletons from "~/components/shared/square-skeleton";
+import CardItem from "~/components/card-item";
+import SquareSkeletons from "~/components/square-skeleton";
 import { searchItemsQuery } from "~/queries";
 
 export const Route = createFileRoute("/_protected/search/$query/artists")({

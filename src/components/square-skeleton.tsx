@@ -1,4 +1,4 @@
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "./ui/skeleton";
 
 export default function SquareSkeletons({ count = 5 }: { count?: number }) {
   return (

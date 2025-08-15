@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { recentlyPlayedQuery } from "~/queries";
-import { Skeleton } from "../ui/skeleton";
 import TrackCards from "./track-cards";
+import { Skeleton } from "./ui/skeleton";
 
 export default function RecentlyPlayed() {
   const { data, isPending } = useQuery(recentlyPlayedQuery);

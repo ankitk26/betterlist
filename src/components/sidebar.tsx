@@ -1,11 +1,11 @@
 import { Layers, PlusIcon } from "lucide-react";
 import { useSidebarStore } from "~/stores/sidebar-store";
-import { Button } from "../ui/button";
-import { ScrollArea } from "../ui/scroll-area";
 import LibraryBadge from "./library-badge";
 import SidebarAlbums from "./sidebar-albums";
 import SidebarArtists from "./sidebar-artists";
 import SidebarPlaylists from "./sidebar-playlists";
+import { Button } from "./ui/button";
+import { ScrollArea } from "./ui/scroll-area";
 
 export default function SideBar() {
   const library = useSidebarStore((store) => store.library);

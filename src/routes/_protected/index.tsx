@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import RecentlyPlayed from "~/components/home/recently-played";
-import TimeCapsule from "~/components/home/time-capsule";
-import UserTopArtists from "~/components/home/user-top-artists";
-import UserTopTracks from "~/components/home/user-top-tracks";
+import RecentlyPlayed from "~/components/recently-played";
+import TimeCapsule from "~/components/time-capsule";
 import { Button } from "~/components/ui/button";
+import UserTopArtists from "~/components/user-top-artists";
+import UserTopTracks from "~/components/user-top-tracks";
 import { getGreeting } from "~/lib/get-greeting";
 
 export const Route = createFileRoute("/_protected/")({
@@ -43,4 +43,3 @@ function RouteComponent() {
     </section>
   );
 }
-

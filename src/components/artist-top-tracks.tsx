@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { artistTopTracksQuery } from "~/queries";
-import TracksTable from "../shared/tracks-table";
-import TracksTableSkeleton from "../shared/tracks-table-skeleton";
+import TracksTable from "./tracks-table";
+import TracksTableSkeleton from "./tracks-table-skeleton";
 
 export default function ArtistTopTracks() {
   const { artistId } = useParams({ from: "/_protected/artists/$artistId" });

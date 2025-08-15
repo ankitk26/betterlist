@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
-import { artistCompilationQuery } from "~/queries";
-import CardItem from "../shared/card-item";
-import SquareSkeletons from "../shared/square-skeleton";
+import { artistAppearsOnQuery } from "~/queries";
+import CardItem from "./card-item";
+import SquareSkeletons from "./square-skeleton";
 
-export default function ArtistCompilation() {
+export default function ArtistAppearsOn() {
   const { artistId } = useParams({ from: "/_protected/artists/$artistId" });
-  const { data, isPending } = useQuery(artistCompilationQuery(artistId));
+  const { data, isPending } = useQuery(artistAppearsOnQuery(artistId));
 
   if (isPending) {
     return <SquareSkeletons />;
@@ -18,7 +18,7 @@ export default function ArtistCompilation() {
 
   return (
     <div>
-      <h1>Compilation</h1>
+      <h1>Appears On</h1>
       <div className="mt-4 grid grid-cols-5 items-stretch gap-8">
         {data?.map((album) => (
           <CardItem

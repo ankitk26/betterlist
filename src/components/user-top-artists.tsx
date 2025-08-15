@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { userTopArtistsQuery } from "~/queries";
-import CardItem from "../shared/card-item";
+import CardItem from "./card-item";
 
 export default function UserTopArtists() {
   const { data, isPending } = useQuery(userTopArtistsQuery({ limit: 10 }));

@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { authClient } from "~/lib/auth-client";
-import { Skeleton } from "../ui/skeleton";
 import HeaderAvatar from "./header-avatar";
 import SearchInput from "./search-input";
+import { Skeleton } from "./ui/skeleton";
 
 export default function Header() {
   const { isPending } = authClient.useSession();

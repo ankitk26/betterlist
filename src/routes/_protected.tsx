@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import Header from "~/components/shared/header";
-import Sidebar from "~/components/shared/sidebar";
+import Header from "~/components/header";
+import Sidebar from "~/components/sidebar";
 import { ScrollArea } from "~/components/ui/scroll-area";
 
 export const Route = createFileRoute("/_protected")({

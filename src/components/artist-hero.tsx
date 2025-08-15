@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { Music } from "lucide-react";
 import { artistByIdQuery } from "~/queries";
-import { Badge } from "../ui/badge";
-import { Skeleton } from "../ui/skeleton";
+import { Badge } from "./ui/badge";
+import { Skeleton } from "./ui/skeleton";
 
 export default function ArtistHero() {
   const { artistId } = useParams({ from: "/_protected/artists/$artistId" });

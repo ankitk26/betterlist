@@ -1,6 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
 import { LogOut, User2 } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
+import ThemeHandler from "./theme-handler";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,8 +9,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import ThemeHandler from "./theme-handler";
+} from "./ui/dropdown-menu";
 
 export default function HeaderAvatar() {
   const { data: session } = authClient.useSession();

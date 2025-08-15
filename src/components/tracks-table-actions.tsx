@@ -1,5 +1,5 @@
 import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 
 export default function TracksTableActions() {
   const isTracksSelected = usePlaylistEditorStore(

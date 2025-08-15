@@ -1,6 +1,6 @@
 import { Clock3 } from "lucide-react";
 import { cn } from "~/lib/utils";
-import { Separator } from "../ui/separator";
+import { Separator } from "./ui/separator";
 
 export default function TracksTableHeader({
   showAlbum,

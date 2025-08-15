@@ -3,7 +3,7 @@ import {
   updateSidebarLibrary,
   useSidebarStore,
 } from "~/stores/sidebar-store";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 
 export default function LibraryBadge({ type }: { type: SidebarLibrary }) {
   const library = useSidebarStore((store) => store.library);

@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
-import { Checkbox } from "../ui/checkbox";
+import { Checkbox } from "./ui/checkbox";
 
 type Props = {
   index: number;
