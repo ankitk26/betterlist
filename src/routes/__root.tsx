@@ -1,4 +1,5 @@
 import type { QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   createRootRouteWithContext,
   HeadContent,
@@ -73,6 +74,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           enableSystem
         >
           {children}
+          <ReactQueryDevtools />
         </NextThemesProvider>
         <Scripts />
       </body>

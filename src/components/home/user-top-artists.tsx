@@ -3,7 +3,7 @@ import { userTopArtistsQuery } from "~/queries";
 import CardItem from "../shared/card-item";
 
 export default function UserTopArtists() {
-  const { data, isPending } = useQuery(userTopArtistsQuery({ limit: 15 }));
+  const { data, isPending } = useQuery(userTopArtistsQuery({ limit: 10 }));
 
   if (isPending) {
     return <p>Loading...</p>;

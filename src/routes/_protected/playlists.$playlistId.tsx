@@ -55,7 +55,9 @@ function RouteComponent() {
             )}
 
             <div className="flex flex-col gap-3">
-              <h5 className="font-bold text-xs uppercase">{playlist.type}</h5>
+              <h5 className="font-bold text-muted-foreground text-xs uppercase">
+                {playlist.type}
+              </h5>
               <h2 className="font-bold text-6xl">{playlist.name}</h2>
 
               {playlist.description && (
@@ -76,7 +78,9 @@ function RouteComponent() {
                 {playlist.tracks.length > 0 && (
                   <>
                     <Dot />
-                    <span>{playlist.tracks.length.toLocaleString()} songs</span>
+                    <span className="text-muted-foreground">
+                      {playlist.tracks.length.toLocaleString()} songs
+                    </span>
                   </>
                 )}
               </div>
