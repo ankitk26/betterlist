@@ -1,4 +1,4 @@
-import { Music } from "lucide-react";
+import { MusicIcon } from "lucide-react";
 
 type Props = {
   item: {
@@ -25,7 +25,7 @@ export default function CardItemContent({ item }: Props) {
         />
       ) : (
         <div className="h-40 w-full">
-          <Music className="h-full w-full rounded-md" />
+          <MusicIcon className="h-full w-full rounded-md" />
         </div>
       )}
       <h3 className="mt-5 truncate font-bold">{item.title}</h3>

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Album } from "lucide-react";
+import { AlbumIcon } from "lucide-react";
 import { userTopTracksQuery } from "~/queries";
 import { Skeleton } from "./ui/skeleton";
 
@@ -30,7 +30,7 @@ export default function UserTopTracks() {
             width={72}
           />
         ) : (
-          <Album size={20} />
+          <AlbumIcon size={20} />
         )}
         <h3 className="truncate font-semibold">{track.name}</h3>
       </div>

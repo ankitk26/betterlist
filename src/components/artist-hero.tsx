@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
-import { Music } from "lucide-react";
+import { MusicIcon } from "lucide-react";
 import { artistByIdQuery } from "~/queries";
 import { Badge } from "./ui/badge";
 import { Skeleton } from "./ui/skeleton";
@@ -42,7 +42,7 @@ export default function ArtistHero() {
             />
           ) : (
             <div className="h-40 w-full">
-              <Music className="h-full w-full bg-card" size={160} />
+              <MusicIcon className="h-full w-full bg-card" size={160} />
             </div>
           )}
           <div className="flex flex-col items-start gap-3">

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { Dot } from "lucide-react";
+import { DotIcon } from "lucide-react";
 import TracksTable from "~/components/tracks-table";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
 import { Skeleton } from "~/components/ui/skeleton";
@@ -52,7 +52,7 @@ function RouteComponent() {
             <span>{authData?.user.name}</span>
             {data?.total && data.total > 0 && (
               <>
-                <Dot />
+                <DotIcon />
                 <span>{data.total} songs</span>
               </>
             )}

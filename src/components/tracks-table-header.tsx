@@ -1,4 +1,4 @@
-import { Clock3 } from "lucide-react";
+import { Clock3Icon } from "lucide-react";
 import { cn } from "~/lib/utils";
 import { Separator } from "./ui/separator";
 
@@ -30,7 +30,7 @@ export default function TracksTableHeader({
         )}
 
         <div className="col-span-1 text-left font-semibold">
-          <Clock3 size={16} />
+          <Clock3Icon size={16} />
         </div>
       </header>
 

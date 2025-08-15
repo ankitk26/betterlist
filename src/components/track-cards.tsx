@@ -1,4 +1,4 @@
-import { Music } from "lucide-react";
+import { MusicIcon } from "lucide-react";
 import type { Track } from "~/types";
 
 type Props = {
@@ -26,7 +26,7 @@ export default function TrackCards({ tracks }: Props) {
                 />
               ) : (
                 <div className="h-40 w-full">
-                  <Music className="h-full w-full bg-secondary" />
+                  <MusicIcon className="h-full w-full bg-secondary" />
                 </div>
               )}
             </div>

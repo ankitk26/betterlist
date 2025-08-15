@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Dot, Music } from "lucide-react";
+import { DotIcon, MusicIcon } from "lucide-react";
 import TracksTable from "~/components/tracks-table";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
 import { Skeleton } from "~/components/ui/skeleton";
@@ -49,7 +49,7 @@ function RouteComponent() {
               />
             ) : (
               <div className="h-40 w-full">
-                <Music className="h-full w-full" size={160} />
+                <MusicIcon className="h-full w-full" size={160} />
               </div>
             )}
             <div className="flex flex-col gap-3">
@@ -66,11 +66,11 @@ function RouteComponent() {
                 >
                   {album.artists[0].name}
                 </Link>
-                <Dot />
+                <DotIcon />
                 <span>{new Date(album.release_date).getFullYear()}</span>
                 {album.tracks && album.tracks.items.length > 0 && (
                   <>
-                    <Dot />
+                    <DotIcon />
                     <span>{album.tracks.total} songs</span>
                   </>
                 )}

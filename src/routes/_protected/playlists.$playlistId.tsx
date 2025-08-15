@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { Dot, Music } from "lucide-react";
+import { DotIcon, MusicIcon } from "lucide-react";
 import PlaylistDescription from "~/components/playlist-description";
 import TracksTable from "~/components/tracks-table";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
@@ -50,7 +50,7 @@ function RouteComponent() {
               />
             ) : (
               <div className="h-40 w-full">
-                <Music className="h-full w-full bg-neutral-800" size={160} />
+                <MusicIcon className="h-full w-full bg-neutral-800" size={160} />
               </div>
             )}
 
@@ -68,7 +68,7 @@ function RouteComponent() {
                 <span>{playlist.owner?.display_name}</span>
                 {playlist.followers.total > 0 && (
                   <>
-                    <Dot />
+                    <DotIcon />
                     <span>
                       {playlist.followers.total.toLocaleString()}{" "}
                       {playlist.followers.total > 1 ? "likes" : "like"}
@@ -77,7 +77,7 @@ function RouteComponent() {
                 )}
                 {playlist.tracks.length > 0 && (
                   <>
-                    <Dot />
+                    <DotIcon />
                     <span className="text-muted-foreground">
                       {playlist.tracks.length.toLocaleString()} songs
                     </span>

@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-import { LogOut, User2 } from "lucide-react";
+import { LogOutIcon, User2Icon } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
 import ThemeHandler from "./theme-handler";
 import {
@@ -33,7 +33,7 @@ export default function HeaderAvatar() {
               width={28}
             />
           ) : (
-            <User2 className="rounded-full p-1" />
+            <User2Icon className="rounded-full p-1" />
           )}
           <span className="text-xs">{session?.user.name}</span>
         </div>
@@ -57,7 +57,7 @@ export default function HeaderAvatar() {
             await navigate({ to: "/login" });
           }}
         >
-          <LogOut className="h-4 w-4" />
+          <LogOutIcon className="h-4 w-4" />
           Sign Out
         </DropdownMenuItem>
       </DropdownMenuContent>

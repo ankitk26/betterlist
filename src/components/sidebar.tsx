@@ -1,4 +1,4 @@
-import { Layers, PlusIcon } from "lucide-react";
+import { LayersIcon, PlusIcon } from "lucide-react";
 import { useSidebarStore } from "~/stores/sidebar-store";
 import LibraryBadge from "./library-badge";
 import SidebarAlbums from "./sidebar-albums";
@@ -15,7 +15,7 @@ export default function SideBar() {
       <div className="mt-2 flex flex-col rounded-lg px-2 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 text-muted-foreground text-sm">
-            <Layers className="size-5" />
+            <LayersIcon className="size-5" />
             <h4 className="text-sm">Your Library</h4>
           </div>
           {library === "playlists" && (
