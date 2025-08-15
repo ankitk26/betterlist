@@ -1,4 +1,6 @@
-import { Layers } from "lucide-react";
+import { Layers, PlusIcon } from "lucide-react";
+import { useSidebarStore } from "~/stores/sidebar-store";
+import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import LibraryBadge from "./library-badge";
 import SidebarAlbums from "./sidebar-albums";
@@ -6,12 +8,21 @@ import SidebarArtists from "./sidebar-artists";
 import SidebarPlaylists from "./sidebar-playlists";
 
 export default function SideBar() {
+  const library = useSidebarStore((store) => store.library);
+
   return (
     <aside className="col-span-2 flex h-[calc(100dvh-5.5rem)] flex-col rounded-lg border bg-card px-2 text-card-foreground dark:border-none">
       <div className="mt-2 flex flex-col rounded-lg px-2 py-4">
-        <div className="flex items-center gap-3 text-muted-foreground text-sm">
-          <Layers className="size-5" />
-          <h4 className="text-sm">Your Library</h4>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3 text-muted-foreground text-sm">
+            <Layers className="size-5" />
+            <h4 className="text-sm">Your Library</h4>
+          </div>
+          {library === "playlists" && (
+            <Button className="size-7" size="icon" variant="ghost">
+              <PlusIcon className="size-4" />
+            </Button>
+          )}
         </div>
 
         <div className="my-6 grid grid-cols-3 items-center gap-2">

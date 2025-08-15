@@ -1,4 +1,6 @@
+import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
 import type { Track } from "~/types";
+import TracksTableActions from "./tracks-table-actions";
 import TracksTableHeader from "./tracks-table-header";
 import TracksTableRow from "./tracks-table-row";
 
@@ -17,8 +19,15 @@ export default function TracksTable({
   showHeader = false,
   showAlbum = false,
 }: Props) {
+  const selectedTrackIds = usePlaylistEditorStore(
+    (store) => store.selectedTrackIds
+  );
+  console.log(selectedTrackIds);
+
   return (
-    <div>
+    <div className="space-y-1">
+      <TracksTableActions />
+
       {showHeader && <TracksTableHeader showAlbum={showAlbum} />}
 
       <div className="col-span-12 w-full">

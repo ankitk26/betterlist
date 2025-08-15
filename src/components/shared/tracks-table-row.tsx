@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { formatMs } from "~/lib/format-ms";
 import type { Track } from "~/types";
+import TracksTableRowCheckbox from "./tracks-table-row-checkbox";
 import TracksTableTitleColumn from "./tracks-table-title-column";
 
 type Props = {
@@ -19,13 +20,8 @@ export default function TracksTableRow({
   showSubtitle,
 }: Props) {
   return (
-    <div
-      className="grid grid-cols-12 rounded-lg px-4 py-2"
-      key={track.id + index + 1}
-    >
-      <span className="col-span-1 flex items-center text-muted-foreground text-sm">
-        {index + 1}
-      </span>
+    <div className="group grid grid-cols-12 rounded-lg px-4 py-2 transition-colors hover:bg-muted/50">
+      <TracksTableRowCheckbox index={index} trackId={track.id} />
 
       <TracksTableTitleColumn
         showAlbum={showAlbum}
@@ -46,7 +42,7 @@ export default function TracksTableRow({
         </div>
       )}
 
-      <small className="col-span-1 flex items-center font-medium text-muted-foreground text-sm ">
+      <small className="col-span-1 flex items-center font-medium text-muted-foreground text-sm">
         {formatMs(track.duration_ms)}
       </small>
     </div>
