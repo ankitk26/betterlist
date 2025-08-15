@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "~/lib/utils";
-import { useSidebarStore } from "~/stores/use-sidebar-store";
+import { useSidebarStore } from "~/stores/sidebar-store";
 
 type Props = {
   id: string;

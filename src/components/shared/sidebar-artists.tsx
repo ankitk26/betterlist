@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { userArtistsQuery } from "~/queries";
-import { useSidebarStore } from "~/stores/use-sidebar-store";
+import { useSidebarStore } from "~/stores/sidebar-store";
 import SidebarLibraryItem from "./sidebar-library-item";
 import SidebarSkeleton from "./sidebar-skeleton";
 

@@ -1,4 +1,4 @@
-import { useSidebarStore } from "~/stores/use-sidebar-store";
+import { useSidebarStore } from "~/stores/sidebar-store";
 import SidebarLikedSongs from "./sidebar-liked-songs";
 import UserPlaylists from "./user-playlists";
 
