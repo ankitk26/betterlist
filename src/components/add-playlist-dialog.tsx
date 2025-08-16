@@ -57,11 +57,11 @@ export default function AddPlaylistDialog() {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
-        <DialogHeader>
+        <DialogHeader className="pb-4">
           <DialogTitle>Create New Playlist</DialogTitle>
         </DialogHeader>
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <div className="space-y-2">
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <div className="space-y-3">
             <Label htmlFor="playlist-name">Playlist Name</Label>
             <Input
               autoFocus
@@ -69,17 +69,23 @@ export default function AddPlaylistDialog() {
               onChange={(e) => setPlaylistName(e.target.value)}
               placeholder="Enter playlist name..."
               value={playlistName}
+              className="h-11"
             />
           </div>
-          <div className="flex justify-end gap-2">
+          <div className="flex justify-end gap-3 pt-2">
             <Button
               onClick={() => setIsOpen(false)}
               type="button"
               variant="outline"
+              className="px-6"
             >
               Cancel
             </Button>
-            <Button disabled={!playlistName.trim()} type="submit">
+            <Button
+              disabled={!playlistName.trim()}
+              type="submit"
+              className="px-6"
+            >
               Create Playlist
             </Button>
           </div>
