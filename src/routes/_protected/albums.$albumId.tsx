@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Image } from "@unpic/react";
 import { DotIcon, MusicIcon } from "lucide-react";
 import TracksTable from "~/components/tracks-table";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
@@ -40,7 +41,7 @@ function RouteComponent() {
         {album && (
           <>
             {album.images && album.images.length > 0 ? (
-              <img
+              <Image
                 alt={album.name}
                 className="aspect-square w-64 rounded-sm object-cover"
                 height={208}

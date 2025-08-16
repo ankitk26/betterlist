@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Image } from "@unpic/react";
 import { MusicIcon } from "lucide-react";
 import { cn } from "~/lib/utils";
 import type { Track } from "~/types";
@@ -27,7 +28,7 @@ export default function TracksTableTitleColumn({
         {showCover &&
           (track.album.images && track.album.images.length > 0 ? (
             <div className="h-10 w-10 flex-shrink-0">
-              <img
+              <Image
                 alt={track.name}
                 className="h-10 w-10 rounded object-contain"
                 height={40}

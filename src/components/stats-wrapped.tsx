@@ -1,4 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { Image } from "@unpic/react";
+import { getMostFrequentGenre } from "~/lib/get-most-frequent-genre";
 import { userTopArtistsQuery, userTopTracksQuery } from "~/queries";
 import WrappedBackgroundDesign from "./wrapped-background-design";
 
@@ -11,25 +13,32 @@ export function StatsWrapped(props: Props) {
     userTopTracksQuery({ limit: 5, range: props.range })
   );
   const { data: artists } = useSuspenseQuery(
-    userTopArtistsQuery({ limit: 5, range: props.range })
+    userTopArtistsQuery({ range: props.range })
   );
 
   const topArtistImages = artists?.[0].images.length;
   const randomIndex = Math.floor(Math.random() * (topArtistImages ?? 1));
 
+  const allGenres = artists
+    ?.flatMap((artist) => artist.genres)
+    .filter((genre) => genre !== undefined);
+  const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
+
   return (
-    <div className="w-full max-w-sm mx-auto border border-neutral-900 bg-black text-white rounded-2xl overflow-hidden relative">
+    <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-neutral-900 bg-black text-white">
       {/* Background decorative elements */}
       <WrappedBackgroundDesign />
 
       <div className="relative z-10 p-6">
         {/* Character image */}
-        <div className="flex justify-center mb-8">
-          <div className="w-48 h-48 bg-white rounded-lg p-2  shadow-lg">
-            <img
-              src={artists?.[0].images[randomIndex].url}
+        <div className="mb-8 flex justify-center">
+          <div className="h-48 w-48 rounded-lg bg-white p-2 shadow-lg">
+            <Image
               alt={artists?.[0].name}
-              className="w-full h-full object-contain rounded"
+              className="h-full w-full rounded object-contain"
+              height={180}
+              src={artists?.[0].images[randomIndex].url || ""}
+              width={180}
             />
           </div>
         </div>
@@ -39,13 +48,13 @@ export function StatsWrapped(props: Props) {
           <div className="grid grid-cols-2 gap-6">
             {/* Top Artists */}
             <div>
-              <h2 className="text-rose-50 text-lg font-bold mb-3">
+              <h2 className="mb-3 font-bold text-lg text-rose-50">
                 Top Artists
               </h2>
               <div className="space-y-1 text-sm">
-                {artists?.map((artist, index) => (
-                  <div key={artist.id} className="flex items-center gap-2">
-                    <span className="text-white font-bold">#{index + 1}</span>
+                {artists?.slice(0, 5).map((artist, index) => (
+                  <div className="flex items-center gap-2" key={artist.id}>
+                    <span className="font-bold text-white">#{index + 1}</span>
                     <span className="text-white">{artist.name}</span>
                   </div>
                 ))}
@@ -54,11 +63,11 @@ export function StatsWrapped(props: Props) {
 
             {/* Top Songs */}
             <div>
-              <h2 className="text-rose-50 text-lg font-bold mb-3">Top Songs</h2>
+              <h2 className="mb-3 font-bold text-lg text-rose-50">Top Songs</h2>
               <div className="space-y-1 text-sm">
                 {tracks?.map((track, index) => (
-                  <div key={track.id} className="flex gap-2">
-                    <span className="text-white font-bold">#{index + 1}</span>
+                  <div className="flex gap-2" key={track.id}>
+                    <span className="font-bold text-white">#{index + 1}</span>
                     <span className="text-white">{track.name}</span>
                   </div>
                 ))}
@@ -68,10 +77,12 @@ export function StatsWrapped(props: Props) {
 
           <div className="flex justify-center">
             <div className="text-center">
-              <h2 className="text-rose-200 text-lg font-bold mb-2">
+              <h2 className="mb-2 font-bold text-lg text-rose-200">
                 Top Genre
               </h2>
-              <div className="text-white text-3xl font-bold">Anime</div>
+              <div className="font-bold text-3xl text-white capitalize">
+                {topGenre}
+              </div>
             </div>
           </div>
         </div>

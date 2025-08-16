@@ -1,3 +1,4 @@
+import { Image } from "@unpic/react";
 import { MusicIcon } from "lucide-react";
 import type { Track } from "~/types";
 
@@ -17,7 +18,7 @@ export default function TrackCards({ tracks }: Props) {
           >
             <div className="relative">
               {track.album.images.length > 0 ? (
-                <img
+                <Image
                   alt={track.name}
                   className="aspect-square w-full rounded-md object-cover"
                   height={160}

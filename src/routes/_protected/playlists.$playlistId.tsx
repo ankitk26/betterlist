@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import { Image } from "@unpic/react";
 import { DotIcon, MusicIcon } from "lucide-react";
 import PlaylistDescription from "~/components/playlist-description";
 import TracksTable from "~/components/tracks-table";
@@ -41,7 +42,7 @@ function RouteComponent() {
         {playlist && (
           <>
             {(playlist.images?.length ?? 0) > 0 ? (
-              <img
+              <Image
                 alt={playlist.name}
                 className="h-64 w-64 rounded-lg object-cover shadow-xl ring-1 ring-border"
                 height={256}

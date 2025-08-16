@@ -1,4 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
+import { Image } from "@unpic/react";
 import { LogOutIcon, User2Icon } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
 import ThemeHandler from "./theme-handler";
@@ -25,7 +26,7 @@ export default function HeaderAvatar() {
       <DropdownMenuTrigger asChild>
         <div className="flex cursor-pointer items-center gap-3 rounded-full border border-border bg-card py-1 pr-3 pl-1 transition-colors hover:bg-accent">
           {session?.user.image ? (
-            <img
+            <Image
               alt={session?.user?.name}
               className="size-6 rounded-full object-contain"
               height={28}

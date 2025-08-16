@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Image } from "@unpic/react";
 import { MusicIcon } from "lucide-react";
 import { cn } from "~/lib/utils";
 import { useSidebarStore } from "~/stores/sidebar-store";
@@ -29,7 +30,7 @@ export default function SidebarLibraryItem({
       to={href}
     >
       {image ? (
-        <img
+        <Image
           alt={title}
           className={cn(
             "aspect-square object-cover",

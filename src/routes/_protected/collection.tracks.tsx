@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import { Image } from "@unpic/react";
 import { DotIcon } from "lucide-react";
 import TracksTable from "~/components/tracks-table";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
@@ -38,7 +39,7 @@ function RouteComponent() {
   return (
     <>
       <div className="flex items-end gap-6">
-        <img
+        <Image
           alt="Liked Songs"
           height={208}
           src="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"

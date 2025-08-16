@@ -65,26 +65,26 @@ export default function AddPlaylistDialog() {
             <Label htmlFor="playlist-name">Playlist Name</Label>
             <Input
               autoFocus
+              className="h-11"
               id="playlist-name"
               onChange={(e) => setPlaylistName(e.target.value)}
               placeholder="Enter playlist name..."
               value={playlistName}
-              className="h-11"
             />
           </div>
           <div className="flex justify-end gap-3 pt-2">
             <Button
+              className="px-6"
               onClick={() => setIsOpen(false)}
               type="button"
               variant="outline"
-              className="px-6"
             >
               Cancel
             </Button>
             <Button
+              className="px-6"
               disabled={!playlistName.trim()}
               type="submit"
-              className="px-6"
             >
               Create Playlist
             </Button>

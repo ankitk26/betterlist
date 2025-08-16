@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AlbumIcon } from "lucide-react";
 import { userTopTracksQuery } from "~/queries";
 import { Skeleton } from "./ui/skeleton";
+import { Image } from "@unpic/react";
 
 export default function UserTopTracks() {
   const { data, isPending } = useQuery(userTopTracksQuery({ limit: 9 }));
@@ -22,7 +23,7 @@ export default function UserTopTracks() {
     >
       <div className="flex items-center gap-4">
         {track.album.images && track.album.images.length > 0 ? (
-          <img
+          <Image
             alt={track.name}
             className="aspect-square h-full rounded-tl-md rounded-bl-md object-cover"
             height={72}

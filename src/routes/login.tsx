@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Image } from "@unpic/react";
 import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "~/components/ui/button";
@@ -13,7 +14,7 @@ function RouteComponent() {
 
   return (
     <div className="flex h-[100dvh] flex-col items-center justify-center gap-12">
-      <img
+      <Image
         alt="spotify logo"
         height={96}
         src="https://res.cloudinary.com/drnu1myuq/image/upload/v1754937393/spotify_logo_xmxgc6.png"

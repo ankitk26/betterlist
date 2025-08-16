@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
+import { Image } from "@unpic/react";
 import { MusicIcon } from "lucide-react";
 import { artistByIdQuery } from "~/queries";
 import { Badge } from "./ui/badge";
@@ -33,7 +34,7 @@ export default function ArtistHero() {
       {artist && (
         <>
           {artist.images.length > 0 ? (
-            <img
+            <Image
               alt={artist.name}
               className="h-64 w-64 rounded-full object-cover"
               height={208}

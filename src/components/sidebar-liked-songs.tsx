@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { likedSongsCountQuery } from "~/queries";
 import { useSidebarStore } from "~/stores/sidebar-store";
 import { Skeleton } from "./ui/skeleton";
+import { Image } from "@unpic/react";
 
 export default function SidebarLikedSongs() {
   const library = useSidebarStore((store) => store.library);
@@ -20,7 +21,7 @@ export default function SidebarLikedSongs() {
       className="flex items-center gap-3 rounded-md p-2 hover:bg-secondary"
       to="/collection/tracks"
     >
-      <img
+      <Image
         alt="Liked playlist cover"
         className="rounded-md"
         height={50}

@@ -1,3 +1,4 @@
+import { Image } from "@unpic/react";
 import { MusicIcon } from "lucide-react";
 
 type Props = {
@@ -14,7 +15,7 @@ export default function CardItemContent({ item }: Props) {
   return (
     <div className="h-full cursor-pointer rounded-lg border bg-input/30 p-4 transition duration-300 hover:bg-secondary dark:border-none">
       {item.image ? (
-        <img
+        <Image
           alt={item.title}
           className={`aspect-square w-full object-cover ${
             item.type === "artists" ? "rounded-full" : "rounded-md"
