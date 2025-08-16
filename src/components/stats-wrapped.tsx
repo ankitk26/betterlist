@@ -1,14 +1,27 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Image } from "@unpic/react";
-import { getMostFrequentGenre } from "~/lib/get-most-frequent-genre";
-import { userTopArtistsQuery, userTopTracksQuery } from "~/queries";
+import { getMostFrequentGenre } from "../lib/get-most-frequent-genre";
+import { userTopArtistsQuery, userTopTracksQuery } from "../queries";
 import WrappedBackgroundDesign from "./wrapped-background-design";
 
 type Props = {
   range: "long_term" | "short_term" | "medium_term";
 };
 
-export function StatsWrapped(props: Props) {
+function getRangeTitle(range: Props["range"]): string {
+  switch (range) {
+    case "short_term":
+      return "Last Month";
+    case "medium_term":
+      return "Last 6 Months";
+    case "long_term":
+      return "Last Year";
+    default:
+      return "Your Stats";
+  }
+}
+
+function StatsWrapped(props: Props) {
   const { data: tracks } = useSuspenseQuery(
     userTopTracksQuery({ limit: 5, range: props.range })
   );
@@ -30,6 +43,12 @@ export function StatsWrapped(props: Props) {
       <WrappedBackgroundDesign />
 
       <div className="relative z-10 p-6">
+        <div className="mb-6 text-center">
+          <h1 className="font-bold text-2xl text-white">
+            {getRangeTitle(props.range)}
+          </h1>
+        </div>
+
         {/* Character image */}
         <div className="mb-8 flex justify-center">
           <div className="h-48 w-48 rounded-lg bg-white p-2 shadow-lg">
@@ -90,3 +109,5 @@ export function StatsWrapped(props: Props) {
     </div>
   );
 }
+
+export { StatsWrapped };

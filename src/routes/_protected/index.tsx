@@ -11,7 +11,7 @@ function RouteComponent() {
   return (
     <section className="flex w-full flex-col items-stretch">
       <h1 className="mb-5 font-bold text-3xl">Your Stats</h1>
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid gap-4 md:grid-cols-3">
         <Suspense
           fallback={
             <>
