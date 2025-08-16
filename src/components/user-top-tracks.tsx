@@ -32,7 +32,12 @@ export default function UserTopTracks() {
         ) : (
           <AlbumIcon size={20} />
         )}
-        <h3 className="truncate font-semibold">{track.name}</h3>
+        <div className="flex flex-col">
+          <h3 className="truncate font-semibold">{track.name}</h3>
+          <h5 className="text-muted-foreground text-sm">
+            {track.artists?.[0].name}
+          </h5>
+        </div>
       </div>
     </div>
   ));

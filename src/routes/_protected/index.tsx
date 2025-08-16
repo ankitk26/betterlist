@@ -1,21 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import RecentlyPlayed from "~/components/recently-played";
-import TimeCapsule from "~/components/time-capsule";
 import { Button } from "~/components/ui/button";
 import UserTopArtists from "~/components/user-top-artists";
 import UserTopTracks from "~/components/user-top-tracks";
-import { getGreeting } from "~/lib/get-greeting";
 
 export const Route = createFileRoute("/_protected/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const greeting = getGreeting();
-
   return (
     <section className="flex w-full flex-col items-stretch">
-      <h1 className="mb-5 font-bold text-3xl">Good {greeting}</h1>
+      <h1 className="mb-5 font-bold text-3xl">Your Stats</h1>
 
       <section className="mt-8">
         <div className="flex w-full items-center justify-between">
@@ -29,14 +24,6 @@ function RouteComponent() {
           <UserTopTracks />
         </div>
       </section>
-
-      <section className="mt-16">
-        <h1>Recently played</h1>
-        <RecentlyPlayed />
-      </section>
-
-      <h1 className="mt-16">Time Capsule</h1>
-      <TimeCapsule />
 
       <h1 className="mt-16">Top Artists</h1>
       <UserTopArtists />
