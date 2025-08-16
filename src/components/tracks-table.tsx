@@ -1,5 +1,4 @@
 import type { Track } from "~/types";
-import TracksTableActions from "./tracks-table-actions";
 import TracksTableHeader from "./tracks-table-header";
 import TracksTableRow from "./tracks-table-row";
 
@@ -19,9 +18,7 @@ export default function TracksTable({
   showAlbum = false,
 }: Props) {
   return (
-    <div className="space-y-1">
-      <TracksTableActions />
-
+    <>
       {showHeader && (
         <TracksTableHeader showAlbum={showAlbum} tracks={tracks} />
       )}
@@ -40,6 +37,6 @@ export default function TracksTable({
             />
           ))}
       </div>
-    </div>
+    </>
   );
 }

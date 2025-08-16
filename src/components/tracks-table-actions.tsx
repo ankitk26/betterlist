@@ -1,7 +1,13 @@
 import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
+import RenamePlaylistDialog from "./rename-playlist-dialog";
 import { Button } from "./ui/button";
 
-export default function TracksTableActions() {
+type Props = {
+  playlistId?: string;
+  playlistName?: string;
+};
+
+export default function TracksTableActions(props: Props) {
   const isTracksSelected = usePlaylistEditorStore(
     (store) => store.selectedTrackIds.size === 0
   );
@@ -11,9 +17,12 @@ export default function TracksTableActions() {
       <Button disabled={isTracksSelected} size="sm" variant="secondary">
         Add to playlist
       </Button>
-      <Button disabled={isTracksSelected} size="sm" variant="secondary">
-        Rename playlist
-      </Button>
+      {props.playlistId && (
+        <RenamePlaylistDialog
+          currentName={props.playlistName ?? ""}
+          playlistId={props.playlistId}
+        />
+      )}
       <Button disabled={isTracksSelected} size="sm" variant="destructive">
         Remove from playlist
       </Button>

@@ -45,9 +45,6 @@ export interface Track {
 export interface Playlist {
   description?: string;
   id: string;
-  followers: {
-    total: number;
-  };
   images: Image[] | null;
   name: string;
   owner: {

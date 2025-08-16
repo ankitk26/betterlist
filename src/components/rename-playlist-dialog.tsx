@@ -1,10 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { LoaderIcon, PlusIcon } from "lucide-react";
+import { LoaderIcon } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { userPlaylistsQuery } from "~/queries";
-import { createPlaylist } from "~/server-fns/create-playlist";
+import { renamePlaylist } from "~/server-fns/rename-playlist";
 import type { Playlist } from "~/types";
 import { Button } from "./ui/button";
 import {
@@ -17,25 +16,45 @@ import {
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-export default function AddPlaylistDialog() {
-  const [playlistName, setPlaylistName] = useState("");
+type Props = {
+  playlistId: string;
+  currentName: string;
+};
+
+export default function RenamePlaylistDialog({
+  playlistId,
+  currentName,
+}: Props) {
+  const [playlistName, setPlaylistName] = useState(currentName);
   const [isOpen, setIsOpen] = useState(false);
 
   const queryClient = useQueryClient();
 
-  const createPlaylistMutation = useMutation({
-    mutationFn: createPlaylist,
-    onSuccess: (newPlaylist) => {
-      if (!newPlaylist) {
-        toast.error("Something went wrong");
-        return;
-      }
+  const renamePlaylistMutation = useMutation({
+    mutationFn: renamePlaylist,
+    onSuccess: () => {
+      toast.info("Renaming playlist…");
+
+      // update the playlists list
       queryClient.setQueryData<Playlist[]>(
-        userPlaylistsQuery.queryKey,
-        (old = []) => [newPlaylist, ...old]
+        ["user_playlists"],
+        (oldRecord = []) =>
+          oldRecord.map((playlist) =>
+            playlist.id === playlistId
+              ? { ...playlist, name: playlistName }
+              : playlist
+          )
       );
+
+      // update the individual playlist cache
+      queryClient.setQueryData<Playlist>(
+        ["playlist", playlistId],
+        (oldRecord) =>
+          oldRecord ? { ...oldRecord, name: playlistName } : oldRecord
+      );
+
       setIsOpen(false);
-      toast.success("Playlist created");
+      toast.success("Playlist renamed");
     },
     onError: () => {
       toast.error("Something went wrong");
@@ -44,22 +63,33 @@ export default function AddPlaylistDialog() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (playlistName.trim()) {
-      createPlaylistMutation.mutate({ data: playlistName });
-      setPlaylistName("");
+    if (playlistName.trim() && playlistName.trim() !== currentName) {
+      renamePlaylistMutation.mutate({
+        data: {
+          id: playlistId,
+          name: playlistName.trim(),
+        },
+      });
+    }
+  };
+
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    if (open) {
+      setPlaylistName(currentName);
     }
   };
 
   return (
-    <Dialog onOpenChange={setIsOpen} open={isOpen}>
+    <Dialog onOpenChange={handleOpenChange} open={isOpen}>
       <DialogTrigger asChild>
-        <Button className="size-7" size="icon" variant="ghost">
-          <PlusIcon className="size-4" />
+        <Button size="sm" variant="secondary">
+          Rename playlist
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader className="pb-4">
-          <DialogTitle>Create New Playlist</DialogTitle>
+          <DialogTitle>Rename Playlist</DialogTitle>
         </DialogHeader>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-3">
@@ -69,7 +99,7 @@ export default function AddPlaylistDialog() {
               className="h-11"
               id="playlist-name"
               onChange={(e) => setPlaylistName(e.target.value)}
-              placeholder="Enter playlist name..."
+              placeholder="Enter new playlist name..."
               value={playlistName}
             />
           </div>
@@ -85,14 +115,16 @@ export default function AddPlaylistDialog() {
             <Button
               className="px-6"
               disabled={
-                !playlistName.trim() || createPlaylistMutation.isPending
+                !playlistName.trim() ||
+                playlistName.trim() === currentName ||
+                renamePlaylistMutation.isPending
               }
               type="submit"
             >
-              {createPlaylistMutation.isPending ? (
+              {renamePlaylistMutation.isPending ? (
                 <LoaderIcon className="size-4 animate-spin" />
               ) : (
-                "Create Playlist"
+                "Rename Playlist"
               )}
             </Button>
           </div>

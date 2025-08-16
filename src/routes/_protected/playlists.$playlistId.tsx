@@ -4,6 +4,7 @@ import { Image } from "@unpic/react";
 import { DotIcon, MusicIcon } from "lucide-react";
 import PlaylistDescription from "~/components/playlist-description";
 import TracksTable from "~/components/tracks-table";
+import TracksTableActions from "~/components/tracks-table-actions";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
 import { Skeleton } from "~/components/ui/skeleton";
 import { playlistByIdQuery } from "~/queries";
@@ -61,21 +62,12 @@ function RouteComponent() {
               </h5>
               <h2 className="font-bold text-6xl">{playlist.name}</h2>
 
-              {playlist.description && (
+              {playlist.description && playlist.description !== "null" && (
                 <PlaylistDescription description={playlist.description} />
               )}
 
               <div className="flex items-center font-semibold text-sm">
                 <span>{playlist.owner?.display_name}</span>
-                {playlist.followers.total > 0 && (
-                  <>
-                    <DotIcon />
-                    <span>
-                      {playlist.followers.total.toLocaleString()}{" "}
-                      {playlist.followers.total > 1 ? "likes" : "like"}
-                    </span>
-                  </>
-                )}
                 {playlist.tracks.length > 0 && (
                   <>
                     <DotIcon />
@@ -90,7 +82,12 @@ function RouteComponent() {
         )}
       </div>
 
-      <div>
+      <div className="space-y-1">
+        <TracksTableActions
+          playlistId={playlist?.id}
+          playlistName={playlist?.name}
+        />
+
         {playlist?.tracks && playlist?.tracks.length > 0 ? (
           <TracksTable
             showAlbum
@@ -100,7 +97,7 @@ function RouteComponent() {
             tracks={playlist?.tracks.filter((track) => track !== null)}
           />
         ) : (
-          <div className="rounded-lg bg-muted p-12 shadow-sm">
+          <div className="mt-12 rounded-lg bg-muted p-12 shadow-sm">
             <div className="flex flex-col items-center space-y-3 text-center">
               <p className="text-foreground">No tracks yet</p>
               <p className="text-muted-foreground text-sm">
