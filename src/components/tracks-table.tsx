@@ -22,7 +22,9 @@ export default function TracksTable({
     <div className="space-y-1">
       <TracksTableActions />
 
-      {showHeader && <TracksTableHeader showAlbum={showAlbum} />}
+      {showHeader && (
+        <TracksTableHeader showAlbum={showAlbum} tracks={tracks} />
+      )}
 
       <div className="col-span-12 w-full">
         {tracks

@@ -3,6 +3,7 @@ import { create } from "zustand";
 type PlaylistEditorStore = {
   selectedTrackIds: Set<string>;
   add: (id: string) => void;
+  addAll: (ids: string[]) => void;
   remove: (id: string) => void;
   toggle: (id: string) => void;
   getSelected: () => string[];
@@ -17,6 +18,12 @@ export const usePlaylistEditorStore = create<PlaylistEditorStore>(
       set((state) => {
         const next = new Set(state.selectedTrackIds);
         next.add(trackId);
+        return { selectedTrackIds: next };
+      }),
+
+    addAll: (trackIds: string[]) =>
+      set(() => {
+        const next = new Set(trackIds);
         return { selectedTrackIds: next };
       }),
 
