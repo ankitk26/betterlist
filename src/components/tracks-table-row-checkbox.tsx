@@ -7,7 +7,7 @@ type Props = {
   trackId: string;
 };
 
-function TracksTableRowCheckboxInner({ index, trackId }: Props) {
+function PureTracksTableRowCheckbox({ index, trackId }: Props) {
   const isSelected = usePlaylistEditorStore((s) =>
     s.selectedTrackIds.has(trackId)
   );
@@ -45,7 +45,7 @@ function TracksTableRowCheckboxInner({ index, trackId }: Props) {
 }
 
 const TracksTableRowCheckbox = memo(
-  TracksTableRowCheckboxInner,
+  PureTracksTableRowCheckbox,
   (prev, next) => prev.trackId === next.trackId && prev.index === next.index
 );
 
