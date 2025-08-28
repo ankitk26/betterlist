@@ -2,7 +2,14 @@ export default function WrappedBackgroundDesign() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full">
-        <svg viewBox="0 0 400 600" className="w-full h-full">
+        <svg
+          viewBox="0 0 400 600"
+          className="w-full h-full"
+          aria-labelledby="wrappedBackgroundTitle"
+        >
+          <title id="wrappedBackgroundTitle">
+            Decorative pink and rose flowing background
+          </title>
           <defs>
             <linearGradient
               id="pinkGradient"
