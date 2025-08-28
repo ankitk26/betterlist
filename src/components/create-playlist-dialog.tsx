@@ -17,7 +17,7 @@ import {
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-export default function AddPlaylistDialog() {
+export default function CreatePlaylistDialog() {
   const [playlistName, setPlaylistName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 

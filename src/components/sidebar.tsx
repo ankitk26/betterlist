@@ -1,6 +1,6 @@
 import { LayersIcon } from "lucide-react";
 import { useSidebarStore } from "~/stores/sidebar-store";
-import AddPlaylistDialog from "./add-playlist-dialog";
+import CreatePlaylistDialog from "./create-playlist-dialog";
 import LibraryBadge from "./library-badge";
 import SidebarAlbums from "./sidebar-albums";
 import SidebarArtists from "./sidebar-artists";
@@ -18,7 +18,7 @@ export default function SideBar() {
             <LayersIcon className="size-5" />
             <h4 className="text-sm">Your Library</h4>
           </div>
-          {library === "playlists" && <AddPlaylistDialog />}
+          {library === "playlists" && <CreatePlaylistDialog />}
         </div>
 
         <div className="my-6 grid grid-cols-3 items-center gap-2">
