@@ -25,29 +25,35 @@ export const deleteTracksFromPlaylist = createServerFn({ method: "POST" })
       throw new Error("Need tracks");
     }
 
-    if (data.trackIds.length > 100) {
-      throw new Error("Cannot delete more than 100 tracks at a time");
+    // Process tracks in batches of 100
+    const batchSize = 100;
+    const trackBatches = [];
+
+    for (let i = 0; i < data.trackIds.length; i += batchSize) {
+      trackBatches.push(data.trackIds.slice(i, i + batchSize));
     }
 
-    const formattedTrackIds = data.trackIds.map((trackId) => ({
-      uri: `spotify:track:${trackId}`,
-    }));
+    for (const trackBatch of trackBatches) {
+      const formattedTrackIds = trackBatch.map((trackId) => ({
+        uri: `spotify:track:${trackId}`,
+      }));
 
-    const endpoint = `/playlists/${data.playlistId}/tracks`;
+      const endpoint = `/playlists/${data.playlistId}/tracks`;
 
-    const { error } = await betterFetch(endpoint, {
-      method: "DELETE",
-      baseURL: spotifyApiBaseUrl,
-      headers: {
-        Authorization: `Bearer ${session.user.accessToken}`,
-      },
-      body: {
-        tracks: formattedTrackIds,
-      },
-    });
+      const { error } = await betterFetch(endpoint, {
+        method: "DELETE",
+        baseURL: spotifyApiBaseUrl,
+        headers: {
+          Authorization: `Bearer ${session.user.accessToken}`,
+        },
+        body: {
+          tracks: formattedTrackIds,
+        },
+      });
 
-    if (error) {
-      console.error(error);
-      throw new Error("Something went wrong");
+      if (error) {
+        console.error(error);
+        throw new Error("Something went wrong");
+      }
     }
   });

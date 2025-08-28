@@ -29,27 +29,37 @@ export const addTracksToPlaylist = createServerFn({ method: "POST" })
       throw new Error("Can select 5 playlists at a time");
     }
 
-    const formattedTrackIds = data.trackIds.map(
-      (trackId) => `spotify:track:${trackId}`
-    );
+    // Process tracks in batches of 100
+    const batchSize = 100;
+    const trackBatches = [];
+
+    for (let i = 0; i < data.trackIds.length; i += batchSize) {
+      trackBatches.push(data.trackIds.slice(i, i + batchSize));
+    }
 
     for (const playlistId of data.playlistIds) {
-      const endpoint = `/playlists/${playlistId}/tracks`;
+      for (const trackBatch of trackBatches) {
+        const formattedTrackIds = trackBatch.map(
+          (trackId) => `spotify:track:${trackId}`
+        );
 
-      const { error } = await betterFetch(endpoint, {
-        method: "POST",
-        baseURL: spotifyApiBaseUrl,
-        headers: {
-          Authorization: `Bearer ${session.user.accessToken}`,
-        },
-        body: {
-          uris: formattedTrackIds,
-        },
-      });
+        const endpoint = `/playlists/${playlistId}/tracks`;
 
-      if (error) {
-        console.error(error);
-        throw new Error("Something went wrong");
+        const { error } = await betterFetch(endpoint, {
+          method: "POST",
+          baseURL: spotifyApiBaseUrl,
+          headers: {
+            Authorization: `Bearer ${session.user.accessToken}`,
+          },
+          body: {
+            uris: formattedTrackIds,
+          },
+        });
+
+        if (error) {
+          console.error(error);
+          throw new Error("Something went wrong");
+        }
       }
     }
   });
