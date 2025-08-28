@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
+import { Image } from "@unpic/react";
 import { likedSongsCountQuery } from "~/queries";
 import { useSidebarStore } from "~/stores/sidebar-store";
 import { Skeleton } from "./ui/skeleton";
-import { Image } from "@unpic/react";
 
 export default function SidebarLikedSongs() {
   const library = useSidebarStore((store) => store.library);

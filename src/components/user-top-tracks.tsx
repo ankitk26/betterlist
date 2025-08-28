@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import { Image } from "@unpic/react";
 import { AlbumIcon } from "lucide-react";
 import { userTopTracksQuery } from "~/queries";
 import { Skeleton } from "./ui/skeleton";
-import { Image } from "@unpic/react";
 
 export default function UserTopTracks() {
   const { data, isPending } = useQuery(userTopTracksQuery({ limit: 9 }));

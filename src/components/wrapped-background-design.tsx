@@ -52,8 +52,8 @@ export default function WrappedBackgroundDesign() {
       </div>
 
       {/* Black angular shapes */}
-      <div className="absolute top-8 right-4 w-32 h-24 bg-black transform rotate-12 rounded-lg"></div>
-      <div className="absolute bottom-32 left-8 w-24 h-16 bg-black transform -rotate-6 rounded-lg"></div>
+      {/* <div className="absolute top-8 right-4 w-32 h-24 bg-black transform rotate-12 rounded-lg"></div> */}
+      {/* <div className="absolute bottom-32 left-8 w-24 h-16 bg-black transform -rotate-6 rounded-lg"></div> */}
     </div>
   );
 }

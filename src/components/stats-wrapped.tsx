@@ -35,6 +35,7 @@ function StatsWrapped(props: Props) {
   const allGenres = artists
     ?.flatMap((artist) => artist.genres)
     .filter((genre) => genre !== undefined);
+
   const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
 
   return (
@@ -94,6 +95,7 @@ function StatsWrapped(props: Props) {
             </div>
           </div>
 
+          {/* Top genre */}
           <div className="flex justify-center">
             <div className="text-center">
               <h2 className="mb-2 font-bold text-lg text-rose-200">
