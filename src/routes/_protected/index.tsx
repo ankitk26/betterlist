@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
-import { StatsWrapped } from "~/components/stats-wrapped";
+import StatsWrapped from "~/components/stats-wrapped";
 import { Skeleton } from "~/components/ui/skeleton";
 
 export const Route = createFileRoute("/_protected/")({

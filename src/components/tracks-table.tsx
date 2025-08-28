@@ -29,7 +29,7 @@ export default function TracksTable({
           .map((track, index) => (
             <TracksTableRow
               index={index}
-              key={track.id}
+              key={`${track.id}_index`}
               showAlbum={showAlbum}
               showCover={showCover}
               showSubtitle={showSubtitle}

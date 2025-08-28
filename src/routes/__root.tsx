@@ -65,7 +65,9 @@ function RootComponent() {
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
-      <HeadContent />
+      <head>
+        <HeadContent />
+      </head>
       <body>
         <NextThemesProvider
           attribute="class"

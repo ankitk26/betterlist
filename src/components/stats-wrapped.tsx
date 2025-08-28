@@ -21,7 +21,7 @@ function getRangeTitle(range: Props["range"]): string {
   }
 }
 
-function StatsWrapped(props: Props) {
+export default function StatsWrapped(props: Props) {
   const { data: tracks } = useSuspenseQuery(
     userTopTracksQuery({ limit: 5, range: props.range })
   );
@@ -111,5 +111,3 @@ function StatsWrapped(props: Props) {
     </div>
   );
 }
-
-export { StatsWrapped };
