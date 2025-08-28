@@ -8,14 +8,17 @@ export const createPlaylist = createServerFn({ method: "POST" })
   .validator((data: string) => data)
   .handler(async ({ data: playlistName }) => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
-    const endpoint = `/users/${session?.user.accountId}/playlists`;
+    const endpoint = `/users/${session.user.accountId}/playlists`;
 
     const { data: newPlaylist, error } = await betterFetch<Playlist>(endpoint, {
       method: "POST",
       baseURL: spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
       body: {
         name: playlistName,

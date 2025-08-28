@@ -13,13 +13,16 @@ export const getPlaylistById = createServerFn({ method: "GET" })
   .validator((data: string) => data)
   .handler(async ({ data: playlistId }) => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
     const endpoint = `/playlists/${playlistId}`;
 
     const res = await betterFetch<Playlist>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
     });
 
@@ -41,11 +44,10 @@ export const getPlaylistById = createServerFn({ method: "GET" })
       if (!currUrl) {
         break;
       }
-      // biome-ignore lint/nursery/noAwaitInLoop: ignore lint
       const nextSetResponse = await betterFetch<PlaylistItem>(currUrl, {
         baseURL: currUrl.startsWith("https") ? "" : spotifyApiBaseUrl,
         headers: {
-          Authorization: `Bearer ${session?.user.accessToken}`,
+          Authorization: `Bearer ${session.user.accessToken}`,
         },
       });
 

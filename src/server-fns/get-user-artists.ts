@@ -7,13 +7,16 @@ import { getAuthSession } from "./get-auth-session";
 export const getUserArtists = createServerFn({ method: "GET" }).handler(
   async () => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
     const endpoint = "/me/following?type=artist&limit=50";
 
     const res = await betterFetch<{ artists: { items: Artist[] } }>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
     });
 

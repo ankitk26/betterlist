@@ -15,13 +15,16 @@ export type LikedSongs = {
 export const getLikedSongs = createServerFn({ method: "GET" }).handler(
   async () => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
     const endpoint = "/me/tracks?limit=5";
 
     const res = await betterFetch<LikedSongs>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
     });
 
@@ -41,7 +44,7 @@ export const getLikedSongs = createServerFn({ method: "GET" }).handler(
     //   // biome-ignore lint/nursery/noAwaitInLoop: Ignore lint
     //   const nextData = await betterFetch<LikedSongs>(currUrl, {
     //     headers: {
-    //       Authorization: `Bearer ${session?.user.accessToken}`,
+    //       Authorization: `Bearer ${session.user.accessToken}`,
     //     },
     //   }).then((nextRes) => nextRes.data);
 

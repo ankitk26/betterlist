@@ -18,13 +18,16 @@ export const getUserTopTracks = createServerFn({ method: "GET" })
   .validator(paramSchema)
   .handler(async ({ data }) => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
     const endpoint = `/me/top/tracks?time_range=${data.range}&limit=${data.limit}`;
 
     const res = await betterFetch<{ items: Track[] }>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
     });
 

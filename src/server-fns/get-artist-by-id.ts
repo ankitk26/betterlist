@@ -8,13 +8,16 @@ export const getArtistById = createServerFn({ method: "GET" })
   .validator((data: string) => data)
   .handler(async ({ data: artistId }) => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
     const endpoint = `/artists/${artistId}`;
 
     const res = await betterFetch<Artist>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
     });
 

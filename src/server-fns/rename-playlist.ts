@@ -13,13 +13,16 @@ export const renamePlaylist = createServerFn({ method: "POST" })
   )
   .handler(async ({ data: { id, name } }) => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
     const endpoint = `/playlists/${id}`;
 
     const { error } = await betterFetch(endpoint, {
       method: "PUT",
       baseURL: spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
       body: {
         name,

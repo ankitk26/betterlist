@@ -32,6 +32,9 @@ export const getSearchItems = createServerFn({ method: "GET" })
   .validator(paramSchema)
   .handler(async ({ data }) => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
     let searchType: string = data.type;
     if (data.type === "all") {
@@ -43,7 +46,7 @@ export const getSearchItems = createServerFn({ method: "GET" })
     const res = await betterFetch<SearchResults>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
     });
 

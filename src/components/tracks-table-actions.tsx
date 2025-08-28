@@ -1,4 +1,5 @@
 import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
+import AddToPlaylistButton from "./add-to-playlist-button";
 import RenamePlaylistDialog from "./rename-playlist-dialog";
 import { Button } from "./ui/button";
 
@@ -14,9 +15,7 @@ export default function TracksTableActions(props: Props) {
 
   return (
     <div className="flex items-center gap-4">
-      <Button disabled={isTracksSelected} size="sm" variant="secondary">
-        Add to playlist
-      </Button>
+      <AddToPlaylistButton />
       {props.playlistId && (
         <RenamePlaylistDialog
           currentName={props.playlistName ?? ""}

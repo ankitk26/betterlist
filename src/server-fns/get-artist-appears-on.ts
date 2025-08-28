@@ -8,13 +8,16 @@ export const getArtistAppearsOn = createServerFn({ method: "GET" })
   .validator((data: string) => data)
   .handler(async ({ data: artistId }) => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
     const endpoint = `/artists/${artistId}/albums?include_groups=appears_on`;
 
     const res = await betterFetch<{ items: Album[] }>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
     });
 

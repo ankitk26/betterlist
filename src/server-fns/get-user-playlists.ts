@@ -7,13 +7,16 @@ import { getAuthSession } from "./get-auth-session";
 export const getUserPlaylists = createServerFn({ method: "GET" }).handler(
   async () => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
     const endpoint = "/me/playlists";
 
     const res = await betterFetch<{ items: Playlist[] }>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
-        Authorization: `Bearer ${session?.user.accessToken}`,
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
     });
 

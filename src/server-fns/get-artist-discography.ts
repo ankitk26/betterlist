@@ -8,6 +8,9 @@ export const getArtistDiscography = createServerFn({ method: "GET" })
   .validator((data: string) => data)
   .handler(async ({ data: artistId }) => {
     const session = await getAuthSession();
+    if (!session) {
+      throw new Error("Invalid request");
+    }
 
     const albumsEndpoint = `/artists/${artistId}/albums?include_groups=album`;
     const singlesEndpoint = `/artists/${artistId}/albums?include_groups=single`;
@@ -17,7 +20,7 @@ export const getArtistDiscography = createServerFn({ method: "GET" })
       {
         baseURL: albumsEndpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
         headers: {
-          Authorization: `Bearer ${session?.user.accessToken}`,
+          Authorization: `Bearer ${session.user.accessToken}`,
         },
       }
     );
@@ -27,7 +30,7 @@ export const getArtistDiscography = createServerFn({ method: "GET" })
       {
         baseURL: singlesEndpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
         headers: {
-          Authorization: `Bearer ${session?.user.accessToken}`,
+          Authorization: `Bearer ${session.user.accessToken}`,
         },
       }
     );
