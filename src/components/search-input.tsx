@@ -16,7 +16,7 @@ export default function SearchInput() {
 
   return (
     <form
-      className="flex w-1/2 items-center justify-between gap-3 rounded-full px-3 py-1.5"
+      className="flex items-center flex-1 justify-between gap-3 rounded-full px-3 py-1.5"
       onSubmit={handleSubmit}
     >
       <Input
