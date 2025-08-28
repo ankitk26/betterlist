@@ -17,17 +17,19 @@ export default function TracksTableActions(props: Props) {
     <div className="flex items-center gap-4">
       <AddToPlaylistButton />
       {props.playlistId && (
-        <RenamePlaylistDialog
-          currentName={props.playlistName ?? ""}
-          playlistId={props.playlistId}
-        />
+        <>
+          <RenamePlaylistDialog
+            currentName={props.playlistName ?? ""}
+            playlistId={props.playlistId}
+          />
+          <Button disabled={isTracksSelected} size="sm" variant="destructive">
+            Remove from playlist
+          </Button>
+          <Button disabled={isTracksSelected} size="sm" variant="destructive">
+            Remove duplicates
+          </Button>
+        </>
       )}
-      <Button disabled={isTracksSelected} size="sm" variant="destructive">
-        Remove from playlist
-      </Button>
-      <Button disabled={isTracksSelected} size="sm" variant="destructive">
-        Remove duplicates
-      </Button>
     </div>
   );
 }

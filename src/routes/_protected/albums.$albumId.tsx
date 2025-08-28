@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { DotIcon, MusicIcon } from "lucide-react";
 import TracksTable from "~/components/tracks-table";
+import TracksTableActions from "~/components/tracks-table-actions";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
 import { Skeleton } from "~/components/ui/skeleton";
 import { albumByIdQuery } from "~/queries";
@@ -81,11 +82,14 @@ function RouteComponent() {
         )}
       </div>
 
-      <TracksTable
-        showHeader
-        showSubtitle
-        tracks={album ? album.tracks.items : []}
-      />
+      <div className="space-y-1">
+        <TracksTableActions />
+        <TracksTable
+          showHeader
+          showSubtitle
+          tracks={album ? album.tracks.items : []}
+        />
+      </div>
     </div>
   );
 }
