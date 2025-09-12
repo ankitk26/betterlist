@@ -52,13 +52,13 @@ export default function HeaderAvatar() {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem
-          className="flex cursor-pointer items-center gap-2 text-sm"
+          className="flex cursor-pointer text-muted-foreground items-center gap-2 text-xs"
           onClick={async () => {
             await handleSignOut();
             await navigate({ to: "/login" });
           }}
         >
-          <LogOutIcon className="h-4 w-4" />
+          <LogOutIcon className="size-3" />
           Sign Out
         </DropdownMenuItem>
       </DropdownMenuContent>

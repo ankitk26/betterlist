@@ -53,26 +53,30 @@ export default function CreatePlaylistDialog() {
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild>
-        <Button className="size-7" size="icon" variant="ghost">
+        <Button size="lg">
           <PlusIcon className="size-4" />
+          Create playlist
         </Button>
       </DialogTrigger>
+
       <DialogContent className="sm:max-w-md">
         <DialogHeader className="pb-4">
           <DialogTitle>Create New Playlist</DialogTitle>
         </DialogHeader>
+
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-3">
             <Label htmlFor="playlist-name">Playlist Name</Label>
             <Input
               autoFocus
-              className="h-11"
+              // className="h-11"
               id="playlist-name"
               onChange={(e) => setPlaylistName(e.target.value)}
               placeholder="Enter playlist name..."
               value={playlistName}
             />
           </div>
+
           <div className="flex justify-end gap-3 pt-2">
             <Button
               className="px-6"

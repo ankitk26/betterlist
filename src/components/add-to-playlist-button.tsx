@@ -71,7 +71,12 @@ export default function AddToPlaylistButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button disabled={isTracksSelected} size="sm" variant="secondary">
+        <Button
+          disabled={isTracksSelected}
+          size="sm"
+          className="text-xs"
+          variant="secondary"
+        >
           Add to playlist
         </Button>
       </DialogTrigger>

@@ -48,18 +48,14 @@ export default function ArtistHero() {
           )}
           <div className="flex flex-col items-start gap-3">
             <h2 className="font-bold text-5xl">{artist.name}</h2>
-            <span className="text-sm">
+            <span className="text-sm text-muted-foreground">
               {artist.followers?.total.toLocaleString()} followers
             </span>
             <div className="flex items-center gap-5 text-sm">
               {artist?.genres?.map((genre: string) => (
-                <Badge key={genre}>{genre}</Badge>
-                // <span
-                //   key={genre}
-                //   className="px-4 py-1 text-xs capitalize rounded-full bg-neutral-800 hover:bg-neutral-950"
-                // >
-                //   {genre}
-                // </span>
+                <Badge key={genre} variant="secondary">
+                  {genre}
+                </Badge>
               ))}
             </div>
           </div>

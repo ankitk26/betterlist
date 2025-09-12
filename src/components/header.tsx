@@ -8,7 +8,6 @@ import { Skeleton } from "./ui/skeleton";
 
 export default function Header() {
   const { isPending } = authClient.useSession();
-
   const canGoBack = useCanGoBack();
   const router = useRouter();
 

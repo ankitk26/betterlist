@@ -10,10 +10,10 @@ export default function LibraryBadge({ type }: { type: SidebarLibrary }) {
 
   return (
     <Button
-      className="rounded-full px-3 text-xs"
+      className="rounded-lg px-3 text-xs"
       onClick={() => updateSidebarLibrary(type)}
       size="sm"
-      variant={type === library ? "default" : "secondary"}
+      variant={type === library ? "secondary" : "outline"}
     >
       {type[0].toUpperCase().concat(type.substring(1))}
     </Button>

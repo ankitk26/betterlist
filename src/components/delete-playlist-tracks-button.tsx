@@ -63,7 +63,12 @@ export default function DeletePlaylistTracksButton({
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>
-        <Button disabled={!isTracksSelected} size="sm" variant="destructive">
+        <Button
+          disabled={!isTracksSelected}
+          size="sm"
+          className="text-xs"
+          variant="destructive"
+        >
           Remove from playlist
         </Button>
       </AlertDialogTrigger>

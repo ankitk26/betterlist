@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
-import { DotIcon, MusicIcon } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import AlbumHeader from "~/components/album-header";
+import SquareCoverPageSkeleton from "~/components/square-cover-page-skeleton";
 import TracksTable from "~/components/tracks-table";
 import TracksTableActions from "~/components/tracks-table-actions";
-import TracksTableSkeleton from "~/components/tracks-table-skeleton";
-import { Skeleton } from "~/components/ui/skeleton";
 import { albumByIdQuery } from "~/queries";
 
 export const Route = createFileRoute("/_protected/albums/$albumId")({
@@ -17,70 +15,12 @@ function RouteComponent() {
   const { data: album, isPending } = useQuery(albumByIdQuery(albumId));
 
   if (isPending) {
-    return (
-      <section className="space-y-20">
-        <div className="flex items-end gap-4">
-          <Skeleton className="aspect-square w-64" />
-          <div className="flex-1 space-y-4">
-            <Skeleton className="h-6 w-32" />
-            <Skeleton className="h-6 w-3/4" />
-            <div className="flex items-center gap-4">
-              <Skeleton className="h-6 w-32" />
-              <Skeleton className="h-6 w-32" />
-              <Skeleton className="h-6 w-32" />
-            </div>
-          </div>
-        </div>
-        <TracksTableSkeleton />
-      </section>
-    );
+    return <SquareCoverPageSkeleton />;
   }
 
   return (
     <div className="space-y-8">
-      <div className="flex items-end gap-6">
-        {album && (
-          <>
-            {album.images && album.images.length > 0 ? (
-              <Image
-                alt={album.name}
-                className="aspect-square w-64 rounded-sm object-cover"
-                height={208}
-                src={album.images[0].url ?? ""}
-                width={208}
-              />
-            ) : (
-              <div className="h-40 w-full">
-                <MusicIcon className="h-full w-full" size={160} />
-              </div>
-            )}
-            <div className="flex flex-col gap-3">
-              <h5 className="font-bold text-xs uppercase">
-                {album.album_type}
-              </h5>
-              <h2 className="font-bold text-5xl">{album.name}</h2>
-
-              <div className="flex items-center font-semibold text-sm">
-                <Link
-                  className="hover:underline"
-                  params={{ artistId: album.artists[0].id }}
-                  to="/artists/$artistId"
-                >
-                  {album.artists[0].name}
-                </Link>
-                <DotIcon />
-                <span>{new Date(album.release_date).getFullYear()}</span>
-                {album.tracks && album.tracks.items.length > 0 && (
-                  <>
-                    <DotIcon />
-                    <span>{album.tracks.total} songs</span>
-                  </>
-                )}
-              </div>
-            </div>
-          </>
-        )}
-      </div>
+      {album && <AlbumHeader album={album} />}
 
       <div className="space-y-1">
         <TracksTableActions />

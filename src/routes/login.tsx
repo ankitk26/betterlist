@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
 import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "~/components/ui/button";
@@ -13,13 +12,13 @@ function RouteComponent() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <div className="flex h-[100dvh] flex-col items-center justify-center gap-12">
-      <Image
-        alt="spotify logo"
-        height={96}
-        src="https://res.cloudinary.com/drnu1myuq/image/upload/v1754937393/spotify_logo_xmxgc6.png"
-        width={320}
-      />
+    <div className="flex h-[100dvh] flex-col items-center justify-center gap-6">
+      <div className="flex flex-col gap-2 items-center">
+        <h1 className="text-3xl font-semibold">betterlist</h1>
+        <p className="text-muted-foreground">
+          Mange Spotify playlists effortlessly
+        </p>
+      </div>
       <Button
         className="w-[200px]"
         onClick={async () => {

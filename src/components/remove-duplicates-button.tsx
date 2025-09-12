@@ -24,7 +24,12 @@ export default function RemoveDuplicatesButton(props: Props) {
   );
 
   return (
-    <Button size="sm" variant="destructive" disabled={!hasDuplicates}>
+    <Button
+      size="sm"
+      className="text-xs"
+      variant="destructive"
+      disabled={!hasDuplicates}
+    >
       Remove duplicates
     </Button>
   );
