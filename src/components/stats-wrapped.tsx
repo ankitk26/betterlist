@@ -23,10 +23,10 @@ function getRangeTitle(range: Props["range"]): string {
 
 export default function StatsWrapped(props: Props) {
   const { data: tracks } = useSuspenseQuery(
-    userTopTracksQuery({ limit: 5, range: props.range })
+    userTopTracksQuery({ limit: 5, range: props.range }),
   );
   const { data: artists } = useSuspenseQuery(
-    userTopArtistsQuery({ range: props.range })
+    userTopArtistsQuery({ range: props.range }),
   );
 
   const topArtistImages = artists?.[0].images.length;
