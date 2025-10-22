@@ -16,7 +16,7 @@ function RouteComponent() {
       <div className="flex flex-col gap-2 items-center">
         <h1 className="text-3xl font-semibold">betterlist</h1>
         <p className="text-muted-foreground">
-          Mange Spotify playlists effortlessly
+          Manage Spotify playlists effortlessly
         </p>
       </div>
       <Button
