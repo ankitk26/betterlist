@@ -5,7 +5,7 @@ import { spotifyApiBaseUrl } from "~/static/constants"
 import { getAuthSession } from "./get-auth-session"
 
 export const renamePlaylist = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     z.object({
       id: z.string(),
       name: z.string(),

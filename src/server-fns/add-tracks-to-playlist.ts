@@ -5,7 +5,7 @@ import { spotifyApiBaseUrl } from "~/static/constants"
 import { getAuthSession } from "./get-auth-session"
 
 export const addTracksToPlaylist = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     z.object({
       trackIds: z.array(z.string()),
       playlistIds: z.array(z.string()),

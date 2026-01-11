@@ -15,7 +15,7 @@ const paramSchema = z.object({
 export type UserTopTracksParams = z.input<typeof paramSchema>
 
 export const getUserTopTracks = createServerFn({ method: "GET" })
-  .validator(paramSchema)
+  .inputValidator(paramSchema)
   .handler(async ({ data }) => {
     const session = await getAuthSession()
     if (!session) {

@@ -3,9 +3,10 @@ import { createServerFn } from "@tanstack/react-start"
 import { spotifyApiBaseUrl } from "~/static/constants"
 import type { Album } from "~/types"
 import { getAuthSession } from "./get-auth-session"
+import { z } from "zod"
 
 export const getAlbumById = createServerFn({ method: "GET" })
-  .validator((data: string) => data)
+  .inputValidator(z.string())
   .handler(async ({ data: albumId }) => {
     const session = await getAuthSession()
     if (!session) {

@@ -15,7 +15,7 @@ const paramSchema = z.object({
 export type UserTopArtistsParams = z.input<typeof paramSchema>
 
 export const getUserTopArtists = createServerFn({ method: "GET" })
-  .validator(paramSchema)
+  .inputValidator(paramSchema)
   .handler(async ({ data }) => {
     const session = await getAuthSession()
     if (!session) {

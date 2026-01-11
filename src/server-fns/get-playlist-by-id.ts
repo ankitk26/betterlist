@@ -1,5 +1,6 @@
 import { betterFetch } from "@better-fetch/fetch"
 import { createServerFn } from "@tanstack/react-start"
+import { z } from "zod"
 import { spotifyApiBaseUrl } from "~/static/constants"
 import type { Playlist, Track } from "~/types"
 import { getAuthSession } from "./get-auth-session"
@@ -10,7 +11,7 @@ type PlaylistItem = {
 }
 
 export const getPlaylistById = createServerFn({ method: "GET" })
-  .validator((data: string) => data)
+  .inputValidator(z.string())
   .handler(async ({ data: playlistId }) => {
     const session = await getAuthSession()
     if (!session) {

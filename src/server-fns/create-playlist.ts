@@ -1,11 +1,12 @@
 import { betterFetch } from "@better-fetch/fetch"
 import { createServerFn } from "@tanstack/react-start"
+import { z } from "zod"
 import { spotifyApiBaseUrl } from "~/static/constants"
 import type { Playlist } from "~/types"
 import { getAuthSession } from "./get-auth-session"
 
 export const createPlaylist = createServerFn({ method: "POST" })
-  .validator((data: string) => data)
+  .inputValidator(z.string())
   .handler(async ({ data: playlistName }) => {
     const session = await getAuthSession()
     if (!session) {

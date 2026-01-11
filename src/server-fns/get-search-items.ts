@@ -29,7 +29,7 @@ type SearchResults = {
 }
 
 export const getSearchItems = createServerFn({ method: "GET" })
-  .validator(paramSchema)
+  .inputValidator(paramSchema)
   .handler(async ({ data }) => {
     const session = await getAuthSession()
     if (!session) {
