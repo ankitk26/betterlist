@@ -2,11 +2,11 @@ import {
   type SidebarLibrary,
   updateSidebarLibrary,
   useSidebarStore,
-} from "~/stores/sidebar-store";
-import { Button } from "./ui/button";
+} from "~/stores/sidebar-store"
+import { Button } from "./ui/button"
 
 export default function LibraryBadge({ type }: { type: SidebarLibrary }) {
-  const library = useSidebarStore((store) => store.library);
+  const library = useSidebarStore((store) => store.library)
 
   return (
     <Button
@@ -17,5 +17,5 @@ export default function LibraryBadge({ type }: { type: SidebarLibrary }) {
     >
       {type[0].toUpperCase().concat(type.substring(1))}
     </Button>
-  );
+  )
 }

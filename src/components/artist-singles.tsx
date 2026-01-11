@@ -1,19 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
-import { artistSinglesQuery } from "~/queries";
-import CardItem from "./card-item";
-import SquareSkeletons from "./square-skeleton";
+import { useQuery } from "@tanstack/react-query"
+import { useParams } from "@tanstack/react-router"
+import { artistSinglesQuery } from "~/queries"
+import CardItem from "./card-item"
+import SquareSkeletons from "./square-skeleton"
 
 export default function ArtistSingles() {
-  const { artistId } = useParams({ from: "/_protected/artists/$artistId" });
-  const { data, isPending } = useQuery(artistSinglesQuery(artistId));
+  const { artistId } = useParams({ from: "/_protected/artists/$artistId" })
+  const { data, isPending } = useQuery(artistSinglesQuery(artistId))
 
   if (isPending) {
-    return <SquareSkeletons />;
+    return <SquareSkeletons />
   }
 
   if (data && data.length === 0) {
-    return null;
+    return null
   }
 
   return (
@@ -34,5 +34,5 @@ export default function ArtistSingles() {
         ))}
       </div>
     </div>
-  );
+  )
 }

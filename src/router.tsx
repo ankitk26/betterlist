@@ -1,7 +1,7 @@
-import { QueryClient } from "@tanstack/react-query";
-import { createRouter as createTanStackRouter } from "@tanstack/react-router";
-import { routerWithQueryClient } from "@tanstack/react-router-with-query";
-import { routeTree } from "./routeTree.gen";
+import { QueryClient } from "@tanstack/react-query"
+import { createRouter as createTanStackRouter } from "@tanstack/react-router"
+import { routerWithQueryClient } from "@tanstack/react-router-with-query"
+import { routeTree } from "./routeTree.gen"
 
 export function createRouter() {
   const queryClient = new QueryClient({
@@ -12,7 +12,7 @@ export function createRouter() {
         staleTime: 1000 * 60 * 5,
       },
     },
-  });
+  })
 
   const router = createTanStackRouter({
     routeTree,
@@ -20,13 +20,13 @@ export function createRouter() {
     context: { queryClient, session: null },
     defaultPreload: "intent",
     defaultNotFoundComponent: () => <p>Not found</p>,
-  });
+  })
 
-  return routerWithQueryClient(router, queryClient);
+  return routerWithQueryClient(router, queryClient)
 }
 
 declare module "@tanstack/react-router" {
   interface Register {
-    router: ReturnType<typeof createRouter>;
+    router: ReturnType<typeof createRouter>
   }
 }

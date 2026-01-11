@@ -1,14 +1,14 @@
-import type { Track } from "~/types";
-import TracksTableHeader from "./tracks-table-header";
-import TracksTableRow from "./tracks-table-row";
+import type { Track } from "~/types"
+import TracksTableHeader from "./tracks-table-header"
+import TracksTableRow from "./tracks-table-row"
 
 type Props = {
-  tracks: Track[];
-  showHeader?: boolean;
-  showCover?: boolean;
-  showAlbum?: boolean;
-  showSubtitle?: boolean;
-};
+  tracks: Track[]
+  showHeader?: boolean
+  showCover?: boolean
+  showAlbum?: boolean
+  showSubtitle?: boolean
+}
 
 export default function TracksTable({
   tracks,
@@ -38,5 +38,5 @@ export default function TracksTable({
           ))}
       </div>
     </>
-  );
+  )
 }

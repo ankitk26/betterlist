@@ -1,39 +1,39 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { LoaderIcon } from "lucide-react";
-import type React from "react";
-import { useState } from "react";
-import { toast } from "sonner";
-import { renamePlaylist } from "~/server-fns/rename-playlist";
-import type { Playlist } from "~/types";
-import { Button } from "./ui/button";
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { LoaderIcon } from "lucide-react"
+import type React from "react"
+import { useState } from "react"
+import { toast } from "sonner"
+import { renamePlaylist } from "~/server-fns/rename-playlist"
+import type { Playlist } from "~/types"
+import { Button } from "./ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+} from "./ui/dialog"
+import { Input } from "./ui/input"
+import { Label } from "./ui/label"
 
 type Props = {
-  playlistId: string;
-  currentName: string;
-};
+  playlistId: string
+  currentName: string
+}
 
 export default function RenamePlaylistDialog({
   playlistId,
   currentName,
 }: Props) {
-  const [playlistName, setPlaylistName] = useState(currentName);
-  const [isOpen, setIsOpen] = useState(false);
+  const [playlistName, setPlaylistName] = useState(currentName)
+  const [isOpen, setIsOpen] = useState(false)
 
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   const renamePlaylistMutation = useMutation({
     mutationFn: renamePlaylist,
     onSuccess: () => {
-      toast.info("Renaming playlist…");
+      toast.info("Renaming playlist…")
 
       // update the playlists list
       queryClient.setQueryData<Playlist[]>(
@@ -42,43 +42,43 @@ export default function RenamePlaylistDialog({
           oldRecord.map((playlist) =>
             playlist.id === playlistId
               ? { ...playlist, name: playlistName }
-              : playlist
-          )
-      );
+              : playlist,
+          ),
+      )
 
       // update the individual playlist cache
       queryClient.setQueryData<Playlist>(
         ["playlist", playlistId],
         (oldRecord) =>
-          oldRecord ? { ...oldRecord, name: playlistName } : oldRecord
-      );
+          oldRecord ? { ...oldRecord, name: playlistName } : oldRecord,
+      )
 
-      setIsOpen(false);
-      toast.success("Playlist renamed");
+      setIsOpen(false)
+      toast.success("Playlist renamed")
     },
     onError: () => {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong")
     },
-  });
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (playlistName.trim() && playlistName.trim() !== currentName) {
       renamePlaylistMutation.mutate({
         data: {
           id: playlistId,
           name: playlistName.trim(),
         },
-      });
+      })
     }
-  };
+  }
 
   const handleOpenChange = (open: boolean) => {
-    setIsOpen(open);
+    setIsOpen(open)
     if (open) {
-      setPlaylistName(currentName);
+      setPlaylistName(currentName)
     }
-  };
+  }
 
   return (
     <Dialog onOpenChange={handleOpenChange} open={isOpen}>
@@ -131,5 +131,5 @@ export default function RenamePlaylistDialog({
         </form>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

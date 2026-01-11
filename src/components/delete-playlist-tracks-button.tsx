@@ -1,10 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { LoaderIcon } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
-import { playlistByIdQuery } from "~/queries";
-import { deleteTracksFromPlaylist } from "~/server-fns/delete-tracks-from-playlist";
-import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { LoaderIcon } from "lucide-react"
+import { useState } from "react"
+import { toast } from "sonner"
+import { playlistByIdQuery } from "~/queries"
+import { deleteTracksFromPlaylist } from "~/server-fns/delete-tracks-from-playlist"
+import { usePlaylistEditorStore } from "~/stores/playlist-editor-store"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,41 +15,41 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "./ui/alert-dialog";
-import { Button } from "./ui/button";
+} from "./ui/alert-dialog"
+import { Button } from "./ui/button"
 
 export default function DeletePlaylistTracksButton({
   playlistId,
 }: {
-  playlistId: string;
+  playlistId: string
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   const selectedTrackIds = usePlaylistEditorStore(
-    (store) => store.selectedTrackIds
-  );
-  const clearAll = usePlaylistEditorStore((store) => store.clearAll);
+    (store) => store.selectedTrackIds,
+  )
+  const clearAll = usePlaylistEditorStore((store) => store.clearAll)
 
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
-  const isTracksSelected = selectedTrackIds.size > 0;
-  const selectedCount = selectedTrackIds.size;
+  const isTracksSelected = selectedTrackIds.size > 0
+  const selectedCount = selectedTrackIds.size
 
   const deleteTracksMutation = useMutation({
     mutationFn: deleteTracksFromPlaylist,
     onSuccess: async () => {
-      toast("Deleting tracks");
+      toast("Deleting tracks")
       await queryClient.invalidateQueries({
         queryKey: playlistByIdQuery(playlistId).queryKey,
-      });
-      clearAll();
-      setIsOpen(false);
-      toast.success("Tracks deleted");
+      })
+      clearAll()
+      setIsOpen(false)
+      toast.success("Tracks deleted")
     },
     onError: (error) => {
-      toast.error("Failed to remove tracks. Please try again.");
-      console.error("Error deleting tracks:", error);
+      toast.error("Failed to remove tracks. Please try again.")
+      console.error("Error deleting tracks:", error)
     },
-  });
+  })
 
   const handleDeleteTracks = () => {
     deleteTracksMutation.mutate({
@@ -57,8 +57,8 @@ export default function DeletePlaylistTracksButton({
         playlistId,
         trackIds: [...selectedTrackIds],
       },
-    });
-  };
+    })
+  }
 
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
@@ -104,5 +104,5 @@ export default function DeletePlaylistTracksButton({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  );
+  )
 }

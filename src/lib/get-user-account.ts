@@ -1,24 +1,24 @@
-import { betterFetch } from "@better-fetch/fetch";
-import { createServerFn } from "@tanstack/react-start";
-import type { Session } from "better-auth";
-import { eq } from "drizzle-orm";
-import { db } from "~/db";
-import { account } from "~/db/auth-schema";
+import { betterFetch } from "@better-fetch/fetch"
+import { createServerFn } from "@tanstack/react-start"
+import type { Session } from "better-auth"
+import { eq } from "drizzle-orm"
+import { db } from "~/db"
+import { account } from "~/db/auth-schema"
 
 const getNewExpiryDate = (expiresIn: number) => {
-  const currentTime = Date.now();
-  const expiryTime = currentTime + expiresIn * 1000;
-  return new Date(expiryTime);
-};
+  const currentTime = Date.now()
+  const expiryTime = currentTime + expiresIn * 1000
+  return new Date(expiryTime)
+}
 
 const refreshTokenFromSpotify = async (
   refreshToken: string,
-  userId: string
+  userId: string,
 ) => {
   const response = await betterFetch<{
-    access_token: string;
-    expires_in: number;
-    refresh_token: string;
+    access_token: string
+    expires_in: number
+    refresh_token: string
   }>("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
@@ -29,13 +29,13 @@ const refreshTokenFromSpotify = async (
       refresh_token: refreshToken,
       client_id: process.env.SPOTIFY_CLIENT_ID as string,
     }),
-  });
+  })
 
   if (!response.data) {
-    return null;
+    return null
   }
 
-  const updatedExpiryDate = getNewExpiryDate(response.data.expires_in);
+  const updatedExpiryDate = getNewExpiryDate(response.data.expires_in)
   try {
     await db
       .update(account)
@@ -44,13 +44,13 @@ const refreshTokenFromSpotify = async (
         accessTokenExpiresAt: updatedExpiryDate,
         refreshToken: response.data.refresh_token,
       })
-      .where(eq(account.userId, userId));
+      .where(eq(account.userId, userId))
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 
-  return response.data.access_token;
-};
+  return response.data.access_token
+}
 
 export const getUserAccount = createServerFn({ method: "GET" })
   .validator((session: Session) => session)
@@ -65,27 +65,27 @@ export const getUserAccount = createServerFn({ method: "GET" })
       .from(account)
       .where(eq(account.userId, session.userId))
       .limit(1)
-      .then((res) => res[0]);
+      .then((res) => res[0])
 
     // Return null if no account is found
     if (!accountData) {
-      return { token: null, accountId: null };
+      return { token: null, accountId: null }
     }
 
     // check expiry date of access token
     const tokenExpiry = new Date(
-      accountData.accessTokenExpiresAt ?? Date.now()
-    ).getTime();
-    const currentTime = Date.now();
+      accountData.accessTokenExpiresAt ?? Date.now(),
+    ).getTime()
+    const currentTime = Date.now()
 
     if (currentTime >= tokenExpiry) {
       // Refresh token if it expired
       const newAccessToken = await refreshTokenFromSpotify(
         accountData.refreshToken as string,
-        session.userId
-      );
-      return { token: newAccessToken, accountId: accountData.accountId };
+        session.userId,
+      )
+      return { token: newAccessToken, accountId: accountData.accountId }
     }
 
-    return { token: accountData.accessToken, accountId: accountData.accountId };
-  });
+    return { token: accountData.accessToken, accountId: accountData.accountId }
+  })

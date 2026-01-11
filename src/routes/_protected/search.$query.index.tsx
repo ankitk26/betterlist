@@ -1,20 +1,18 @@
-import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import CardItem from "~/components/card-item";
-import SquareSkeletons from "~/components/square-skeleton";
-import TracksTable from "~/components/tracks-table";
-import TracksTableSkeleton from "~/components/tracks-table-skeleton";
-import { searchItemsQuery } from "~/queries";
+import { useQuery } from "@tanstack/react-query"
+import { createFileRoute } from "@tanstack/react-router"
+import CardItem from "~/components/card-item"
+import SquareSkeletons from "~/components/square-skeleton"
+import TracksTable from "~/components/tracks-table"
+import TracksTableSkeleton from "~/components/tracks-table-skeleton"
+import { searchItemsQuery } from "~/queries"
 
 export const Route = createFileRoute("/_protected/search/$query/")({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const { query } = Route.useParams();
-  const { data, isPending } = useQuery(
-    searchItemsQuery({ query, type: "all" })
-  );
+  const { query } = Route.useParams()
+  const { data, isPending } = useQuery(searchItemsQuery({ query, type: "all" }))
 
   if (isPending) {
     return (
@@ -23,11 +21,11 @@ function RouteComponent() {
         <SquareSkeletons />
         <SquareSkeletons />
       </div>
-    );
+    )
   }
 
   if (!data) {
-    return <div className="flex flex-col items-stretch gap-8">No results</div>;
+    return <div className="flex flex-col items-stretch gap-8">No results</div>
   }
 
   return (
@@ -106,5 +104,5 @@ function RouteComponent() {
         </div>
       )}
     </>
-  );
+  )
 }

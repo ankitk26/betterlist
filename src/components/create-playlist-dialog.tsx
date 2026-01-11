@@ -1,54 +1,54 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { LoaderIcon, PlusIcon } from "lucide-react";
-import type React from "react";
-import { useState } from "react";
-import { toast } from "sonner";
-import { userPlaylistsQuery } from "~/queries";
-import { createPlaylist } from "~/server-fns/create-playlist";
-import type { Playlist } from "~/types";
-import { Button } from "./ui/button";
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { LoaderIcon, PlusIcon } from "lucide-react"
+import type React from "react"
+import { useState } from "react"
+import { toast } from "sonner"
+import { userPlaylistsQuery } from "~/queries"
+import { createPlaylist } from "~/server-fns/create-playlist"
+import type { Playlist } from "~/types"
+import { Button } from "./ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+} from "./ui/dialog"
+import { Input } from "./ui/input"
+import { Label } from "./ui/label"
 
 export default function CreatePlaylistDialog() {
-  const [playlistName, setPlaylistName] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [playlistName, setPlaylistName] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
 
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   const createPlaylistMutation = useMutation({
     mutationFn: createPlaylist,
     onSuccess: (newPlaylist) => {
       if (!newPlaylist) {
-        toast.error("Something went wrong");
-        return;
+        toast.error("Something went wrong")
+        return
       }
       queryClient.setQueryData<Playlist[]>(
         userPlaylistsQuery.queryKey,
-        (old = []) => [newPlaylist, ...old]
-      );
-      setIsOpen(false);
-      toast.success("Playlist created");
+        (old = []) => [newPlaylist, ...old],
+      )
+      setIsOpen(false)
+      toast.success("Playlist created")
     },
     onError: () => {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong")
     },
-  });
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (playlistName.trim()) {
-      createPlaylistMutation.mutate({ data: playlistName });
-      setPlaylistName("");
+      createPlaylistMutation.mutate({ data: playlistName })
+      setPlaylistName("")
     }
-  };
+  }
 
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
@@ -103,5 +103,5 @@ export default function CreatePlaylistDialog() {
         </form>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

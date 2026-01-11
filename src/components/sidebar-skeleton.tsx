@@ -1,4 +1,4 @@
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "./ui/skeleton"
 
 export default function SidebarSkeleton() {
   return Array.from({ length: 5 }).map(() => (
@@ -12,5 +12,5 @@ export default function SidebarSkeleton() {
         <Skeleton className="h-4 w-1/2" />
       </div>
     </div>
-  ));
+  ))
 }

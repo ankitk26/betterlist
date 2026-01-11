@@ -1,9 +1,9 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
-import SearchFilters from "~/components/search-filters";
+import { createFileRoute, Outlet } from "@tanstack/react-router"
+import SearchFilters from "~/components/search-filters"
 
 export const Route = createFileRoute("/_protected/search/$query")({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
   return (
@@ -11,5 +11,5 @@ function RouteComponent() {
       <SearchFilters />
       <Outlet />
     </div>
-  );
+  )
 }

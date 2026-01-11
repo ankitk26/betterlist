@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { Image } from "@unpic/react";
-import { AlbumIcon } from "lucide-react";
-import { userTopTracksQuery } from "~/queries";
-import { Skeleton } from "./ui/skeleton";
+import { useQuery } from "@tanstack/react-query"
+import { Image } from "@unpic/react"
+import { AlbumIcon } from "lucide-react"
+import { userTopTracksQuery } from "~/queries"
+import { Skeleton } from "./ui/skeleton"
 
 export default function UserTopTracks() {
-  const { data, isPending } = useQuery(userTopTracksQuery({ limit: 9 }));
+  const { data, isPending } = useQuery(userTopTracksQuery({ limit: 9 }))
 
   if (isPending) {
     return Array.from({ length: 6 }).map(() => (
@@ -13,7 +13,7 @@ export default function UserTopTracks() {
         className="col-span-4 h-16 w-full rounded-md"
         key={`top_tracks_${crypto.randomUUID()}`}
       />
-    ));
+    ))
   }
 
   return data?.map((track) => (
@@ -41,5 +41,5 @@ export default function UserTopTracks() {
         </div>
       </div>
     </div>
-  ));
+  ))
 }

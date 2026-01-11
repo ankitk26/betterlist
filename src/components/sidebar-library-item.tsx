@@ -1,15 +1,15 @@
-import { Link } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
-import { MusicIcon } from "lucide-react";
-import { cn } from "~/lib/utils";
-import { useSidebarStore } from "~/stores/sidebar-store";
+import { Link } from "@tanstack/react-router"
+import { Image } from "@unpic/react"
+import { MusicIcon } from "lucide-react"
+import { cn } from "~/lib/utils"
+import { useSidebarStore } from "~/stores/sidebar-store"
 
 type Props = {
-  id: string;
-  image: string;
-  title: string;
-  subtitle?: string;
-};
+  id: string
+  image: string
+  title: string
+  subtitle?: string
+}
 
 export default function SidebarLibraryItem({
   id,
@@ -17,9 +17,9 @@ export default function SidebarLibraryItem({
   title,
   subtitle,
 }: Props) {
-  const library = useSidebarStore((store) => store.library);
+  const library = useSidebarStore((store) => store.library)
 
-  const href = `/${library}/${id}`;
+  const href = `/${library}/${id}`
 
   return (
     <Link
@@ -34,7 +34,7 @@ export default function SidebarLibraryItem({
           alt={title}
           className={cn(
             "aspect-square object-cover",
-            library === "artists" ? "rounded-full" : "rounded-md"
+            library === "artists" ? "rounded-full" : "rounded-md",
           )}
           height={48}
           src={image}
@@ -55,5 +55,5 @@ export default function SidebarLibraryItem({
         )}
       </div>
     </Link>
-  );
+  )
 }

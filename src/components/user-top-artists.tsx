@@ -1,12 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { userTopArtistsQuery } from "~/queries";
-import CardItem from "./card-item";
+import { useQuery } from "@tanstack/react-query"
+import { userTopArtistsQuery } from "~/queries"
+import CardItem from "./card-item"
 
 export default function UserTopArtists() {
-  const { data, isPending } = useQuery(userTopArtistsQuery({ limit: 10 }));
+  const { data, isPending } = useQuery(userTopArtistsQuery({ limit: 10 }))
 
   if (isPending) {
-    return <p>Loading...</p>;
+    return <p>Loading...</p>
   }
 
   return (
@@ -23,5 +23,5 @@ export default function UserTopArtists() {
         />
       ))}
     </div>
-  );
+  )
 }

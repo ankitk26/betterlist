@@ -1,20 +1,20 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import Header from "~/components/header";
-import Sidebar from "~/components/sidebar";
-import { ScrollArea } from "~/components/ui/scroll-area";
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
+import Header from "~/components/header"
+import Sidebar from "~/components/sidebar"
+import { ScrollArea } from "~/components/ui/scroll-area"
 
 export const Route = createFileRoute("/_protected")({
   beforeLoad: ({ context }) => {
-    const session = context.session;
+    const session = context.session
 
     if (!session) {
-      throw redirect({ to: "/login" });
+      throw redirect({ to: "/login" })
     }
 
-    return { session };
+    return { session }
   },
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
   return (
@@ -31,5 +31,5 @@ function RouteComponent() {
         </div>
       </div>
     </div>
-  );
+  )
 }

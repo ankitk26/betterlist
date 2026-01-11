@@ -1,11 +1,11 @@
-import { Image } from "@unpic/react";
-import { DotIcon, MusicIcon } from "lucide-react";
-import type { getPlaylistById } from "~/server-fns/get-playlist-by-id";
-import PlaylistDescription from "./playlist-description";
+import { Image } from "@unpic/react"
+import { DotIcon, MusicIcon } from "lucide-react"
+import type { getPlaylistById } from "~/server-fns/get-playlist-by-id"
+import PlaylistDescription from "./playlist-description"
 
 type Props = {
-  playlist: NonNullable<Awaited<ReturnType<typeof getPlaylistById>>>;
-};
+  playlist: NonNullable<Awaited<ReturnType<typeof getPlaylistById>>>
+}
 
 export default function PlaylistHeader({ playlist }: Props) {
   return (
@@ -49,5 +49,5 @@ export default function PlaylistHeader({ playlist }: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

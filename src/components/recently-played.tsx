@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { recentlyPlayedQuery } from "~/queries";
-import TrackCards from "./track-cards";
-import { Skeleton } from "./ui/skeleton";
+import { useQuery } from "@tanstack/react-query"
+import { recentlyPlayedQuery } from "~/queries"
+import TrackCards from "./track-cards"
+import { Skeleton } from "./ui/skeleton"
 
 export default function RecentlyPlayed() {
-  const { data, isPending } = useQuery(recentlyPlayedQuery);
+  const { data, isPending } = useQuery(recentlyPlayedQuery)
 
   if (isPending) {
     return (
@@ -16,8 +16,8 @@ export default function RecentlyPlayed() {
           />
         ))}
       </div>
-    );
+    )
   }
 
-  return <TrackCards tracks={data ?? []} />;
+  return <TrackCards tracks={data ?? []} />
 }

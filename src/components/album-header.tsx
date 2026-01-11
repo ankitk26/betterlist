@@ -1,11 +1,11 @@
-import { Link } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
-import { DotIcon, MusicIcon } from "lucide-react";
-import type { getAlbumById } from "~/server-fns/get-album-by-id";
+import { Link } from "@tanstack/react-router"
+import { Image } from "@unpic/react"
+import { DotIcon, MusicIcon } from "lucide-react"
+import type { getAlbumById } from "~/server-fns/get-album-by-id"
 
 type Props = {
-  album: NonNullable<Awaited<ReturnType<typeof getAlbumById>>>;
-};
+  album: NonNullable<Awaited<ReturnType<typeof getAlbumById>>>
+}
 
 export default function AlbumHeader({ album }: Props) {
   return (
@@ -46,5 +46,5 @@ export default function AlbumHeader({ album }: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,25 +1,25 @@
-import { Clock3Icon } from "lucide-react";
-import { cn } from "~/lib/utils";
-import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
-import type { Track } from "~/types";
-import { Checkbox } from "./ui/checkbox";
-import { Separator } from "./ui/separator";
+import { Clock3Icon } from "lucide-react"
+import { cn } from "~/lib/utils"
+import { usePlaylistEditorStore } from "~/stores/playlist-editor-store"
+import type { Track } from "~/types"
+import { Checkbox } from "./ui/checkbox"
+import { Separator } from "./ui/separator"
 
 export default function TracksTableHeader({
   showAlbum,
   tracks,
 }: {
-  showAlbum: boolean;
-  tracks: Track[];
+  showAlbum: boolean
+  tracks: Track[]
 }) {
   const areAllTracksSelected = usePlaylistEditorStore(
-    (s) => s.selectedTrackIds.size === tracks.length
-  );
+    (s) => s.selectedTrackIds.size === tracks.length,
+  )
   const areTracksSelected = usePlaylistEditorStore(
-    (s) => s.selectedTrackIds.size > 0
-  );
-  const addAll = usePlaylistEditorStore((s) => s.addAll);
-  const clearAll = usePlaylistEditorStore((s) => s.clearAll);
+    (s) => s.selectedTrackIds.size > 0,
+  )
+  const addAll = usePlaylistEditorStore((s) => s.addAll)
+  const clearAll = usePlaylistEditorStore((s) => s.clearAll)
 
   return (
     <>
@@ -43,9 +43,9 @@ export default function TracksTableHeader({
               checked={areAllTracksSelected}
               onCheckedChange={(checked) => {
                 if (checked) {
-                  addAll(tracks.map((track) => track.id));
+                  addAll(tracks.map((track) => track.id))
                 } else {
-                  clearAll();
+                  clearAll()
                 }
               }}
             />
@@ -55,7 +55,7 @@ export default function TracksTableHeader({
         <div
           className={cn(
             "text-left font-semibold text-sm",
-            showAlbum ? "col-span-6" : "col-span-10"
+            showAlbum ? "col-span-6" : "col-span-10",
           )}
         >
           Title
@@ -75,5 +75,5 @@ export default function TracksTableHeader({
       {/* Divider */}
       <Separator />
     </>
-  );
+  )
 }

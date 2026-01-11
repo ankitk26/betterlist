@@ -1,91 +1,91 @@
 interface Image {
-  height: number | null;
-  url: string;
-  width: number | null;
+  height: number | null
+  url: string
+  width: number | null
 }
 
 export interface Category {
-  id: string;
-  name: string;
-  icons: Image[];
+  id: string
+  name: string
+  icons: Image[]
 }
 
 export interface Album {
-  id: string;
-  name: string;
-  artists: Artist[];
-  images: Image[];
-  album_type?: string;
-  release_date: string;
+  id: string
+  name: string
+  artists: Artist[]
+  images: Image[]
+  album_type?: string
+  release_date: string
   tracks: {
-    total: number;
-    items: Track[];
-  };
+    total: number
+    items: Track[]
+  }
 }
 
 export interface Artist {
-  id: string;
-  name: string;
-  images: Image[];
+  id: string
+  name: string
+  images: Image[]
   followers?: {
-    total: number;
-  };
-  genres?: string[];
+    total: number
+  }
+  genres?: string[]
 }
 
 export interface Track {
-  id: string;
-  name: string;
-  album: Album;
-  artists: Artist[];
-  duration_ms: number;
-  preview_url: string;
+  id: string
+  name: string
+  album: Album
+  artists: Artist[]
+  duration_ms: number
+  preview_url: string
 }
 
 export interface Playlist {
-  description?: string;
-  id: string;
-  images: Image[] | null;
-  name: string;
+  description?: string
+  id: string
+  images: Image[] | null
+  name: string
   owner: {
-    id: string;
-    display_name?: string;
-  };
-  items?: [{ added_at: string; track: Track }];
+    id: string
+    display_name?: string
+  }
+  items?: [{ added_at: string track: Track }]
   tracks: {
-    items: [{ added_at: string; track: Track }];
-    total: number;
-    next?: string;
-  };
-  type: string;
-  total?: number;
+    items: [{ added_at: string track: Track }]
+    total: number
+    next?: string
+  }
+  type: string
+  total?: number
 }
 
 export interface SearchResults {
   albums?: {
-    items: Album[];
-  };
+    items: Album[]
+  }
   artists?: {
-    items: Artist[];
-  };
+    items: Artist[]
+  }
   playlists?: {
-    items: Playlist[];
-  };
+    items: Playlist[]
+  }
   tracks?: {
-    items: Track[];
-  };
+    items: Track[]
+  }
 }
 
 export interface TrackAnalysis {
-  acousticness: number;
-  danceability: number;
-  energy: number;
-  instrumentalness: number;
-  key: number;
-  liveness: number;
-  loudness: number;
-  mode: 1 | 0;
-  speechiness: number;
-  tempo: number;
-  valence: number;
+  acousticness: number
+  danceability: number
+  energy: number
+  instrumentalness: number
+  key: number
+  liveness: number
+  loudness: number
+  mode: 1 | 0
+  speechiness: number
+  tempo: number
+  valence: number
 }

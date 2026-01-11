@@ -1,12 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { userTopTracksQuery } from "~/queries";
-import TrackCards from "./track-cards";
-import { Skeleton } from "./ui/skeleton";
+import { useQuery } from "@tanstack/react-query"
+import { userTopTracksQuery } from "~/queries"
+import TrackCards from "./track-cards"
+import { Skeleton } from "./ui/skeleton"
 
 export default function TimeCapsule() {
   const { data, isPending } = useQuery(
-    userTopTracksQuery({ limit: 10, range: "long_term" })
-  );
+    userTopTracksQuery({ limit: 10, range: "long_term" }),
+  )
 
   if (isPending) {
     return (
@@ -18,8 +18,8 @@ export default function TimeCapsule() {
           />
         ))}
       </div>
-    );
+    )
   }
 
-  return <TrackCards tracks={data ?? []} />;
+  return <TrackCards tracks={data ?? []} />
 }

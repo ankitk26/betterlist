@@ -1,9 +1,9 @@
-import { betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { customSession } from "better-auth/plugins";
-import { db } from "~/db";
-import { account, session, user, verification } from "~/db/auth-schema";
-import { getUserAccount } from "./get-user-account";
+import { betterAuth } from "better-auth"
+import { drizzleAdapter } from "better-auth/adapters/drizzle"
+import { customSession } from "better-auth/plugins"
+import { db } from "~/db"
+import { account, session, user, verification } from "~/db/auth-schema"
+import { getUserAccount } from "./get-user-account"
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -49,7 +49,7 @@ export const auth = betterAuth({
 
   plugins: [
     customSession(async ({ session: authSession, user: authUser }) => {
-      const { token, accountId } = await getUserAccount({ data: authSession });
+      const { token, accountId } = await getUserAccount({ data: authSession })
       return {
         user: {
           ...authUser,
@@ -57,7 +57,7 @@ export const auth = betterAuth({
           accountId,
         },
         session: authSession,
-      };
+      }
     }),
   ],
-});
+})

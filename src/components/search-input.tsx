@@ -1,18 +1,18 @@
-import { useNavigate } from "@tanstack/react-router";
-import { setSearchInput, useGlobalStore } from "~/stores/global-store";
-import { Input } from "./ui/input";
+import { useNavigate } from "@tanstack/react-router"
+import { setSearchInput, useGlobalStore } from "~/stores/global-store"
+import { Input } from "./ui/input"
 
 export default function SearchInput() {
-  const navigate = useNavigate();
-  const searchInput = useGlobalStore((store) => store.searchInput);
+  const navigate = useNavigate()
+  const searchInput = useGlobalStore((store) => store.searchInput)
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault()
+    e.stopPropagation()
     if (searchInput !== "") {
-      navigate({ to: "/search/$query", params: { query: searchInput } });
+      navigate({ to: "/search/$query", params: { query: searchInput } })
     }
-  };
+  }
 
   return (
     <form
@@ -27,5 +27,5 @@ export default function SearchInput() {
         value={searchInput}
       />
     </form>
-  );
+  )
 }

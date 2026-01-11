@@ -1,14 +1,14 @@
-import type { Track } from "~/types";
-import AddToPlaylistButton from "./add-to-playlist-button";
-import DeletePlaylistTracksButton from "./delete-playlist-tracks-button";
-import RemoveDuplicatesButton from "./remove-duplicates-button";
-import RenamePlaylistDialog from "./rename-playlist-dialog";
+import type { Track } from "~/types"
+import AddToPlaylistButton from "./add-to-playlist-button"
+import DeletePlaylistTracksButton from "./delete-playlist-tracks-button"
+import RemoveDuplicatesButton from "./remove-duplicates-button"
+import RenamePlaylistDialog from "./rename-playlist-dialog"
 
 type Props = {
-  playlistId?: string;
-  playlistName?: string;
-  tracks?: Track[];
-};
+  playlistId?: string
+  playlistName?: string
+  tracks?: Track[]
+}
 
 export default function TracksTableActions(props: Props) {
   return (
@@ -25,5 +25,5 @@ export default function TracksTableActions(props: Props) {
         </>
       )}
     </div>
-  );
+  )
 }

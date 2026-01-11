@@ -1,21 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import AlbumHeader from "~/components/album-header";
-import SquareCoverPageSkeleton from "~/components/square-cover-page-skeleton";
-import TracksTable from "~/components/tracks-table";
-import TracksTableActions from "~/components/tracks-table-actions";
-import { albumByIdQuery } from "~/queries";
+import { useQuery } from "@tanstack/react-query"
+import { createFileRoute } from "@tanstack/react-router"
+import AlbumHeader from "~/components/album-header"
+import SquareCoverPageSkeleton from "~/components/square-cover-page-skeleton"
+import TracksTable from "~/components/tracks-table"
+import TracksTableActions from "~/components/tracks-table-actions"
+import { albumByIdQuery } from "~/queries"
 
 export const Route = createFileRoute("/_protected/albums/$albumId")({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const { albumId } = Route.useParams();
-  const { data: album, isPending } = useQuery(albumByIdQuery(albumId));
+  const { albumId } = Route.useParams()
+  const { data: album, isPending } = useQuery(albumByIdQuery(albumId))
 
   if (isPending) {
-    return <SquareCoverPageSkeleton />;
+    return <SquareCoverPageSkeleton />
   }
 
   return (
@@ -31,5 +31,5 @@ function RouteComponent() {
         />
       </div>
     </div>
-  );
+  )
 }

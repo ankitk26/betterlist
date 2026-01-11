@@ -1,13 +1,13 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 type GlobalState = {
-  searchInput: string;
-};
+  searchInput: string
+}
 
 export const useGlobalStore = create<GlobalState>()(() => ({
   searchInput: "",
-}));
+}))
 
 export const setSearchInput = (val: string) => {
-  useGlobalStore.setState({ searchInput: val });
-};
+  useGlobalStore.setState({ searchInput: val })
+}

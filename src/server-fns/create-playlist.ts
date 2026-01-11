@@ -1,18 +1,18 @@
-import { betterFetch } from "@better-fetch/fetch";
-import { createServerFn } from "@tanstack/react-start";
-import { spotifyApiBaseUrl } from "~/static/constants";
-import type { Playlist } from "~/types";
-import { getAuthSession } from "./get-auth-session";
+import { betterFetch } from "@better-fetch/fetch"
+import { createServerFn } from "@tanstack/react-start"
+import { spotifyApiBaseUrl } from "~/static/constants"
+import type { Playlist } from "~/types"
+import { getAuthSession } from "./get-auth-session"
 
 export const createPlaylist = createServerFn({ method: "POST" })
   .validator((data: string) => data)
   .handler(async ({ data: playlistName }) => {
-    const session = await getAuthSession();
+    const session = await getAuthSession()
     if (!session) {
-      throw new Error("Invalid request");
+      throw new Error("Invalid request")
     }
 
-    const endpoint = `/users/${session.user.accountId}/playlists`;
+    const endpoint = `/users/${session.user.accountId}/playlists`
 
     const { data: newPlaylist, error } = await betterFetch<Playlist>(endpoint, {
       method: "POST",
@@ -23,15 +23,15 @@ export const createPlaylist = createServerFn({ method: "POST" })
       body: {
         name: playlistName,
       },
-    });
+    })
 
     if (error) {
-      console.error(error);
-      throw new Error("Something went wrong");
+      console.error(error)
+      throw new Error("Something went wrong")
     }
 
     if (!newPlaylist) {
-      return null;
+      return null
     }
 
     const formattedPlaylist: Playlist = {
@@ -44,7 +44,7 @@ export const createPlaylist = createServerFn({ method: "POST" })
       description: newPlaylist.description,
       items: newPlaylist.items,
       total: newPlaylist.total,
-    };
+    }
 
-    return formattedPlaylist;
-  });
+    return formattedPlaylist
+  })

@@ -1,9 +1,9 @@
-import CreatePlaylistDialog from "./create-playlist-dialog";
-import LibraryBadge from "./library-badge";
-import SidebarAlbums from "./sidebar-albums";
-import SidebarArtists from "./sidebar-artists";
-import SidebarPlaylists from "./sidebar-playlists";
-import { ScrollArea } from "./ui/scroll-area";
+import CreatePlaylistDialog from "./create-playlist-dialog"
+import LibraryBadge from "./library-badge"
+import SidebarAlbums from "./sidebar-albums"
+import SidebarArtists from "./sidebar-artists"
+import SidebarPlaylists from "./sidebar-playlists"
+import { ScrollArea } from "./ui/scroll-area"
 
 export default function SideBar() {
   return (
@@ -28,5 +28,5 @@ export default function SideBar() {
         </div>
       </div>
     </aside>
-  );
+  )
 }

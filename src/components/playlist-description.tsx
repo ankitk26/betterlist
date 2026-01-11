@@ -1,20 +1,20 @@
-import DOMPurify from "dompurify";
+import DOMPurify from "dompurify"
 import parse, {
   attributesToProps,
   type DOMNode,
   domToReact,
-} from "html-react-parser";
+} from "html-react-parser"
 
 type CustomDOMNode = DOMNode & {
-  name?: string;
-  attribs?: Record<string, string>;
-  children?: DOMNode[];
-};
+  name?: string
+  attribs?: Record<string, string>
+  children?: DOMNode[]
+}
 
 export default function PlaylistDescription({
   description,
 }: {
-  description: string;
+  description: string
 }) {
   return (
     <p className="mt-3 font-medium text-muted-foreground text-sm">
@@ -26,8 +26,8 @@ export default function PlaylistDescription({
             "name" in domNode &&
             domNode.name === "a"
           ) {
-            const node = domNode as CustomDOMNode;
-            const props = node.attribs ? attributesToProps(node.attribs) : {};
+            const node = domNode as CustomDOMNode
+            const props = node.attribs ? attributesToProps(node.attribs) : {}
 
             return (
               <a
@@ -38,11 +38,11 @@ export default function PlaylistDescription({
               >
                 {node.children ? domToReact(node.children) : null}
               </a>
-            );
+            )
           }
-          return domNode;
+          return domNode
         },
       })}
     </p>
-  );
+  )
 }

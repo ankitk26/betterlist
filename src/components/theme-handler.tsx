@@ -1,13 +1,13 @@
-import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Button } from "./ui/button";
+import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react"
+import { useTheme } from "next-themes"
+import { Button } from "./ui/button"
 
 export default function ThemeHandler() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme()
 
   const handleThemeChange = (newTheme: string) => {
-    setTheme(newTheme);
-  };
+    setTheme(newTheme)
+  }
 
   return (
     <div className="flex items-center justify-between">
@@ -39,5 +39,5 @@ export default function ThemeHandler() {
         </Button>
       </div>
     </div>
-  );
+  )
 }

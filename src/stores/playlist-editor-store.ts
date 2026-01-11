@@ -1,14 +1,14 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 type PlaylistEditorStore = {
-  selectedTrackIds: Set<string>;
-  add: (id: string) => void;
-  addAll: (ids: string[]) => void;
-  remove: (id: string) => void;
-  toggle: (id: string) => void;
-  getSelected: () => string[];
-  clearAll: () => void;
-};
+  selectedTrackIds: Set<string>
+  add: (id: string) => void
+  addAll: (ids: string[]) => void
+  remove: (id: string) => void
+  toggle: (id: string) => void
+  getSelected: () => string[]
+  clearAll: () => void
+}
 
 export const usePlaylistEditorStore = create<PlaylistEditorStore>(
   (set, get) => ({
@@ -16,40 +16,40 @@ export const usePlaylistEditorStore = create<PlaylistEditorStore>(
 
     add: (trackId: string) =>
       set((state) => {
-        const next = new Set(state.selectedTrackIds);
-        next.add(trackId);
-        return { selectedTrackIds: next };
+        const next = new Set(state.selectedTrackIds)
+        next.add(trackId)
+        return { selectedTrackIds: next }
       }),
 
     addAll: (trackIds: string[]) =>
       set(() => {
-        const next = new Set(trackIds);
-        return { selectedTrackIds: next };
+        const next = new Set(trackIds)
+        return { selectedTrackIds: next }
       }),
 
     remove: (trackId: string) =>
       set((state) => {
-        const next = new Set(state.selectedTrackIds);
-        next.delete(trackId);
-        return { selectedTrackIds: next };
+        const next = new Set(state.selectedTrackIds)
+        next.delete(trackId)
+        return { selectedTrackIds: next }
       }),
 
     toggle: (trackId) =>
       set((state) => {
-        const next = new Set(state.selectedTrackIds);
+        const next = new Set(state.selectedTrackIds)
         if (next.has(trackId)) {
-          next.delete(trackId);
+          next.delete(trackId)
         } else {
-          next.add(trackId);
+          next.add(trackId)
         }
-        return { selectedTrackIds: next };
+        return { selectedTrackIds: next }
       }),
 
     getSelected: () => {
       // returns a fresh array of IDs
-      return Array.from(get().selectedTrackIds);
+      return Array.from(get().selectedTrackIds)
     },
 
     clearAll: () => set({ selectedTrackIds: new Set() }),
-  })
-);
+  }),
+)

@@ -1,4 +1,4 @@
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "./ui/skeleton"
 
 export default function TracksTableSkeleton() {
   return (
@@ -14,5 +14,5 @@ export default function TracksTableSkeleton() {
       <Skeleton className="h-10 w-full" />
       <Skeleton className="h-10 w-full" />
     </div>
-  );
+  )
 }

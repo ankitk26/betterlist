@@ -1,8 +1,8 @@
-import { useNavigate } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
-import { LogOutIcon, User2Icon } from "lucide-react";
-import { authClient } from "~/lib/auth-client";
-import ThemeHandler from "./theme-handler";
+import { useNavigate } from "@tanstack/react-router"
+import { Image } from "@unpic/react"
+import { LogOutIcon, User2Icon } from "lucide-react"
+import { authClient } from "~/lib/auth-client"
+import ThemeHandler from "./theme-handler"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,16 +10,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "./ui/dropdown-menu"
 
 export default function HeaderAvatar() {
-  const { data: session } = authClient.useSession();
-  const navigate = useNavigate();
+  const { data: session } = authClient.useSession()
+  const navigate = useNavigate()
 
   const handleSignOut = async () => {
-    navigate({ to: "/login" });
-    await authClient.signOut();
-  };
+    navigate({ to: "/login" })
+    await authClient.signOut()
+  }
 
   return (
     <DropdownMenu>
@@ -30,7 +30,7 @@ export default function HeaderAvatar() {
               alt={session?.user?.name}
               className="size-6 rounded-full object-contain"
               height={28}
-              src={(session?.user.image as string) || "/placeholder.svg"}
+              src={session?.user.image as string || "/placeholder.svg"}
               width={28}
             />
           ) : (
@@ -54,8 +54,8 @@ export default function HeaderAvatar() {
         <DropdownMenuItem
           className="flex cursor-pointer text-muted-foreground items-center gap-2 text-xs"
           onClick={async () => {
-            await handleSignOut();
-            await navigate({ to: "/login" });
+            await handleSignOut()
+            await navigate({ to: "/login" })
           }}
         >
           <LogOutIcon className="size-3" />
@@ -63,5 +63,5 @@ export default function HeaderAvatar() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

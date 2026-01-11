@@ -1,12 +1,12 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Check, LoaderIcon, MusicIcon } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
-import { cn } from "~/lib/utils";
-import { playlistByIdQuery, userPlaylistsQuery } from "~/queries";
-import { addTracksToPlaylist } from "~/server-fns/add-tracks-to-playlist";
-import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
-import { Button } from "./ui/button";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { Check, LoaderIcon, MusicIcon } from "lucide-react"
+import { useState } from "react"
+import { toast } from "sonner"
+import { cn } from "~/lib/utils"
+import { playlistByIdQuery, userPlaylistsQuery } from "~/queries"
+import { addTracksToPlaylist } from "~/server-fns/add-tracks-to-playlist"
+import { usePlaylistEditorStore } from "~/stores/playlist-editor-store"
+import { Button } from "./ui/button"
 import {
   Dialog,
   DialogClose,
@@ -15,38 +15,38 @@ import {
   DialogFooter,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
-import { Skeleton } from "./ui/skeleton";
+} from "./ui/dialog"
+import { Skeleton } from "./ui/skeleton"
 
 export default function AddToPlaylistButton() {
   const isTracksSelected = usePlaylistEditorStore(
-    (store) => store.selectedTrackIds.size === 0
-  );
+    (store) => store.selectedTrackIds.size === 0,
+  )
   const selectedTracks = usePlaylistEditorStore(
-    (store) => store.selectedTrackIds
-  );
-  const clearAll = usePlaylistEditorStore((store) => store.clearAll);
-  const [selectedPlaylists, setSelectedPlaylists] = useState<string[]>([]);
-  const queryClient = useQueryClient();
+    (store) => store.selectedTrackIds,
+  )
+  const clearAll = usePlaylistEditorStore((store) => store.clearAll)
+  const [selectedPlaylists, setSelectedPlaylists] = useState<string[]>([])
+  const queryClient = useQueryClient()
 
-  const { data: allPlaylists, isPending } = useQuery(userPlaylistsQuery);
+  const { data: allPlaylists, isPending } = useQuery(userPlaylistsQuery)
 
   const addTracksToPlaylistsMutation = useMutation({
     mutationFn: addTracksToPlaylist,
     onSuccess: () => {
-      toast.success("Tracks added");
+      toast.success("Tracks added")
       for (const playlistId of selectedPlaylists) {
         queryClient.invalidateQueries({
           queryKey: playlistByIdQuery(playlistId).queryKey,
-        });
+        })
       }
-      setSelectedPlaylists([]);
-      clearAll();
+      setSelectedPlaylists([])
+      clearAll()
     },
     onError: () => {
-      toast.error("Tracks not added");
+      toast.error("Tracks not added")
     },
-  });
+  })
 
   const handleTracksAddition = () => {
     addTracksToPlaylistsMutation.mutate({
@@ -54,19 +54,19 @@ export default function AddToPlaylistButton() {
         playlistIds: selectedPlaylists,
         trackIds: [...selectedTracks],
       },
-    });
-  };
+    })
+  }
 
   const togglePlaylistSelection = (playlistId: string) => {
     setSelectedPlaylists((prev) => {
       if (prev.includes(playlistId)) {
-        return prev.filter((id) => id !== playlistId);
+        return prev.filter((id) => id !== playlistId)
       } else if (prev.length < 5) {
-        return [...prev, playlistId];
+        return [...prev, playlistId]
       }
-      return prev;
-    });
-  };
+      return prev
+    })
+  }
 
   return (
     <Dialog>
@@ -93,8 +93,8 @@ export default function AddToPlaylistButton() {
           ) : (
             <div className="space-y-2">
               {allPlaylists?.map((playlist) => {
-                const isSelected = selectedPlaylists.includes(playlist.id);
-                const coverImage = playlist.images?.[0]?.url;
+                const isSelected = selectedPlaylists.includes(playlist.id)
+                const coverImage = playlist.images?.[0]?.url
 
                 return (
                   <button
@@ -109,7 +109,7 @@ export default function AddToPlaylistButton() {
                         : "bg-card border-border hover:border-accent-foreground/20",
                       !isSelected &&
                         selectedPlaylists.length >= 5 &&
-                        "opacity-50 cursor-not-allowed"
+                        "opacity-50 cursor-not-allowed",
                     )}
                   >
                     <div className="relative">
@@ -138,7 +138,7 @@ export default function AddToPlaylistButton() {
                       </div>
                     </div>
                   </button>
-                );
+                )
               })}
             </div>
           )}
@@ -161,11 +161,13 @@ export default function AddToPlaylistButton() {
                 Adding...
               </>
             ) : (
-              `Add to ${selectedPlaylists.length} playlist${selectedPlaylists.length !== 1 ? "s" : ""}`
+              `Add to ${selectedPlaylists.length} playlist${
+                selectedPlaylists.length !== 1 ? "s" : ""
+              }`
             )}
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

@@ -57,5 +57,5 @@ export default function WrappedBackgroundDesign() {
         </svg>
       </div>
     </div>
-  );
+  )
 }

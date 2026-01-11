@@ -1,24 +1,24 @@
-import type { QueryClient } from "@tanstack/react-query";
+import type { QueryClient } from "@tanstack/react-query"
 import {
   createRootRouteWithContext,
   HeadContent,
   Outlet,
   Scripts,
-} from "@tanstack/react-router";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import type { ReactNode } from "react";
-import { Toaster } from "~/components/ui/sonner";
-import { authSessionQuery } from "~/queries";
-import type { getAuthSession } from "~/server-fns/get-auth-session";
-import appCss from "../app.css?url";
+} from "@tanstack/react-router"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+import type { ReactNode } from "react"
+import { Toaster } from "~/components/ui/sonner"
+import { authSessionQuery } from "~/queries"
+import type { getAuthSession } from "~/server-fns/get-auth-session"
+import appCss from "../app.css?url"
 
 export const Route = createRootRouteWithContext<{
-  queryClient: QueryClient;
-  session: Awaited<ReturnType<typeof getAuthSession>>;
+  queryClient: QueryClient
+  session: Awaited<ReturnType<typeof getAuthSession>>
 }>()({
   beforeLoad: async ({ context }) => {
-    const session = await context.queryClient.fetchQuery(authSessionQuery);
-    return { session };
+    const session = await context.queryClient.fetchQuery(authSessionQuery)
+    return { session }
   },
   head: () => ({
     meta: [
@@ -51,14 +51,14 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   component: RootComponent,
-});
+})
 
 function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
     </RootDocument>
-  );
+  )
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
@@ -81,5 +81,5 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <Scripts />
       </body>
     </html>
-  );
+  )
 }

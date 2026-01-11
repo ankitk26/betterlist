@@ -1,16 +1,16 @@
-import { Link } from "@tanstack/react-router";
-import { formatMs } from "~/lib/format-ms";
-import type { Track } from "~/types";
-import TracksTableRowCheckbox from "./tracks-table-row-checkbox";
-import TracksTableTitleColumn from "./tracks-table-title-column";
+import { Link } from "@tanstack/react-router"
+import { formatMs } from "~/lib/format-ms"
+import type { Track } from "~/types"
+import TracksTableRowCheckbox from "./tracks-table-row-checkbox"
+import TracksTableTitleColumn from "./tracks-table-title-column"
 
 type Props = {
-  index: number;
-  track: Track;
-  showAlbum: boolean;
-  showCover: boolean;
-  showSubtitle: boolean;
-};
+  index: number
+  track: Track
+  showAlbum: boolean
+  showCover: boolean
+  showSubtitle: boolean
+}
 
 export default function TracksTableRow({
   index,
@@ -46,5 +46,5 @@ export default function TracksTableRow({
         {formatMs(track.duration_ms)}
       </small>
     </div>
-  );
+  )
 }

@@ -1,25 +1,25 @@
-import { betterFetch } from "@better-fetch/fetch";
-import { createServerFn } from "@tanstack/react-start";
-import { spotifyApiBaseUrl } from "~/static/constants";
-import type { Album } from "~/types";
-import { getAuthSession } from "./get-auth-session";
+import { betterFetch } from "@better-fetch/fetch"
+import { createServerFn } from "@tanstack/react-start"
+import { spotifyApiBaseUrl } from "~/static/constants"
+import type { Album } from "~/types"
+import { getAuthSession } from "./get-auth-session"
 
 export const getAlbumById = createServerFn({ method: "GET" })
   .validator((data: string) => data)
   .handler(async ({ data: albumId }) => {
-    const session = await getAuthSession();
+    const session = await getAuthSession()
     if (!session) {
-      throw new Error("Invalid request");
+      throw new Error("Invalid request")
     }
 
-    const endpoint = `/albums/${albumId}`;
+    const endpoint = `/albums/${albumId}`
 
     const res = await betterFetch<Album>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
         Authorization: `Bearer ${session.user.accessToken}`,
       },
-    });
+    })
 
-    return res.data;
-  });
+    return res.data
+  })

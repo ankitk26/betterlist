@@ -1,20 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
-import { DotIcon } from "lucide-react";
-import TracksTable from "~/components/tracks-table";
-import TracksTableSkeleton from "~/components/tracks-table-skeleton";
-import { Skeleton } from "~/components/ui/skeleton";
-import { authClient } from "~/lib/auth-client";
-import { likedSongsQuery } from "~/queries";
+import { useQuery } from "@tanstack/react-query"
+import { createFileRoute } from "@tanstack/react-router"
+import { Image } from "@unpic/react"
+import { DotIcon } from "lucide-react"
+import TracksTable from "~/components/tracks-table"
+import TracksTableSkeleton from "~/components/tracks-table-skeleton"
+import { Skeleton } from "~/components/ui/skeleton"
+import { authClient } from "~/lib/auth-client"
+import { likedSongsQuery } from "~/queries"
 
 export const Route = createFileRoute("/_protected/collection/tracks")({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const { data, isPending } = useQuery(likedSongsQuery);
-  const { data: authData, isPending: authIsPending } = authClient.useSession();
+  const { data, isPending } = useQuery(likedSongsQuery)
+  const { data: authData, isPending: authIsPending } = authClient.useSession()
 
   if (isPending || authIsPending) {
     return (
@@ -33,7 +33,7 @@ function RouteComponent() {
         </div>
         <TracksTableSkeleton />
       </section>
-    );
+    )
   }
 
   return (
@@ -72,5 +72,5 @@ function RouteComponent() {
         />
       )}
     </>
-  );
+  )
 }

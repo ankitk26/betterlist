@@ -1,17 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
-import { Link } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
-import { likedSongsCountQuery } from "~/queries";
-import { useSidebarStore } from "~/stores/sidebar-store";
-import { Skeleton } from "./ui/skeleton";
+import { useQuery } from "@tanstack/react-query"
+import { Link } from "@tanstack/react-router"
+import { Image } from "@unpic/react"
+import { likedSongsCountQuery } from "~/queries"
+import { useSidebarStore } from "~/stores/sidebar-store"
+import { Skeleton } from "./ui/skeleton"
 
 export default function SidebarLikedSongs() {
-  const library = useSidebarStore((store) => store.library);
+  const library = useSidebarStore((store) => store.library)
 
   const { data, isPending } = useQuery({
     ...likedSongsCountQuery,
     enabled: library === "playlists",
-  });
+  })
 
   return (
     <Link
@@ -40,5 +40,5 @@ export default function SidebarLikedSongs() {
         </span>
       </div>
     </Link>
-  );
+  )
 }

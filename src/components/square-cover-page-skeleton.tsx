@@ -1,5 +1,5 @@
-import TracksTableSkeleton from "./tracks-table-skeleton";
-import { Skeleton } from "./ui/skeleton";
+import TracksTableSkeleton from "./tracks-table-skeleton"
+import { Skeleton } from "./ui/skeleton"
 
 export default function SquareCoverPageSkeleton() {
   return (
@@ -18,5 +18,5 @@ export default function SquareCoverPageSkeleton() {
       </div>
       <TracksTableSkeleton />
     </section>
-  );
+  )
 }

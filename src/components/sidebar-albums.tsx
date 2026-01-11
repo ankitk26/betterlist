@@ -1,23 +1,23 @@
-import { useQuery } from "@tanstack/react-query";
-import { userAlbumsQuery } from "~/queries";
-import { useSidebarStore } from "~/stores/sidebar-store";
-import SidebarLibraryItem from "./sidebar-library-item";
-import SidebarSkeleton from "./sidebar-skeleton";
+import { useQuery } from "@tanstack/react-query"
+import { userAlbumsQuery } from "~/queries"
+import { useSidebarStore } from "~/stores/sidebar-store"
+import SidebarLibraryItem from "./sidebar-library-item"
+import SidebarSkeleton from "./sidebar-skeleton"
 
 export default function SidebarAlbums() {
-  const library = useSidebarStore((store) => store.library);
+  const library = useSidebarStore((store) => store.library)
 
   const { data, isPending } = useQuery({
     ...userAlbumsQuery,
     enabled: library === "albums",
-  });
+  })
 
   if (library !== "albums") {
-    return null;
+    return null
   }
 
   if (isPending) {
-    return <SidebarSkeleton />;
+    return <SidebarSkeleton />
   }
 
   return data?.map((album) => (
@@ -30,5 +30,5 @@ export default function SidebarAlbums() {
       }
       title={album.album.name}
     />
-  ));
+  ))
 }

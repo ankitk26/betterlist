@@ -1,43 +1,43 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { Image } from "@unpic/react";
-import { getMostFrequentGenre } from "../lib/get-most-frequent-genre";
-import { userTopArtistsQuery, userTopTracksQuery } from "../queries";
-import WrappedBackgroundDesign from "./wrapped-background-design";
-import { Link } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query"
+import { Image } from "@unpic/react"
+import { getMostFrequentGenre } from "../lib/get-most-frequent-genre"
+import { userTopArtistsQuery, userTopTracksQuery } from "../queries"
+import WrappedBackgroundDesign from "./wrapped-background-design"
+import { Link } from "@tanstack/react-router"
 
 type Props = {
-  range: "long_term" | "short_term" | "medium_term";
-};
+  range: "long_term" | "short_term" | "medium_term"
+}
 
 function getRangeTitle(range: Props["range"]): string {
   switch (range) {
     case "short_term":
-      return "Last Month";
+      return "Last Month"
     case "medium_term":
-      return "Last 6 Months";
+      return "Last 6 Months"
     case "long_term":
-      return "Last Year";
+      return "Last Year"
     default:
-      return "Your Stats";
+      return "Your Stats"
   }
 }
 
 export default function StatsWrapped(props: Props) {
   const { data: tracks } = useSuspenseQuery(
     userTopTracksQuery({ limit: 5, range: props.range }),
-  );
+  )
   const { data: artists } = useSuspenseQuery(
     userTopArtistsQuery({ range: props.range }),
-  );
+  )
 
-  const topArtistImages = artists?.[0].images.length;
-  const randomIndex = Math.floor(Math.random() * (topArtistImages ?? 1));
+  const topArtistImages = artists?.[0].images.length
+  const randomIndex = Math.floor(Math.random() * (topArtistImages ?? 1))
 
   const allGenres = artists
     ?.flatMap((artist) => artist.genres)
-    .filter((genre) => genre !== undefined);
+    .filter((genre) => genre !== undefined)
 
-  const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
+  const topGenre = getMostFrequentGenre(allGenres ?? ["NA"])
 
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-neutral-900 bg-black text-white">
@@ -116,5 +116,5 @@ export default function StatsWrapped(props: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

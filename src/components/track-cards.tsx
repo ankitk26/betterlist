@@ -1,10 +1,10 @@
-import { Image } from "@unpic/react";
-import { MusicIcon } from "lucide-react";
-import type { Track } from "~/types";
+import { Image } from "@unpic/react"
+import { MusicIcon } from "lucide-react"
+import type { Track } from "~/types"
 
 type Props = {
-  tracks: Track[];
-};
+  tracks: Track[]
+}
 
 export default function TrackCards({ tracks }: Props) {
   return (
@@ -38,5 +38,5 @@ export default function TrackCards({ tracks }: Props) {
           </div>
         ))}
     </div>
-  );
+  )
 }

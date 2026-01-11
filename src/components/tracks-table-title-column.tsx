@@ -1,15 +1,16 @@
-import { Link } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
-import { MusicIcon } from "lucide-react";
-import { cn } from "~/lib/utils";
-import type { Track } from "~/types";
+import { Link } from "@tanstack/react-router"
+import { Image } from "@unpic/react"
+import { MusicIcon } from "lucide-react"
+import { Fragment } from "react/jsx-runtime"
+import { cn } from "~/lib/utils"
+import type { Track } from "~/types"
 
 type Props = {
-  track: Track;
-  showAlbum?: boolean;
-  showCover?: boolean;
-  showSubtitle?: boolean;
-};
+  track: Track
+  showAlbum?: boolean
+  showCover?: boolean
+  showSubtitle?: boolean
+}
 
 export default function TracksTableTitleColumn({
   track,
@@ -21,7 +22,7 @@ export default function TracksTableTitleColumn({
     <div
       className={cn(
         "flex w-full items-center",
-        showAlbum ? "col-span-6" : "col-span-10"
+        showAlbum ? "col-span-6" : "col-span-10",
       )}
     >
       <div className="flex w-full items-center gap-4">
@@ -52,7 +53,7 @@ export default function TracksTableTitleColumn({
             <div className="flex w-full flex-wrap items-center gap-1 pr-3 text-muted-foreground text-sm">
               <span className="truncate">
                 {track.artists.map((artist, index) => (
-                  <>
+                  <Fragment key={artist.id + track.id}>
                     <Link
                       className="hover:underline"
                       key={artist.id + track.id}
@@ -62,7 +63,7 @@ export default function TracksTableTitleColumn({
                       {artist.name}
                     </Link>
                     {index !== track.artists.length - 1 && ", "}
-                  </>
+                  </Fragment>
                 ))}
               </span>
             </div>
@@ -70,5 +71,5 @@ export default function TracksTableTitleColumn({
         </div>
       </div>
     </div>
-  );
+  )
 }

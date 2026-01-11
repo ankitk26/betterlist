@@ -1,15 +1,15 @@
-import { Image } from "@unpic/react";
-import { MusicIcon } from "lucide-react";
+import { Image } from "@unpic/react"
+import { MusicIcon } from "lucide-react"
 
 type Props = {
   item: {
-    id: string;
-    title: string;
-    subtitle?: string;
-    image: string;
-    type: string;
-  };
-};
+    id: string
+    title: string
+    subtitle?: string
+    image: string
+    type: string
+  }
+}
 
 export default function CardItemContent({ item }: Props) {
   return (
@@ -36,5 +36,5 @@ export default function CardItemContent({ item }: Props) {
         </h6>
       )}
     </div>
-  );
+  )
 }

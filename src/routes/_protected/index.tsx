@@ -1,11 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Suspense } from "react";
-import StatsWrapped from "~/components/stats-wrapped";
-import { Skeleton } from "~/components/ui/skeleton";
+import { createFileRoute } from "@tanstack/react-router"
+import { Suspense } from "react"
+import StatsWrapped from "~/components/stats-wrapped"
+import { Skeleton } from "~/components/ui/skeleton"
 
 export const Route = createFileRoute("/_protected/")({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
   return (
@@ -27,5 +27,5 @@ function RouteComponent() {
         </Suspense>
       </div>
     </section>
-  );
+  )
 }

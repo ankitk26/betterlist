@@ -1,43 +1,43 @@
-import { betterFetch } from "@better-fetch/fetch";
-import { createServerFn } from "@tanstack/react-start";
-import { spotifyApiBaseUrl } from "~/static/constants";
-import type { Track } from "~/types";
-import { getAuthSession } from "./get-auth-session";
+import { betterFetch } from "@better-fetch/fetch"
+import { createServerFn } from "@tanstack/react-start"
+import { spotifyApiBaseUrl } from "~/static/constants"
+import type { Track } from "~/types"
+import { getAuthSession } from "./get-auth-session"
 
 export type LikedSongs = {
-  total: number;
+  total: number
   items: {
-    track: Track;
-  }[];
-  next: string | null;
-};
+    track: Track
+  }[]
+  next: string | null
+}
 
 export const getLikedSongs = createServerFn({ method: "GET" }).handler(
   async () => {
-    const session = await getAuthSession();
+    const session = await getAuthSession()
     if (!session) {
-      throw new Error("Invalid request");
+      throw new Error("Invalid request")
     }
 
-    const endpoint = "/me/tracks?limit=5";
+    const endpoint = "/me/tracks?limit=5"
 
     const res = await betterFetch<LikedSongs>(endpoint, {
       baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
       headers: {
         Authorization: `Bearer ${session.user.accessToken}`,
       },
-    });
+    })
 
-    const resData = res.data;
+    const resData = res.data
 
     if (!resData) {
       return {
         total: 0,
         tracks: [] as Track[],
-      };
+      }
     }
 
-    const finalData = { total: resData.total, items: resData.items };
+    const finalData = { total: resData.total, items: resData.items }
     // let currUrl = resData?.next;
 
     // while (currUrl !== null) {
@@ -59,6 +59,6 @@ export const getLikedSongs = createServerFn({ method: "GET" }).handler(
     return {
       total: finalData.total,
       items: finalData.items.map((item) => item.track),
-    };
-  }
-);
+    }
+  },
+)

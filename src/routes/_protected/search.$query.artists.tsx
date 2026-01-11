@@ -1,29 +1,29 @@
-import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import CardItem from "~/components/card-item";
-import SquareSkeletons from "~/components/square-skeleton";
-import { searchItemsQuery } from "~/queries";
+import { useQuery } from "@tanstack/react-query"
+import { createFileRoute } from "@tanstack/react-router"
+import CardItem from "~/components/card-item"
+import SquareSkeletons from "~/components/square-skeleton"
+import { searchItemsQuery } from "~/queries"
 
 export const Route = createFileRoute("/_protected/search/$query/artists")({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const { query } = Route.useParams();
+  const { query } = Route.useParams()
   const { data, isPending, isError, error } = useQuery(
-    searchItemsQuery({ query, type: "artist", limit: 50 })
-  );
+    searchItemsQuery({ query, type: "artist", limit: 50 }),
+  )
 
   if (isPending) {
-    return <SquareSkeletons count={10} />;
+    return <SquareSkeletons count={10} />
   }
 
   if (isError) {
-    return <p>{error.message}</p>;
+    return <p>{error.message}</p>
   }
 
   if (!data) {
-    return null;
+    return null
   }
 
   return (
@@ -43,5 +43,5 @@ function RouteComponent() {
         />
       ))}
     </div>
-  );
+  )
 }

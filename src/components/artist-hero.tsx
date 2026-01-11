@@ -1,14 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
-import { MusicIcon } from "lucide-react";
-import { artistByIdQuery } from "~/queries";
-import { Badge } from "./ui/badge";
-import { Skeleton } from "./ui/skeleton";
+import { useQuery } from "@tanstack/react-query"
+import { useParams } from "@tanstack/react-router"
+import { Image } from "@unpic/react"
+import { MusicIcon } from "lucide-react"
+import { artistByIdQuery } from "~/queries"
+import { Badge } from "./ui/badge"
+import { Skeleton } from "./ui/skeleton"
 
 export default function ArtistHero() {
-  const { artistId } = useParams({ from: "/_protected/artists/$artistId" });
-  const { data: artist, isPending } = useQuery(artistByIdQuery(artistId));
+  const { artistId } = useParams({ from: "/_protected/artists/$artistId" })
+  const { data: artist, isPending } = useQuery(artistByIdQuery(artistId))
 
   if (isPending) {
     return (
@@ -26,7 +26,7 @@ export default function ArtistHero() {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -62,5 +62,5 @@ export default function ArtistHero() {
         </>
       )}
     </div>
-  );
+  )
 }

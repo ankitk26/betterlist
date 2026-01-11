@@ -1,21 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import PlaylistHeader from "~/components/playlist-header";
-import SquareCoverPageSkeleton from "~/components/square-cover-page-skeleton";
-import TracksTable from "~/components/tracks-table";
-import TracksTableActions from "~/components/tracks-table-actions";
-import { playlistByIdQuery } from "~/queries";
+import { useQuery } from "@tanstack/react-query"
+import { createFileRoute } from "@tanstack/react-router"
+import PlaylistHeader from "~/components/playlist-header"
+import SquareCoverPageSkeleton from "~/components/square-cover-page-skeleton"
+import TracksTable from "~/components/tracks-table"
+import TracksTableActions from "~/components/tracks-table-actions"
+import { playlistByIdQuery } from "~/queries"
 
 export const Route = createFileRoute("/_protected/playlists/$playlistId")({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const { playlistId } = Route.useParams();
-  const { data: playlist, isPending } = useQuery(playlistByIdQuery(playlistId));
+  const { playlistId } = Route.useParams()
+  const { data: playlist, isPending } = useQuery(playlistByIdQuery(playlistId))
 
   if (isPending) {
-    return <SquareCoverPageSkeleton />;
+    return <SquareCoverPageSkeleton />
   }
 
   return (
@@ -50,5 +50,5 @@ function RouteComponent() {
         </div>
       )}
     </div>
-  );
+  )
 }
