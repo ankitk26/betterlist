@@ -53,7 +53,7 @@ const refreshTokenFromSpotify = async (
 }
 
 export const getUserAccount = createServerFn({ method: "GET" })
-  .validator((session: Session) => session)
+  .inputValidator((session: Session) => session)
   .handler(async ({ data: session }) => {
     const accountData = await db
       .select({
