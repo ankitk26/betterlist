@@ -40,6 +40,9 @@ export default function AddToPlaylistButton() {
           queryKey: playlistByIdQuery(playlistId).queryKey,
         })
       }
+      queryClient.invalidateQueries({
+        queryKey: userPlaylistsQuery.queryKey,
+      })
       setSelectedPlaylists([])
       clearAll()
     },

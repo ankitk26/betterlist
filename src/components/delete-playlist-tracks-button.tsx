@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { LoaderIcon } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
-import { playlistByIdQuery } from "~/queries"
+import { playlistByIdQuery, userPlaylistsQuery } from "~/queries"
 import { deleteTracksFromPlaylist } from "~/server-fns/delete-tracks-from-playlist"
 import { usePlaylistEditorStore } from "~/stores/playlist-editor-store"
 import {
@@ -40,6 +40,9 @@ export default function DeletePlaylistTracksButton({
       toast("Deleting tracks")
       await queryClient.invalidateQueries({
         queryKey: playlistByIdQuery(playlistId).queryKey,
+      })
+      queryClient.invalidateQueries({
+        queryKey: userPlaylistsQuery.queryKey,
       })
       clearAll()
       setIsOpen(false)
