@@ -8,192 +8,152 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as ProtectedRouteImport } from './routes/_protected'
-import { Route as ProtectedIndexRouteImport } from './routes/_protected/index'
-import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
-import { Route as ProtectedSearchQueryRouteImport } from './routes/_protected/search.$query'
-import { Route as ProtectedPlaylistsPlaylistIdRouteImport } from './routes/_protected/playlists.$playlistId'
-import { Route as ProtectedCollectionTracksRouteImport } from './routes/_protected/collection.tracks'
-import { Route as ProtectedArtistsArtistIdRouteImport } from './routes/_protected/artists.$artistId'
-import { Route as ProtectedAlbumsAlbumIdRouteImport } from './routes/_protected/albums.$albumId'
-import { Route as ProtectedSearchQueryIndexRouteImport } from './routes/_protected/search.$query.index'
-import { Route as ProtectedSearchQueryTracksRouteImport } from './routes/_protected/search.$query.tracks'
-import { Route as ProtectedSearchQueryPlaylistsRouteImport } from './routes/_protected/search.$query.playlists'
-import { Route as ProtectedSearchQueryArtistsRouteImport } from './routes/_protected/search.$query.artists'
-import { Route as ProtectedSearchQueryAlbumsRouteImport } from './routes/_protected/search.$query.albums'
+import { Route as rootRouteImport } from "./routes/__root"
+import { Route as LoginRouteImport } from "./routes/login"
+import { Route as ProtectedRouteImport } from "./routes/_protected"
+import { Route as ProtectedIndexRouteImport } from "./routes/_protected/index"
+import { Route as ApiAuthSplatRouteImport } from "./routes/api.auth.$"
+import { Route as ProtectedSearchQueryRouteImport } from "./routes/_protected/search.$query"
+import { Route as ProtectedPlaylistsPlaylistIdRouteImport } from "./routes/_protected/playlists.$playlistId"
+import { Route as ProtectedCollectionTracksRouteImport } from "./routes/_protected/collection.tracks"
+import { Route as ProtectedArtistsArtistIdRouteImport } from "./routes/_protected/artists.$artistId"
+import { Route as ProtectedAlbumsAlbumIdRouteImport } from "./routes/_protected/albums.$albumId"
+import { Route as ProtectedSearchQueryIndexRouteImport } from "./routes/_protected/search.$query.index"
+import { Route as ProtectedSearchQueryTracksRouteImport } from "./routes/_protected/search.$query.tracks"
+import { Route as ProtectedSearchQueryPlaylistsRouteImport } from "./routes/_protected/search.$query.playlists"
+import { Route as ProtectedSearchQueryArtistsRouteImport } from "./routes/_protected/search.$query.artists"
+import { Route as ProtectedSearchQueryAlbumsRouteImport } from "./routes/_protected/search.$query.albums"
 
 const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+  id: "/login",
+  path: "/login",
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedRoute = ProtectedRouteImport.update({
-  id: '/_protected',
+  id: "/_protected",
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedIndexRoute = ProtectedIndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => ProtectedRoute,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
-  id: '/api/auth/$',
-  path: '/api/auth/$',
+  id: "/api/auth/$",
+  path: "/api/auth/$",
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedSearchQueryRoute = ProtectedSearchQueryRouteImport.update({
-  id: '/search/$query',
-  path: '/search/$query',
+  id: "/search/$query",
+  path: "/search/$query",
   getParentRoute: () => ProtectedRoute,
 } as any)
 const ProtectedPlaylistsPlaylistIdRoute =
   ProtectedPlaylistsPlaylistIdRouteImport.update({
-    id: '/playlists/$playlistId',
-    path: '/playlists/$playlistId',
+    id: "/playlists/$playlistId",
+    path: "/playlists/$playlistId",
     getParentRoute: () => ProtectedRoute,
   } as any)
 const ProtectedCollectionTracksRoute =
   ProtectedCollectionTracksRouteImport.update({
-    id: '/collection/tracks',
-    path: '/collection/tracks',
+    id: "/collection/tracks",
+    path: "/collection/tracks",
     getParentRoute: () => ProtectedRoute,
   } as any)
 const ProtectedArtistsArtistIdRoute =
   ProtectedArtistsArtistIdRouteImport.update({
-    id: '/artists/$artistId',
-    path: '/artists/$artistId',
+    id: "/artists/$artistId",
+    path: "/artists/$artistId",
     getParentRoute: () => ProtectedRoute,
   } as any)
 const ProtectedAlbumsAlbumIdRoute = ProtectedAlbumsAlbumIdRouteImport.update({
-  id: '/albums/$albumId',
-  path: '/albums/$albumId',
+  id: "/albums/$albumId",
+  path: "/albums/$albumId",
   getParentRoute: () => ProtectedRoute,
 } as any)
 const ProtectedSearchQueryIndexRoute =
   ProtectedSearchQueryIndexRouteImport.update({
-    id: '/',
-    path: '/',
+    id: "/",
+    path: "/",
     getParentRoute: () => ProtectedSearchQueryRoute,
   } as any)
 const ProtectedSearchQueryTracksRoute =
   ProtectedSearchQueryTracksRouteImport.update({
-    id: '/tracks',
-    path: '/tracks',
+    id: "/tracks",
+    path: "/tracks",
     getParentRoute: () => ProtectedSearchQueryRoute,
   } as any)
 const ProtectedSearchQueryPlaylistsRoute =
   ProtectedSearchQueryPlaylistsRouteImport.update({
-    id: '/playlists',
-    path: '/playlists',
+    id: "/playlists",
+    path: "/playlists",
     getParentRoute: () => ProtectedSearchQueryRoute,
   } as any)
 const ProtectedSearchQueryArtistsRoute =
   ProtectedSearchQueryArtistsRouteImport.update({
-    id: '/artists',
-    path: '/artists',
+    id: "/artists",
+    path: "/artists",
     getParentRoute: () => ProtectedSearchQueryRoute,
   } as any)
 const ProtectedSearchQueryAlbumsRoute =
   ProtectedSearchQueryAlbumsRouteImport.update({
-    id: '/albums',
-    path: '/albums',
+    id: "/albums",
+    path: "/albums",
     getParentRoute: () => ProtectedSearchQueryRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/login': typeof LoginRoute
-  '/': typeof ProtectedIndexRoute
-  '/albums/$albumId': typeof ProtectedAlbumsAlbumIdRoute
-  '/artists/$artistId': typeof ProtectedArtistsArtistIdRoute
-  '/collection/tracks': typeof ProtectedCollectionTracksRoute
-  '/playlists/$playlistId': typeof ProtectedPlaylistsPlaylistIdRoute
-  '/search/$query': typeof ProtectedSearchQueryRouteWithChildren
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/search/$query/albums': typeof ProtectedSearchQueryAlbumsRoute
-  '/search/$query/artists': typeof ProtectedSearchQueryArtistsRoute
-  '/search/$query/playlists': typeof ProtectedSearchQueryPlaylistsRoute
-  '/search/$query/tracks': typeof ProtectedSearchQueryTracksRoute
-  '/search/$query/': typeof ProtectedSearchQueryIndexRoute
+  "/login": typeof LoginRoute
+  "/": typeof ProtectedIndexRoute
+  "/albums/$albumId": typeof ProtectedAlbumsAlbumIdRoute
+  "/artists/$artistId": typeof ProtectedArtistsArtistIdRoute
+  "/collection/tracks": typeof ProtectedCollectionTracksRoute
+  "/playlists/$playlistId": typeof ProtectedPlaylistsPlaylistIdRoute
+  "/search/$query": typeof ProtectedSearchQueryRouteWithChildren
+  "/api/auth/$": typeof ApiAuthSplatRoute
+  "/search/$query/albums": typeof ProtectedSearchQueryAlbumsRoute
+  "/search/$query/artists": typeof ProtectedSearchQueryArtistsRoute
+  "/search/$query/playlists": typeof ProtectedSearchQueryPlaylistsRoute
+  "/search/$query/tracks": typeof ProtectedSearchQueryTracksRoute
+  "/search/$query/": typeof ProtectedSearchQueryIndexRoute
 }
 export interface FileRoutesByTo {
-  '/login': typeof LoginRoute
-  '/': typeof ProtectedIndexRoute
-  '/albums/$albumId': typeof ProtectedAlbumsAlbumIdRoute
-  '/artists/$artistId': typeof ProtectedArtistsArtistIdRoute
-  '/collection/tracks': typeof ProtectedCollectionTracksRoute
-  '/playlists/$playlistId': typeof ProtectedPlaylistsPlaylistIdRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/search/$query/albums': typeof ProtectedSearchQueryAlbumsRoute
-  '/search/$query/artists': typeof ProtectedSearchQueryArtistsRoute
-  '/search/$query/playlists': typeof ProtectedSearchQueryPlaylistsRoute
-  '/search/$query/tracks': typeof ProtectedSearchQueryTracksRoute
-  '/search/$query': typeof ProtectedSearchQueryIndexRoute
+  "/login": typeof LoginRoute
+  "/": typeof ProtectedIndexRoute
+  "/albums/$albumId": typeof ProtectedAlbumsAlbumIdRoute
+  "/artists/$artistId": typeof ProtectedArtistsArtistIdRoute
+  "/collection/tracks": typeof ProtectedCollectionTracksRoute
+  "/playlists/$playlistId": typeof ProtectedPlaylistsPlaylistIdRoute
+  "/api/auth/$": typeof ApiAuthSplatRoute
+  "/search/$query/albums": typeof ProtectedSearchQueryAlbumsRoute
+  "/search/$query/artists": typeof ProtectedSearchQueryArtistsRoute
+  "/search/$query/playlists": typeof ProtectedSearchQueryPlaylistsRoute
+  "/search/$query/tracks": typeof ProtectedSearchQueryTracksRoute
+  "/search/$query": typeof ProtectedSearchQueryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_protected': typeof ProtectedRouteWithChildren
-  '/login': typeof LoginRoute
-  '/_protected/': typeof ProtectedIndexRoute
-  '/_protected/albums/$albumId': typeof ProtectedAlbumsAlbumIdRoute
-  '/_protected/artists/$artistId': typeof ProtectedArtistsArtistIdRoute
-  '/_protected/collection/tracks': typeof ProtectedCollectionTracksRoute
-  '/_protected/playlists/$playlistId': typeof ProtectedPlaylistsPlaylistIdRoute
-  '/_protected/search/$query': typeof ProtectedSearchQueryRouteWithChildren
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/_protected/search/$query/albums': typeof ProtectedSearchQueryAlbumsRoute
-  '/_protected/search/$query/artists': typeof ProtectedSearchQueryArtistsRoute
-  '/_protected/search/$query/playlists': typeof ProtectedSearchQueryPlaylistsRoute
-  '/_protected/search/$query/tracks': typeof ProtectedSearchQueryTracksRoute
-  '/_protected/search/$query/': typeof ProtectedSearchQueryIndexRoute
+  "/_protected": typeof ProtectedRouteWithChildren
+  "/login": typeof LoginRoute
+  "/_protected/": typeof ProtectedIndexRoute
+  "/_protected/albums/$albumId": typeof ProtectedAlbumsAlbumIdRoute
+  "/_protected/artists/$artistId": typeof ProtectedArtistsArtistIdRoute
+  "/_protected/collection/tracks": typeof ProtectedCollectionTracksRoute
+  "/_protected/playlists/$playlistId": typeof ProtectedPlaylistsPlaylistIdRoute
+  "/_protected/search/$query": typeof ProtectedSearchQueryRouteWithChildren
+  "/api/auth/$": typeof ApiAuthSplatRoute
+  "/_protected/search/$query/albums": typeof ProtectedSearchQueryAlbumsRoute
+  "/_protected/search/$query/artists": typeof ProtectedSearchQueryArtistsRoute
+  "/_protected/search/$query/playlists": typeof ProtectedSearchQueryPlaylistsRoute
+  "/_protected/search/$query/tracks": typeof ProtectedSearchQueryTracksRoute
+  "/_protected/search/$query/": typeof ProtectedSearchQueryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/login'
-    | '/'
-    | '/albums/$albumId'
-    | '/artists/$artistId'
-    | '/collection/tracks'
-    | '/playlists/$playlistId'
-    | '/search/$query'
-    | '/api/auth/$'
-    | '/search/$query/albums'
-    | '/search/$query/artists'
-    | '/search/$query/playlists'
-    | '/search/$query/tracks'
-    | '/search/$query/'
+  fullPaths: "/login" | "/" | "/albums/$albumId" | "/artists/$artistId" | "/collection/tracks" | "/playlists/$playlistId" | "/search/$query" | "/api/auth/$" | "/search/$query/albums" | "/search/$query/artists" | "/search/$query/playlists" | "/search/$query/tracks" | "/search/$query/"
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/login'
-    | '/'
-    | '/albums/$albumId'
-    | '/artists/$artistId'
-    | '/collection/tracks'
-    | '/playlists/$playlistId'
-    | '/api/auth/$'
-    | '/search/$query/albums'
-    | '/search/$query/artists'
-    | '/search/$query/playlists'
-    | '/search/$query/tracks'
-    | '/search/$query'
-  id:
-    | '__root__'
-    | '/_protected'
-    | '/login'
-    | '/_protected/'
-    | '/_protected/albums/$albumId'
-    | '/_protected/artists/$artistId'
-    | '/_protected/collection/tracks'
-    | '/_protected/playlists/$playlistId'
-    | '/_protected/search/$query'
-    | '/api/auth/$'
-    | '/_protected/search/$query/albums'
-    | '/_protected/search/$query/artists'
-    | '/_protected/search/$query/playlists'
-    | '/_protected/search/$query/tracks'
-    | '/_protected/search/$query/'
+  to: "/login" | "/" | "/albums/$albumId" | "/artists/$artistId" | "/collection/tracks" | "/playlists/$playlistId" | "/api/auth/$" | "/search/$query/albums" | "/search/$query/artists" | "/search/$query/playlists" | "/search/$query/tracks" | "/search/$query"
+  id: "__root__" | "/_protected" | "/login" | "/_protected/" | "/_protected/albums/$albumId" | "/_protected/artists/$artistId" | "/_protected/collection/tracks" | "/_protected/playlists/$playlistId" | "/_protected/search/$query" | "/api/auth/$" | "/_protected/search/$query/albums" | "/_protected/search/$query/artists" | "/_protected/search/$query/playlists" | "/_protected/search/$query/tracks" | "/_protected/search/$query/"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -202,103 +162,103 @@ export interface RootRouteChildren {
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
+    "/login": {
+      id: "/login"
+      path: "/login"
+      fullPath: "/login"
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_protected': {
-      id: '/_protected'
-      path: ''
-      fullPath: ''
+    "/_protected": {
+      id: "/_protected"
+      path: ""
+      fullPath: ""
       preLoaderRoute: typeof ProtectedRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_protected/': {
-      id: '/_protected/'
-      path: '/'
-      fullPath: '/'
+    "/_protected/": {
+      id: "/_protected/"
+      path: "/"
+      fullPath: "/"
       preLoaderRoute: typeof ProtectedIndexRouteImport
       parentRoute: typeof ProtectedRoute
     }
-    '/api/auth/$': {
-      id: '/api/auth/$'
-      path: '/api/auth/$'
-      fullPath: '/api/auth/$'
+    "/api/auth/$": {
+      id: "/api/auth/$"
+      path: "/api/auth/$"
+      fullPath: "/api/auth/$"
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_protected/search/$query': {
-      id: '/_protected/search/$query'
-      path: '/search/$query'
-      fullPath: '/search/$query'
+    "/_protected/search/$query": {
+      id: "/_protected/search/$query"
+      path: "/search/$query"
+      fullPath: "/search/$query"
       preLoaderRoute: typeof ProtectedSearchQueryRouteImport
       parentRoute: typeof ProtectedRoute
     }
-    '/_protected/playlists/$playlistId': {
-      id: '/_protected/playlists/$playlistId'
-      path: '/playlists/$playlistId'
-      fullPath: '/playlists/$playlistId'
+    "/_protected/playlists/$playlistId": {
+      id: "/_protected/playlists/$playlistId"
+      path: "/playlists/$playlistId"
+      fullPath: "/playlists/$playlistId"
       preLoaderRoute: typeof ProtectedPlaylistsPlaylistIdRouteImport
       parentRoute: typeof ProtectedRoute
     }
-    '/_protected/collection/tracks': {
-      id: '/_protected/collection/tracks'
-      path: '/collection/tracks'
-      fullPath: '/collection/tracks'
+    "/_protected/collection/tracks": {
+      id: "/_protected/collection/tracks"
+      path: "/collection/tracks"
+      fullPath: "/collection/tracks"
       preLoaderRoute: typeof ProtectedCollectionTracksRouteImport
       parentRoute: typeof ProtectedRoute
     }
-    '/_protected/artists/$artistId': {
-      id: '/_protected/artists/$artistId'
-      path: '/artists/$artistId'
-      fullPath: '/artists/$artistId'
+    "/_protected/artists/$artistId": {
+      id: "/_protected/artists/$artistId"
+      path: "/artists/$artistId"
+      fullPath: "/artists/$artistId"
       preLoaderRoute: typeof ProtectedArtistsArtistIdRouteImport
       parentRoute: typeof ProtectedRoute
     }
-    '/_protected/albums/$albumId': {
-      id: '/_protected/albums/$albumId'
-      path: '/albums/$albumId'
-      fullPath: '/albums/$albumId'
+    "/_protected/albums/$albumId": {
+      id: "/_protected/albums/$albumId"
+      path: "/albums/$albumId"
+      fullPath: "/albums/$albumId"
       preLoaderRoute: typeof ProtectedAlbumsAlbumIdRouteImport
       parentRoute: typeof ProtectedRoute
     }
-    '/_protected/search/$query/': {
-      id: '/_protected/search/$query/'
-      path: '/'
-      fullPath: '/search/$query/'
+    "/_protected/search/$query/": {
+      id: "/_protected/search/$query/"
+      path: "/"
+      fullPath: "/search/$query/"
       preLoaderRoute: typeof ProtectedSearchQueryIndexRouteImport
       parentRoute: typeof ProtectedSearchQueryRoute
     }
-    '/_protected/search/$query/tracks': {
-      id: '/_protected/search/$query/tracks'
-      path: '/tracks'
-      fullPath: '/search/$query/tracks'
+    "/_protected/search/$query/tracks": {
+      id: "/_protected/search/$query/tracks"
+      path: "/tracks"
+      fullPath: "/search/$query/tracks"
       preLoaderRoute: typeof ProtectedSearchQueryTracksRouteImport
       parentRoute: typeof ProtectedSearchQueryRoute
     }
-    '/_protected/search/$query/playlists': {
-      id: '/_protected/search/$query/playlists'
-      path: '/playlists'
-      fullPath: '/search/$query/playlists'
+    "/_protected/search/$query/playlists": {
+      id: "/_protected/search/$query/playlists"
+      path: "/playlists"
+      fullPath: "/search/$query/playlists"
       preLoaderRoute: typeof ProtectedSearchQueryPlaylistsRouteImport
       parentRoute: typeof ProtectedSearchQueryRoute
     }
-    '/_protected/search/$query/artists': {
-      id: '/_protected/search/$query/artists'
-      path: '/artists'
-      fullPath: '/search/$query/artists'
+    "/_protected/search/$query/artists": {
+      id: "/_protected/search/$query/artists"
+      path: "/artists"
+      fullPath: "/search/$query/artists"
       preLoaderRoute: typeof ProtectedSearchQueryArtistsRouteImport
       parentRoute: typeof ProtectedSearchQueryRoute
     }
-    '/_protected/search/$query/albums': {
-      id: '/_protected/search/$query/albums'
-      path: '/albums'
-      fullPath: '/search/$query/albums'
+    "/_protected/search/$query/albums": {
+      id: "/_protected/search/$query/albums"
+      path: "/albums"
+      fullPath: "/search/$query/albums"
       preLoaderRoute: typeof ProtectedSearchQueryAlbumsRouteImport
       parentRoute: typeof ProtectedSearchQueryRoute
     }
@@ -355,9 +315,9 @@ export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
+import type { getRouter } from "./router.tsx"
+import type { createStart } from "@tanstack/react-start"
+declare module "@tanstack/react-start" {
   interface Register {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
