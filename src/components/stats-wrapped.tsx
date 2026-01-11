@@ -3,6 +3,7 @@ import { Image } from "@unpic/react";
 import { getMostFrequentGenre } from "../lib/get-most-frequent-genre";
 import { userTopArtistsQuery, userTopTracksQuery } from "../queries";
 import WrappedBackgroundDesign from "./wrapped-background-design";
+import { Link } from "@tanstack/react-router";
 
 type Props = {
   range: "long_term" | "short_term" | "medium_term";
@@ -23,10 +24,10 @@ function getRangeTitle(range: Props["range"]): string {
 
 export default function StatsWrapped(props: Props) {
   const { data: tracks } = useSuspenseQuery(
-    userTopTracksQuery({ limit: 5, range: props.range })
+    userTopTracksQuery({ limit: 5, range: props.range }),
   );
   const { data: artists } = useSuspenseQuery(
-    userTopArtistsQuery({ range: props.range })
+    userTopArtistsQuery({ range: props.range }),
   );
 
   const topArtistImages = artists?.[0].images.length;
@@ -75,7 +76,13 @@ export default function StatsWrapped(props: Props) {
                 {artists?.slice(0, 5).map((artist, index) => (
                   <div className="flex items-center gap-2" key={artist.id}>
                     <span className="font-bold text-white">#{index + 1}</span>
-                    <span className="text-white">{artist.name}</span>
+                    <Link
+                      to="/artists/$artistId"
+                      params={{ artistId: artist.id }}
+                      className="text-white"
+                    >
+                      {artist.name}
+                    </Link>
                   </div>
                 ))}
               </div>

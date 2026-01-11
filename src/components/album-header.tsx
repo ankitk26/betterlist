@@ -13,10 +13,10 @@ export default function AlbumHeader({ album }: Props) {
       {album.images && album.images.length > 0 ? (
         <Image
           alt={album.name}
-          className="aspect-square w-64 rounded-sm object-cover"
-          height={208}
+          className="h-64 w-64 rounded-lg object-cover shadow-xl ring-1 ring-border"
+          height={256}
           src={album.images[0].url ?? ""}
-          width={208}
+          width={256}
         />
       ) : (
         <div className="h-40 w-full">

@@ -41,9 +41,10 @@ function RouteComponent() {
       <div className="flex items-end gap-6">
         <Image
           alt="Liked Songs"
-          height={208}
+          className="h-64 w-64 rounded-lg object-cover shadow-xl ring-1 ring-border"
+          height={256}
           src="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"
-          width={208}
+          width={256}
         />
         <div className="flex flex-col gap-3">
           <h5 className="font-bold text-sm">Playlist</h5>

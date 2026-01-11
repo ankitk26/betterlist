@@ -36,10 +36,10 @@ export default function ArtistHero() {
           {artist.images.length > 0 ? (
             <Image
               alt={artist.name}
-              className="h-64 w-64 rounded-full object-cover"
-              height={208}
+              className="h-64 w-64 rounded-full object-cover shadow-xl ring-1 ring-border"
+              height={256}
               src={artist.images[0].url}
-              width={208}
+              width={256}
             />
           ) : (
             <div className="h-40 w-full">
