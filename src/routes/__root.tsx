@@ -33,22 +33,7 @@ export const Route = createRootRouteWithContext<{
         title: "betterlist",
       },
     ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-      },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossOrigin: "anonymous",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap",
-      },
-    ],
+    links: [{ rel: "stylesheet", href: appCss }],
   }),
   component: RootComponent,
 })
@@ -75,7 +60,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           enableSystem
         >
           {children}
-          <Toaster />
+          <Toaster style={{ fontFamily: "inherit" }} />
           {/* <ReactQueryDevtools /> */}
         </NextThemesProvider>
         <Scripts />
