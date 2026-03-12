@@ -12,7 +12,7 @@ function RouteComponent() {
 	const [isLoading, setIsLoading] = useState(false);
 
 	return (
-		<div className="flex h-[100dvh] flex-col items-center justify-center gap-6">
+		<div className="flex h-dvh flex-col items-center justify-center gap-6">
 			<div className="flex flex-col items-center gap-2">
 				<h1 className="text-3xl font-semibold">betterlist</h1>
 				<p className="text-muted-foreground">
@@ -20,7 +20,7 @@ function RouteComponent() {
 				</p>
 			</div>
 			<Button
-				className="w-[200px]"
+				className="w-50"
 				onClick={async () => {
 					setIsLoading(true);
 					await authClient.signIn.social({ provider: "spotify" });
