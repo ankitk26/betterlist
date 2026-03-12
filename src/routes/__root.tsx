@@ -1,70 +1,71 @@
-import type { QueryClient } from "@tanstack/react-query"
+/// <reference types="vite/client" />
+import type { QueryClient } from "@tanstack/react-query";
 import {
-  createRootRouteWithContext,
-  HeadContent,
-  Outlet,
-  Scripts,
-} from "@tanstack/react-router"
-import { ThemeProvider as NextThemesProvider } from "next-themes"
-import type { ReactNode } from "react"
-import { Toaster } from "~/components/ui/sonner"
-import { authSessionQuery } from "~/queries"
-import type { getAuthSession } from "~/server-fns/get-auth-session"
-import appCss from "../app.css?url"
+	createRootRouteWithContext,
+	HeadContent,
+	Outlet,
+	Scripts,
+} from "@tanstack/react-router";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import type { ReactNode } from "react";
+import { Toaster } from "~/components/ui/sonner";
+import { authSessionQuery } from "~/queries";
+import type { getAuthSession } from "~/server-fns/get-auth-session";
+import appCss from "../app.css?url";
 
 export const Route = createRootRouteWithContext<{
-  queryClient: QueryClient
-  session: Awaited<ReturnType<typeof getAuthSession>>
+	queryClient: QueryClient;
+	session: Awaited<ReturnType<typeof getAuthSession>>;
 }>()({
-  beforeLoad: async ({ context }) => {
-    const session = await context.queryClient.fetchQuery(authSessionQuery)
-    return { session }
-  },
-  head: () => ({
-    meta: [
-      {
-        charSet: "utf-8",
-      },
-      {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1",
-      },
-      {
-        title: "betterlist",
-      },
-    ],
-    links: [{ rel: "stylesheet", href: appCss }],
-  }),
-  component: RootComponent,
-})
+	beforeLoad: async ({ context }) => {
+		const session = await context.queryClient.fetchQuery(authSessionQuery);
+		return { session };
+	},
+	head: () => ({
+		meta: [
+			{
+				charSet: "utf-8",
+			},
+			{
+				name: "viewport",
+				content: "width=device-width, initial-scale=1",
+			},
+			{
+				title: "betterlist",
+			},
+		],
+		links: [{ rel: "stylesheet", href: appCss }],
+	}),
+	component: RootComponent,
+});
 
 function RootComponent() {
-  return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
-  )
+	return (
+		<RootDocument>
+			<Outlet />
+		</RootDocument>
+	);
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <NextThemesProvider
-          attribute="class"
-          defaultTheme="system"
-          disableTransitionOnChange
-          enableSystem
-        >
-          {children}
-          <Toaster style={{ fontFamily: "inherit" }} />
-          {/* <ReactQueryDevtools /> */}
-        </NextThemesProvider>
-        <Scripts />
-      </body>
-    </html>
-  )
+	return (
+		<html lang="en">
+			<head>
+				<HeadContent />
+			</head>
+			<body>
+				<NextThemesProvider
+					attribute="class"
+					defaultTheme="system"
+					disableTransitionOnChange
+					enableSystem
+				>
+					{children}
+					<Toaster style={{ fontFamily: "inherit" }} />
+					{/* <ReactQueryDevtools /> */}
+				</NextThemesProvider>
+				<Scripts />
+			</body>
+		</html>
+	);
 }

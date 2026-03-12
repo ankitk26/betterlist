@@ -1,18 +1,18 @@
-import { useSidebarStore } from "~/stores/sidebar-store"
-import SidebarLikedSongs from "./sidebar-liked-songs"
-import UserPlaylists from "./user-playlists"
+import { useSidebarStore } from "~/stores/sidebar-store";
+import SidebarLikedSongs from "./sidebar-liked-songs";
+import UserPlaylists from "./user-playlists";
 
 export default function SidebarPlaylists() {
-  const library = useSidebarStore((store) => store.library)
+	const library = useSidebarStore((store) => store.library);
 
-  if (library !== "playlists") {
-    return null
-  }
+	if (library !== "playlists") {
+		return null;
+	}
 
-  return (
-    <>
-      <SidebarLikedSongs />
-      <UserPlaylists />
-    </>
-  )
+	return (
+		<>
+			<SidebarLikedSongs />
+			<UserPlaylists />
+		</>
+	);
 }

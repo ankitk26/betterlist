@@ -1,26 +1,26 @@
-import { betterFetch } from "@better-fetch/fetch"
-import { createServerFn } from "@tanstack/react-start"
-import { z } from "zod"
-import { spotifyApiBaseUrl } from "~/static/constants"
-import type { Track } from "~/types"
-import { getAuthSession } from "./get-auth-session"
+import { betterFetch } from "@better-fetch/fetch";
+import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
+import { spotifyApiBaseUrl } from "~/static/constants";
+import type { Track } from "~/types";
+import { getAuthSession } from "./get-auth-session";
 
 export const getArtistTopTracks = createServerFn({ method: "GET" })
-  .inputValidator(z.string())
-  .handler(async ({ data: artistId }) => {
-    const session = await getAuthSession()
-    if (!session) {
-      throw new Error("Invalid request")
-    }
+	.inputValidator(z.string())
+	.handler(async ({ data: artistId }) => {
+		const session = await getAuthSession();
+		if (!session) {
+			throw new Error("Invalid request");
+		}
 
-    const endpoint = `/artists/${artistId}/top-tracks?market=from_token`
+		const endpoint = `/artists/${artistId}/top-tracks?market=from_token`;
 
-    const res = await betterFetch<{ tracks: Track[] }>(endpoint, {
-      baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
-      headers: {
-        Authorization: `Bearer ${session.user.accessToken}`,
-      },
-    })
+		const res = await betterFetch<{ tracks: Track[] }>(endpoint, {
+			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+			headers: {
+				Authorization: `Bearer ${session.user.accessToken}`,
+			},
+		});
 
-    return res.data?.tracks
-  })
+		return res.data?.tracks;
+	});
