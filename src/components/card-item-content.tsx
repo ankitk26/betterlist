@@ -13,7 +13,7 @@ type Props = {
 
 export default function CardItemContent({ item }: Props) {
 	return (
-		<div className="h-full cursor-pointer rounded-lg border bg-input/30 p-4 transition duration-300 hover:bg-secondary dark:border-none">
+		<div className="bg-input/30 hover:bg-secondary h-full cursor-pointer rounded-lg border p-4 transition duration-300 dark:border-none">
 			{item.image ? (
 				<Image
 					alt={item.title}
@@ -31,7 +31,7 @@ export default function CardItemContent({ item }: Props) {
 			)}
 			<h3 className="mt-5 truncate font-bold">{item.title}</h3>
 			{item.subtitle && (
-				<h6 className="mt-1 truncate font-semibold text-muted-foreground text-xs">
+				<h6 className="text-muted-foreground mt-1 truncate text-xs font-semibold">
 					{item.subtitle}
 				</h6>
 			)}

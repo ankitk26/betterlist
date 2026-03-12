@@ -18,7 +18,7 @@ export default function SidebarLikedSongs() {
 			activeProps={{
 				className: "bg-secondary",
 			}}
-			className="flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-md p-2 hover:bg-secondary"
+			className="hover:bg-secondary flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-md p-2"
 			to="/collection/tracks"
 		>
 			<Image
@@ -30,8 +30,8 @@ export default function SidebarLikedSongs() {
 			/>
 
 			<div className="min-w-0 flex-1 overflow-hidden">
-				<h6 className="truncate font-medium text-sm">Liked Songs</h6>
-				<span className="block truncate text-muted-foreground text-xs">
+				<h6 className="truncate text-sm font-medium">Liked Songs</h6>
+				<span className="text-muted-foreground block truncate text-xs">
 					{isPending ? (
 						<Skeleton className="h-4 w-full" />
 					) : (

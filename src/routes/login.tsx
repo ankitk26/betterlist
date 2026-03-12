@@ -13,7 +13,7 @@ function RouteComponent() {
 
 	return (
 		<div className="flex h-[100dvh] flex-col items-center justify-center gap-6">
-			<div className="flex flex-col gap-2 items-center">
+			<div className="flex flex-col items-center gap-2">
 				<h1 className="text-3xl font-semibold">betterlist</h1>
 				<p className="text-muted-foreground">
 					Manage Spotify playlists effortlessly

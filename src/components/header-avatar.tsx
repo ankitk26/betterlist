@@ -24,7 +24,7 @@ export default function HeaderAvatar() {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<div className="flex cursor-pointer items-center gap-3 rounded-full border border-border bg-card py-1 pr-3 pl-1 transition-colors hover:bg-accent">
+				<div className="border-border bg-card hover:bg-accent flex cursor-pointer items-center gap-3 rounded-full border py-1 pr-3 pl-1 transition-colors">
 					{session?.user.image ? (
 						<Image
 							alt={session?.user?.name}
@@ -40,8 +40,8 @@ export default function HeaderAvatar() {
 				</div>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent align="end" className="w-64 border-border bg-card">
-				<DropdownMenuLabel className="font-medium text-muted-foreground text-sm">
+			<DropdownMenuContent align="end" className="border-border bg-card w-64">
+				<DropdownMenuLabel className="text-muted-foreground text-sm font-medium">
 					Preferences
 				</DropdownMenuLabel>
 
@@ -52,7 +52,7 @@ export default function HeaderAvatar() {
 				<DropdownMenuSeparator />
 
 				<DropdownMenuItem
-					className="flex cursor-pointer text-muted-foreground items-center gap-2 text-xs"
+					className="text-muted-foreground flex cursor-pointer items-center gap-2 text-xs"
 					onClick={async () => {
 						await handleSignOut();
 						await navigate({ to: "/login" });

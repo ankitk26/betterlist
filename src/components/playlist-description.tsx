@@ -17,7 +17,7 @@ export default function PlaylistDescription({
 	description: string;
 }) {
 	return (
-		<p className="mt-3 font-medium text-muted-foreground text-sm">
+		<p className="text-muted-foreground mt-3 text-sm font-medium">
 			{parse(DOMPurify.sanitize(description), {
 				replace: (domNode: DOMNode) => {
 					// Type guard to check if node is a custom DOM node with name

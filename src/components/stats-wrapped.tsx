@@ -1,9 +1,9 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { getMostFrequentGenre } from "../lib/get-most-frequent-genre";
 import { userTopArtistsQuery, userTopTracksQuery } from "../queries";
 import WrappedBackgroundDesign from "./wrapped-background-design";
-import { Link } from "@tanstack/react-router";
 
 type Props = {
 	range: "long_term" | "short_term" | "medium_term";
@@ -46,7 +46,7 @@ export default function StatsWrapped(props: Props) {
 
 			<div className="relative z-10 p-6">
 				<div className="mb-6 text-center">
-					<h1 className="font-bold text-2xl text-white">
+					<h1 className="text-2xl font-bold text-white">
 						{getRangeTitle(props.range)}
 					</h1>
 				</div>
@@ -69,7 +69,7 @@ export default function StatsWrapped(props: Props) {
 					<div className="grid grid-cols-2 gap-6">
 						{/* Top Artists */}
 						<div>
-							<h2 className="mb-3 font-bold text-lg text-rose-50">
+							<h2 className="mb-3 text-lg font-bold text-rose-50">
 								Top Artists
 							</h2>
 							<div className="space-y-1 text-sm">
@@ -90,7 +90,7 @@ export default function StatsWrapped(props: Props) {
 
 						{/* Top Songs */}
 						<div>
-							<h2 className="mb-3 font-bold text-lg text-rose-50">Top Songs</h2>
+							<h2 className="mb-3 text-lg font-bold text-rose-50">Top Songs</h2>
 							<div className="space-y-1 text-sm">
 								{tracks?.map((track, index) => (
 									<div className="flex gap-2" key={track.id}>
@@ -105,10 +105,10 @@ export default function StatsWrapped(props: Props) {
 					{/* Top genre */}
 					<div className="flex justify-center">
 						<div className="text-center">
-							<h2 className="mb-2 font-bold text-lg text-rose-200">
+							<h2 className="mb-2 text-lg font-bold text-rose-200">
 								Top Genre
 							</h2>
-							<div className="font-bold text-3xl text-white capitalize">
+							<div className="text-3xl font-bold text-white capitalize">
 								{topGenre}
 							</div>
 						</div>

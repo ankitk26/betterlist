@@ -17,7 +17,7 @@ export default function Header() {
 				<h1>betterlist</h1>
 			</Link>
 
-			<div className="flex items-center gap-2 w-1/2">
+			<div className="flex w-1/2 items-center gap-2">
 				{canGoBack && (
 					<Button
 						variant="secondary"

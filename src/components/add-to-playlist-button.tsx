@@ -106,13 +106,13 @@ export default function AddToPlaylistButton() {
 										onClick={() => togglePlaylistSelection(playlist.id)}
 										disabled={!isSelected && selectedPlaylists.length >= 5}
 										className={cn(
-											"w-full flex items-center gap-3 p-3 rounded-lg border transition-all hover:bg-accent/50",
+											"hover:bg-accent/50 flex w-full items-center gap-3 rounded-lg border p-3 transition-all",
 											isSelected
 												? "bg-primary/10 border-primary"
 												: "bg-card border-border hover:border-accent-foreground/20",
 											!isSelected &&
 												selectedPlaylists.length >= 5 &&
-												"opacity-50 cursor-not-allowed",
+												"cursor-not-allowed opacity-50",
 										)}
 									>
 										<div className="relative">
@@ -120,23 +120,23 @@ export default function AddToPlaylistButton() {
 												<img
 													src={coverImage || "/placeholder.svg"}
 													alt={`${playlist.name} cover`}
-													className="w-12 h-12 rounded object-cover"
+													className="h-12 w-12 rounded object-cover"
 												/>
 											) : (
-												<div className="w-12 h-12 rounded bg-muted flex items-center justify-center">
-													<span className="text-xs text-muted-foreground">
+												<div className="bg-muted flex h-12 w-12 items-center justify-center rounded">
+													<span className="text-muted-foreground text-xs">
 														<MusicIcon />
 													</span>
 												</div>
 											)}
 											{isSelected && (
-												<div className="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-													<Check className="w-3 h-3 text-primary-foreground" />
+												<div className="bg-primary absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full">
+													<Check className="text-primary-foreground h-3 w-3" />
 												</div>
 											)}
 										</div>
 										<div className="flex-1 text-left">
-											<div className="font-medium text-sm line-clamp-1">
+											<div className="line-clamp-1 text-sm font-medium">
 												{playlist.name}
 											</div>
 										</div>

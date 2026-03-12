@@ -1,9 +1,9 @@
 import { betterFetch } from "@better-fetch/fetch";
 import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
 import { spotifyApiBaseUrl } from "~/static/constants";
 import type { Album } from "~/types";
 import { getAuthSession } from "./get-auth-session";
-import { z } from "zod";
 
 export const getAlbumById = createServerFn({ method: "GET" })
 	.inputValidator(z.string())

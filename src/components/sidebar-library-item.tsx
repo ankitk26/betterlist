@@ -26,7 +26,7 @@ export default function SidebarLibraryItem({
 			activeProps={{
 				className: "bg-secondary",
 			}}
-			className="flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-md p-2 hover:bg-secondary"
+			className="hover:bg-secondary flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-md p-2"
 			to={href}
 		>
 			{image ? (
@@ -41,15 +41,15 @@ export default function SidebarLibraryItem({
 					width={48}
 				/>
 			) : (
-				<div className="flex aspect-square h-12 shrink-0 items-center justify-center rounded-md border bg-muted dark:border-muted">
+				<div className="bg-muted dark:border-muted flex aspect-square h-12 shrink-0 items-center justify-center rounded-md border">
 					<MusicIcon className="size-6 rounded-md" />
 				</div>
 			)}
 
 			<div className="min-w-0 flex-1 overflow-hidden">
-				<h6 className="truncate font-semibold text-sm">{title}</h6>
+				<h6 className="truncate text-sm font-semibold">{title}</h6>
 				{library !== "artists" && (
-					<span className="mt-1 block truncate font-medium text-muted-foreground text-xs">
+					<span className="text-muted-foreground mt-1 block truncate text-xs font-medium">
 						{subtitle}
 					</span>
 				)}

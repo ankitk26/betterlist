@@ -23,7 +23,7 @@ function RouteComponent() {
 			{playlist && <PlaylistHeader playlist={playlist} />}
 
 			{playlist?.tracks && playlist?.tracks.length === 0 && (
-				<div className="mt-12 rounded-lg bg-muted p-12 shadow-sm">
+				<div className="bg-muted mt-12 rounded-lg p-12 shadow-sm">
 					<div className="flex flex-col items-center space-y-3 text-center">
 						<p className="text-foreground">No tracks yet</p>
 						<p className="text-muted-foreground text-sm">

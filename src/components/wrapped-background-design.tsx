@@ -1,10 +1,10 @@
 export default function WrappedBackgroundDesign() {
 	return (
 		<div className="absolute inset-0 overflow-hidden">
-			<div className="absolute top-0 left-0 w-full h-full">
+			<div className="absolute top-0 left-0 h-full w-full">
 				<svg
 					viewBox="0 0 400 600"
-					className="w-full h-full"
+					className="h-full w-full"
 					aria-labelledby="wrappedBackgroundTitle"
 				>
 					<title id="wrappedBackgroundTitle">

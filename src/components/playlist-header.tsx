@@ -13,28 +13,28 @@ export default function PlaylistHeader({ playlist }: Props) {
 			{(playlist.images?.length ?? 0) > 0 ? (
 				<Image
 					alt={playlist.name}
-					className="h-64 w-64 rounded-lg object-cover shadow-xl ring-1 ring-border"
+					className="ring-border h-64 w-64 rounded-lg object-cover shadow-xl ring-1"
 					height={256}
 					src={playlist.images?.[0].url || "/placeholder.svg"}
 					width={256}
 				/>
 			) : (
-				<div className="flex h-64 w-64 items-center justify-center rounded-lg bg-muted shadow-xl ring-1 ring-border">
-					<MusicIcon className="h-24 w-24 text-muted-foreground" />
+				<div className="bg-muted ring-border flex h-64 w-64 items-center justify-center rounded-lg shadow-xl ring-1">
+					<MusicIcon className="text-muted-foreground h-24 w-24" />
 				</div>
 			)}
 
 			<div className="flex flex-col gap-3">
-				<h5 className="font-bold text-muted-foreground text-xs uppercase">
+				<h5 className="text-muted-foreground text-xs font-bold uppercase">
 					{playlist.type}
 				</h5>
-				<h2 className="font-bold text-6xl">{playlist.name}</h2>
+				<h2 className="text-6xl font-bold">{playlist.name}</h2>
 
 				{playlist.description && playlist.description !== "null" && (
 					<PlaylistDescription description={playlist.description} />
 				)}
 
-				<div className="flex items-center font-semibold text-sm">
+				<div className="flex items-center text-sm font-semibold">
 					<span className="text-muted-foreground">
 						{playlist.owner?.display_name}
 					</span>
