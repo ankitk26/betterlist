@@ -6,3 +6,4 @@ node_modules
 tasks.md
 # Local Netlify folder
 .netlify
+dist
