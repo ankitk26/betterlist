@@ -1,6 +1,6 @@
+import { VinylRecordIcon } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { Image } from "@unpic/react";
-import { AlbumIcon } from "lucide-react";
 import { userTopTracksQuery } from "~/queries";
 import { Skeleton } from "./ui/skeleton";
 
@@ -31,7 +31,7 @@ export default function UserTopTracks() {
 						width={72}
 					/>
 				) : (
-					<AlbumIcon size={20} />
+					<VinylRecordIcon size={20} />
 				)}
 				<div className="flex flex-col">
 					<h3 className="truncate font-semibold">{track.name}</h3>

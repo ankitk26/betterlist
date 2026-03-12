@@ -1,5 +1,5 @@
+import { CaretLeftIcon } from "@phosphor-icons/react";
 import { Link, useCanGoBack, useRouter } from "@tanstack/react-router";
-import { ChevronLeftIcon } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
 import HeaderAvatar from "./header-avatar";
 import SearchInput from "./search-input";
@@ -26,7 +26,7 @@ export default function Header() {
 							router.history.back();
 						}}
 					>
-						<ChevronLeftIcon />
+						<CaretLeftIcon />
 						Back
 					</Button>
 				)}

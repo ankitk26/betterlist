@@ -1,5 +1,5 @@
+import { MusicNoteIcon } from "@phosphor-icons/react";
 import { Image } from "@unpic/react";
-import { MusicIcon } from "lucide-react";
 import type { Track } from "~/types";
 
 type Props = {
@@ -27,7 +27,7 @@ export default function TrackCards({ tracks }: Props) {
 								/>
 							) : (
 								<div className="h-40 w-full">
-									<MusicIcon className="bg-secondary h-full w-full" />
+									<MusicNoteIcon className="bg-secondary h-full w-full" />
 								</div>
 							)}
 						</div>

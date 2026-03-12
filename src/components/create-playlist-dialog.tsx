@@ -1,5 +1,5 @@
+import { SpinnerIcon, PlusIcon } from "@phosphor-icons/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { LoaderIcon, PlusIcon } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -94,7 +94,7 @@ export default function CreatePlaylistDialog() {
 							type="submit"
 						>
 							{createPlaylistMutation.isPending ? (
-								<LoaderIcon className="size-4 animate-spin" />
+								<SpinnerIcon className="size-4 animate-spin" />
 							) : (
 								"Create Playlist"
 							)}

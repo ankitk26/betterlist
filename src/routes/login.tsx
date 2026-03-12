@@ -1,5 +1,5 @@
+import { SpinnerIcon } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
-import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "~/components/ui/button";
 import { authClient } from "~/lib/auth-client";
@@ -27,7 +27,7 @@ function RouteComponent() {
 				}}
 				size="lg"
 			>
-				{isLoading ? <LoaderIcon className="animate-spin" /> : "Login"}
+				{isLoading ? <SpinnerIcon className="animate-spin" /> : "Login"}
 			</Button>
 		</div>
 	);

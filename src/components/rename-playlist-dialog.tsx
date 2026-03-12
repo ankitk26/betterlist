@@ -1,5 +1,5 @@
+import { SpinnerIcon } from "@phosphor-icons/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { LoaderIcon } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -122,7 +122,7 @@ export default function RenamePlaylistDialog({
 							type="submit"
 						>
 							{renamePlaylistMutation.isPending ? (
-								<LoaderIcon className="size-4 animate-spin" />
+								<SpinnerIcon className="size-4 animate-spin" />
 							) : (
 								"Rename Playlist"
 							)}

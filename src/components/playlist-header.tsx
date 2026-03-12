@@ -1,5 +1,5 @@
+import { DotIcon, MusicNoteIcon } from "@phosphor-icons/react";
 import { Image } from "@unpic/react";
-import { DotIcon, MusicIcon } from "lucide-react";
 import type { getPlaylistById } from "~/server-fns/get-playlist-by-id";
 import PlaylistDescription from "./playlist-description";
 
@@ -20,7 +20,7 @@ export default function PlaylistHeader({ playlist }: Props) {
 				/>
 			) : (
 				<div className="bg-muted ring-border flex h-64 w-64 items-center justify-center rounded-lg shadow-xl ring-1">
-					<MusicIcon className="text-muted-foreground h-24 w-24" />
+					<MusicNoteIcon className="text-muted-foreground h-24 w-24" />
 				</div>
 			)}
 

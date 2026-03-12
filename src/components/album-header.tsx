@@ -1,6 +1,6 @@
+import { DotIcon, MusicNoteIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
-import { DotIcon, MusicIcon } from "lucide-react";
 import type { getAlbumById } from "~/server-fns/get-album-by-id";
 
 type Props = {
@@ -20,7 +20,7 @@ export default function AlbumHeader({ album }: Props) {
 				/>
 			) : (
 				<div className="h-40 w-full">
-					<MusicIcon className="h-full w-full" size={160} />
+					<MusicNoteIcon className="h-full w-full" size={160} />
 				</div>
 			)}
 			<div className="flex flex-col gap-3">

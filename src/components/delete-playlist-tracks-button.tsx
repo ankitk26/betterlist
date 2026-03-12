@@ -1,5 +1,5 @@
+import { SpinnerIcon } from "@phosphor-icons/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { playlistByIdQuery, userPlaylistsQuery } from "~/queries";
@@ -96,7 +96,7 @@ export default function DeletePlaylistTracksButton({
 						>
 							{deleteTracksMutation.isPending ? (
 								<>
-									<LoaderIcon className="animate-spin" />
+									<SpinnerIcon className="animate-spin" />
 									Removing...
 								</>
 							) : (

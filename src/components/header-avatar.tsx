@@ -1,6 +1,6 @@
+import { SignOutIcon, UserIcon } from "@phosphor-icons/react";
 import { useNavigate } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
-import { LogOutIcon, User2Icon } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
 import ThemeHandler from "./theme-handler";
 import {
@@ -34,7 +34,7 @@ export default function HeaderAvatar() {
 							width={28}
 						/>
 					) : (
-						<User2Icon className="rounded-full p-1" />
+						<UserIcon className="rounded-full p-1" />
 					)}
 					<span className="text-xs">{session?.user.name}</span>
 				</div>
@@ -58,7 +58,7 @@ export default function HeaderAvatar() {
 						await navigate({ to: "/login" });
 					}}
 				>
-					<LogOutIcon className="size-3" />
+					<SignOutIcon className="size-3" />
 					Sign Out
 				</DropdownMenuItem>
 			</DropdownMenuContent>

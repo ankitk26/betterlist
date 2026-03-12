@@ -1,7 +1,7 @@
+import { DotIcon } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
-import { DotIcon } from "lucide-react";
 import TracksTable from "~/components/tracks-table";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
 import { Skeleton } from "~/components/ui/skeleton";

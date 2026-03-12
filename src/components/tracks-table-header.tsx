@@ -1,4 +1,4 @@
-import { Clock3Icon } from "lucide-react";
+import { ClockIcon } from "@phosphor-icons/react";
 import { cn } from "~/lib/utils";
 import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
 import type { Track } from "~/types";
@@ -68,7 +68,7 @@ export default function TracksTableHeader({
 				)}
 
 				<div className="col-span-1 text-left font-semibold">
-					<Clock3Icon size={16} />
+					<ClockIcon size={16} />
 				</div>
 			</header>
 

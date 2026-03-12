@@ -1,6 +1,6 @@
+import { MusicNoteIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
-import { MusicIcon } from "lucide-react";
 import { Fragment } from "react/jsx-runtime";
 import { cn } from "~/lib/utils";
 import type { Track } from "~/types";
@@ -38,7 +38,7 @@ export default function TracksTableTitleColumn({
 							/>
 						</div>
 					) : (
-						<MusicIcon
+						<MusicNoteIcon
 							className="bg-input/30 h-10 w-10 rounded p-2"
 							size={16}
 						/>

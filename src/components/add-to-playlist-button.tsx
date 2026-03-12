@@ -1,5 +1,5 @@
+import { CheckIcon, SpinnerIcon, MusicNoteIcon } from "@phosphor-icons/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Check, LoaderIcon, MusicIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { cn } from "~/lib/utils";
@@ -125,13 +125,13 @@ export default function AddToPlaylistButton() {
 											) : (
 												<div className="bg-muted flex h-12 w-12 items-center justify-center rounded">
 													<span className="text-muted-foreground text-xs">
-														<MusicIcon />
+														<MusicNoteIcon />
 													</span>
 												</div>
 											)}
 											{isSelected && (
 												<div className="bg-primary absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full">
-													<Check className="text-primary-foreground h-3 w-3" />
+													<CheckIcon className="text-primary-foreground h-3 w-3" />
 												</div>
 											)}
 										</div>
@@ -160,7 +160,7 @@ export default function AddToPlaylistButton() {
 					>
 						{addTracksToPlaylistsMutation.isPending ? (
 							<>
-								<LoaderIcon className="animate-spin" />
+								<SpinnerIcon className="animate-spin" />
 								Adding...
 							</>
 						) : (

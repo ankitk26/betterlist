@@ -1,6 +1,6 @@
+import { MusicNoteIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
-import { MusicIcon } from "lucide-react";
 import { cn } from "~/lib/utils";
 import { useSidebarStore } from "~/stores/sidebar-store";
 
@@ -42,7 +42,7 @@ export default function SidebarLibraryItem({
 				/>
 			) : (
 				<div className="bg-muted dark:border-muted flex aspect-square h-12 shrink-0 items-center justify-center rounded-md border">
-					<MusicIcon className="size-6 rounded-md" />
+					<MusicNoteIcon className="size-6 rounded-md" />
 				</div>
 			)}
 

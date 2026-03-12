@@ -1,7 +1,7 @@
+import { MusicNoteIcon } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
-import { MusicIcon } from "lucide-react";
 import { artistByIdQuery } from "~/queries";
 import { Badge } from "./ui/badge";
 import { Skeleton } from "./ui/skeleton";
@@ -43,7 +43,7 @@ export default function ArtistHero() {
 						/>
 					) : (
 						<div className="h-40 w-full">
-							<MusicIcon className="bg-card h-full w-full" size={160} />
+							<MusicNoteIcon className="bg-card h-full w-full" size={160} />
 						</div>
 					)}
 					<div className="flex flex-col items-start gap-3">
