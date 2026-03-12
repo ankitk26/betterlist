@@ -73,16 +73,18 @@ export default function AddToPlaylistButton() {
 
 	return (
 		<Dialog>
-			<DialogTrigger asChild>
-				<Button
-					disabled={isTracksSelected}
-					size="sm"
-					className="text-xs"
-					variant="secondary"
-				>
-					Add to playlist
-				</Button>
-			</DialogTrigger>
+			<DialogTrigger
+				render={
+					<Button
+						disabled={isTracksSelected}
+						size="sm"
+						className="text-xs"
+						variant="secondary"
+					>
+						Add to playlist
+					</Button>
+				}
+			/>
 			<DialogContent className="max-w-md">
 				<DialogTitle>Add selected tracks to other playlists</DialogTitle>
 				<DialogDescription>Can select 5 playlists at a time</DialogDescription>
@@ -148,9 +150,7 @@ export default function AddToPlaylistButton() {
 				</div>
 
 				<DialogFooter>
-					<DialogClose asChild>
-						<Button variant="outline">Cancel</Button>
-					</DialogClose>
+					<DialogClose render={<Button variant="outline">Cancel</Button>} />
 					<Button
 						onClick={handleTracksAddition}
 						disabled={

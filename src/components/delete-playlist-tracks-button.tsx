@@ -65,16 +65,18 @@ export default function DeletePlaylistTracksButton({
 
 	return (
 		<AlertDialog open={isOpen} onOpenChange={setIsOpen}>
-			<AlertDialogTrigger asChild>
-				<Button
-					disabled={!isTracksSelected}
-					size="sm"
-					className="text-xs"
-					variant="destructive"
-				>
-					Remove from playlist
-				</Button>
-			</AlertDialogTrigger>
+			<AlertDialogTrigger
+				render={
+					<Button
+						disabled={!isTracksSelected}
+						size="sm"
+						className="text-xs"
+						variant="destructive"
+					>
+						Remove from playlist
+					</Button>
+				}
+			/>
 			<AlertDialogContent>
 				<AlertDialogHeader>
 					<AlertDialogTitle>Remove tracks from playlist</AlertDialogTitle>
@@ -88,22 +90,24 @@ export default function DeletePlaylistTracksButton({
 					<AlertDialogCancel disabled={deleteTracksMutation.isPending}>
 						Cancel
 					</AlertDialogCancel>
-					<AlertDialogAction asChild>
-						<Button
-							variant="destructive"
-							disabled={deleteTracksMutation.isPending}
-							onClick={handleDeleteTracks}
-						>
-							{deleteTracksMutation.isPending ? (
-								<>
-									<SpinnerIcon className="animate-spin" />
-									Removing...
-								</>
-							) : (
-								"Remove tracks"
-							)}
-						</Button>
-					</AlertDialogAction>
+					<AlertDialogAction
+						render={
+							<Button
+								variant="destructive"
+								disabled={deleteTracksMutation.isPending}
+								onClick={handleDeleteTracks}
+							>
+								{deleteTracksMutation.isPending ? (
+									<>
+										<SpinnerIcon className="animate-spin" />
+										Removing...
+									</>
+								) : (
+									"Remove tracks"
+								)}
+							</Button>
+						}
+					/>
 				</AlertDialogFooter>
 			</AlertDialogContent>
 		</AlertDialog>

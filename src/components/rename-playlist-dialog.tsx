@@ -82,11 +82,13 @@ export default function RenamePlaylistDialog({
 
 	return (
 		<Dialog onOpenChange={handleOpenChange} open={isOpen}>
-			<DialogTrigger asChild>
-				<Button size="sm" variant="secondary" className="text-xs">
-					Rename playlist
-				</Button>
-			</DialogTrigger>
+			<DialogTrigger
+				render={
+					<Button size="sm" variant="secondary" className="text-xs">
+						Rename playlist
+					</Button>
+				}
+			/>
 			<DialogContent className="sm:max-w-md">
 				<DialogHeader className="pb-4">
 					<DialogTitle>Rename Playlist</DialogTitle>

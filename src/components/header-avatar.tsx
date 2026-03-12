@@ -23,22 +23,24 @@ export default function HeaderAvatar() {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<div className="border-border bg-card hover:bg-accent flex cursor-pointer items-center gap-3 rounded-full border py-1 pr-3 pl-1 transition-colors">
-					{session?.user.image ? (
-						<Image
-							alt={session?.user?.name}
-							className="size-6 rounded-full object-contain"
-							height={28}
-							src={(session?.user.image as string) || "/placeholder.svg"}
-							width={28}
-						/>
-					) : (
-						<UserIcon className="rounded-full p-1" />
-					)}
-					<span className="text-xs">{session?.user.name}</span>
-				</div>
-			</DropdownMenuTrigger>
+			<DropdownMenuTrigger
+				render={
+					<div className="border-border bg-card hover:bg-accent flex cursor-pointer items-center gap-3 rounded-full border py-1 pr-3 pl-1 transition-colors">
+						{session?.user.image ? (
+							<Image
+								alt={session?.user?.name}
+								className="size-6 rounded-full object-contain"
+								height={28}
+								src={(session?.user.image as string) || "/placeholder.svg"}
+								width={28}
+							/>
+						) : (
+							<UserIcon className="rounded-full p-1" />
+						)}
+						<span className="text-xs">{session?.user.name}</span>
+					</div>
+				}
+			/>
 
 			<DropdownMenuContent align="end" className="border-border bg-card w-64">
 				<DropdownMenuLabel className="text-muted-foreground text-sm font-medium">

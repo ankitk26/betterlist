@@ -52,12 +52,14 @@ export default function CreatePlaylistDialog() {
 
 	return (
 		<Dialog onOpenChange={setIsOpen} open={isOpen}>
-			<DialogTrigger asChild>
-				<Button size="lg">
-					<PlusIcon className="size-4" />
-					Create playlist
-				</Button>
-			</DialogTrigger>
+			<DialogTrigger
+				render={
+					<Button size="lg">
+						<PlusIcon className="size-4" />
+						Create playlist
+					</Button>
+				}
+			/>
 
 			<DialogContent className="sm:max-w-md">
 				<DialogHeader className="pb-4">
