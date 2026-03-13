@@ -26,7 +26,7 @@ export const getPlaylistTracks = createServerFn({ method: "GET" })
 			throw new Error("Invalid request");
 		}
 
-		const endpoint = `/playlists/${playlistId}/tracks?offset=${offset}&limit=${PAGE_SIZE}`;
+		const endpoint = `/playlists/${playlistId}/items?offset=${offset}&limit=${PAGE_SIZE}`;
 
 		const res = await betterFetch<PlaylistTracksResponse>(endpoint, {
 			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,

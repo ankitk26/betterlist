@@ -43,7 +43,7 @@ export const addTracksToPlaylist = createServerFn({ method: "POST" })
 					(trackId) => `spotify:track:${trackId}`,
 				);
 
-				const endpoint = `/playlists/${playlistId}/tracks`;
+				const endpoint = `/playlists/${playlistId}/items`;
 
 				const { error } = await betterFetch(endpoint, {
 					method: "POST",

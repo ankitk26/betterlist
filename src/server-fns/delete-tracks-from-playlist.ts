@@ -38,7 +38,7 @@ export const deleteTracksFromPlaylist = createServerFn({ method: "POST" })
 				uri: `spotify:track:${trackId}`,
 			}));
 
-			const endpoint = `/playlists/${data.playlistId}/tracks`;
+			const endpoint = `/playlists/${data.playlistId}/items`;
 
 			const { error } = await betterFetch(endpoint, {
 				method: "DELETE",
