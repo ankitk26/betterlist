@@ -6,6 +6,7 @@ import ThemeHandler from "./theme-handler";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
+	DropdownMenuGroup,
 	DropdownMenuItem,
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
@@ -25,7 +26,7 @@ export default function HeaderAvatar() {
 		<DropdownMenu>
 			<DropdownMenuTrigger
 				render={
-					<div className="border-border bg-card hover:bg-accent flex cursor-pointer items-center gap-3 rounded-full border py-1 pr-3 pl-1 transition-colors">
+					<button className="border-border bg-card hover:bg-accent flex cursor-pointer items-center gap-3 rounded-full border py-1 pr-3 pl-1 transition-colors">
 						{session?.user.image ? (
 							<Image
 								alt={session?.user?.name}
@@ -38,31 +39,33 @@ export default function HeaderAvatar() {
 							<UserIcon className="rounded-full p-1" />
 						)}
 						<span className="text-xs">{session?.user.name}</span>
-					</div>
+					</button>
 				}
 			/>
 
 			<DropdownMenuContent align="end" className="border-border bg-card w-64">
-				<DropdownMenuLabel className="text-muted-foreground text-sm font-medium">
-					Preferences
-				</DropdownMenuLabel>
+				<DropdownMenuGroup>
+					<DropdownMenuLabel className="text-muted-foreground text-sm font-medium">
+						Preferences
+					</DropdownMenuLabel>
 
-				<div className="px-2 py-2">
-					<ThemeHandler />
-				</div>
+					<div className="px-2 py-2">
+						<ThemeHandler />
+					</div>
 
-				<DropdownMenuSeparator />
+					<DropdownMenuSeparator />
 
-				<DropdownMenuItem
-					className="text-muted-foreground flex cursor-pointer items-center gap-2 text-xs"
-					onClick={async () => {
-						await handleSignOut();
-						await navigate({ to: "/login" });
-					}}
-				>
-					<SignOutIcon className="size-3" />
-					Sign Out
-				</DropdownMenuItem>
+					<DropdownMenuItem
+						className="text-muted-foreground flex cursor-pointer items-center gap-2 text-xs"
+						onClick={async () => {
+							await handleSignOut();
+							await navigate({ to: "/login" });
+						}}
+					>
+						<SignOutIcon className="size-3" />
+						Sign Out
+					</DropdownMenuItem>
+				</DropdownMenuGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
