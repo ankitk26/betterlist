@@ -75,12 +75,7 @@ export default function AddToPlaylistButton() {
 		<Dialog>
 			<DialogTrigger
 				render={
-					<Button
-						disabled={isTracksSelected}
-						size="sm"
-						className="text-xs"
-						variant="secondary"
-					>
+					<Button disabled={isTracksSelected} variant="secondary">
 						Add to playlist
 					</Button>
 				}

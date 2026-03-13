@@ -55,7 +55,7 @@ export default function CreatePlaylistDialog() {
 			<DialogTrigger
 				render={
 					<Button size="lg">
-						<PlusIcon className="size-4" />
+						<PlusIcon className="mr-1 size-4" />
 						Create playlist
 					</Button>
 				}
