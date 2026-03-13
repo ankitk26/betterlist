@@ -1,22 +1,37 @@
 import { DotIcon } from "@phosphor-icons/react";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
+import { useMemo } from "react";
 import TracksTable from "~/components/tracks-table";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
+import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
 import { authClient } from "~/lib/auth-client";
-import { likedSongsQuery } from "~/queries";
+import { likedSongsInfiniteQuery } from "~/queries";
 
 export const Route = createFileRoute("/_protected/collection/tracks")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const { data, isPending } = useQuery(likedSongsQuery);
+	const {
+		data: tracksData,
+		fetchNextPage,
+		hasNextPage,
+		isFetchingNextPage,
+		isPending: isTracksPending,
+	} = useInfiniteQuery(likedSongsInfiniteQuery);
 	const { data: authData, isPending: authIsPending } = authClient.useSession();
 
-	if (isPending || authIsPending) {
+	const tracks = useMemo(() => {
+		if (!tracksData) return [];
+		return tracksData.pages.flatMap((page) => page.tracks);
+	}, [tracksData]);
+
+	const totalTracks = tracksData?.pages[0]?.total ?? 0;
+
+	if (isTracksPending || authIsPending) {
 		return (
 			<section className="space-y-20">
 				<div className="flex items-end gap-4">
@@ -37,7 +52,7 @@ function RouteComponent() {
 	}
 
 	return (
-		<>
+		<section className="space-y-8">
 			<div className="flex items-end gap-6">
 				<Image
 					alt="Liked Songs"
@@ -52,25 +67,51 @@ function RouteComponent() {
 
 					<div className="flex items-center text-sm font-semibold">
 						<span>{authData?.user.name}</span>
-						{data?.total && data.total > 0 && (
+						{totalTracks > 0 && (
 							<>
 								<DotIcon />
-								<span>{data.total} songs</span>
+								<span>{totalTracks.toLocaleString()} songs</span>
 							</>
 						)}
 					</div>
 				</div>
 			</div>
 
-			{data?.items && (
-				<TracksTable
-					showAlbum
-					showCover
-					showHeader
-					showSubtitle
-					tracks={data.items}
-				/>
+			{tracks.length > 0 && (
+				<div className="space-y-4">
+					<TracksTable
+						showAlbum
+						showCover
+						showHeader
+						showSubtitle
+						tracks={tracks}
+					/>
+					{hasNextPage && (
+						<div className="flex justify-center pt-4">
+							<Button
+								onClick={() => fetchNextPage()}
+								disabled={isFetchingNextPage}
+								variant="outline"
+							>
+								{isFetchingNextPage
+									? "Loading..."
+									: `Load More (${tracks.length} / ${totalTracks})`}
+							</Button>
+						</div>
+					)}
+				</div>
 			)}
-		</>
+
+			{tracks.length === 0 && (
+				<div className="bg-muted mt-12 rounded-lg p-12 shadow-sm">
+					<div className="flex flex-col items-center space-y-3 text-center">
+						<p className="text-foreground">No liked songs yet</p>
+						<p className="text-muted-foreground text-sm">
+							Start liking songs to see them here
+						</p>
+					</div>
+				</div>
+			)}
+		</section>
 	);
 }

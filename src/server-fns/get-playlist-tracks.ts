@@ -5,31 +5,30 @@ import { spotifyApiBaseUrl } from "~/static/constants";
 import type { Track } from "~/types";
 import { getAuthSession } from "./get-auth-session";
 
-export type LikedSongs = {
-	total: number;
-	items: {
-		track: Track;
-	}[];
+type PlaylistTracksResponse = {
+	items: { track: Track }[];
 	next: string | null;
+	total: number;
 };
 
 const PAGE_SIZE = 50;
 
-export const getLikedSongs = createServerFn({ method: "GET" })
+export const getPlaylistTracks = createServerFn({ method: "GET" })
 	.inputValidator(
 		z.object({
+			playlistId: z.string(),
 			offset: z.number().default(0),
 		}),
 	)
-	.handler(async ({ data: { offset } }) => {
+	.handler(async ({ data: { playlistId, offset } }) => {
 		const session = await getAuthSession();
 		if (!session) {
 			throw new Error("Invalid request");
 		}
 
-		const endpoint = `/me/tracks?offset=${offset}&limit=${PAGE_SIZE}`;
+		const endpoint = `/playlists/${playlistId}/tracks?offset=${offset}&limit=${PAGE_SIZE}`;
 
-		const res = await betterFetch<LikedSongs>(endpoint, {
+		const res = await betterFetch<PlaylistTracksResponse>(endpoint, {
 			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,

@@ -1,4 +1,4 @@
-import { queryOptions } from "@tanstack/react-query";
+import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 import { getAlbumById } from "~/server-fns/get-album-by-id";
 import { getArtistAlbums } from "~/server-fns/get-artist-albums";
 import { getArtistAppearsOn } from "~/server-fns/get-artist-appears-on";
@@ -11,6 +11,7 @@ import { getAuthSession } from "~/server-fns/get-auth-session";
 import { getLikedSongs } from "~/server-fns/get-liked-songs";
 import { getLikedSongsCount } from "~/server-fns/get-liked-songs-count";
 import { getPlaylistById } from "~/server-fns/get-playlist-by-id";
+import { getPlaylistTracks } from "~/server-fns/get-playlist-tracks";
 import { getRecentlyPlayed } from "~/server-fns/get-recently-played";
 import {
 	getSearchItems,
@@ -125,9 +126,20 @@ export const playlistByIdQuery = (playlistId: string) =>
 		queryFn: () => getPlaylistById({ data: playlistId }),
 	});
 
-export const likedSongsQuery = queryOptions({
-	queryKey: ["liked_songs"],
-	queryFn: () => getLikedSongs(),
+export const playlistTracksInfiniteQuery = (playlistId: string) =>
+	infiniteQueryOptions({
+		queryKey: ["playlist", playlistId, "tracks"],
+		queryFn: ({ pageParam }) =>
+			getPlaylistTracks({ data: { playlistId, offset: pageParam } }),
+		initialPageParam: 0,
+		getNextPageParam: (lastPage) => lastPage.nextOffset,
+	});
+
+export const likedSongsInfiniteQuery = infiniteQueryOptions({
+	queryKey: ["liked_songs", "tracks"],
+	queryFn: ({ pageParam }) => getLikedSongs({ data: { offset: pageParam } }),
+	initialPageParam: 0,
+	getNextPageParam: (lastPage) => lastPage.nextOffset,
 });
 
 export const searchItemsQuery = (params: SearchItemsParams) =>

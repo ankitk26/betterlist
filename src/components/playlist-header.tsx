@@ -5,9 +5,10 @@ import PlaylistDescription from "./playlist-description";
 
 type Props = {
 	playlist: NonNullable<Awaited<ReturnType<typeof getPlaylistById>>>;
+	trackCount?: number;
 };
 
-export default function PlaylistHeader({ playlist }: Props) {
+export default function PlaylistHeader({ playlist, trackCount }: Props) {
 	return (
 		<div className="flex items-end gap-6">
 			{(playlist.images?.length ?? 0) > 0 ? (
@@ -38,11 +39,11 @@ export default function PlaylistHeader({ playlist }: Props) {
 					<span className="text-muted-foreground">
 						{playlist.owner?.display_name}
 					</span>
-					{playlist.tracks.length > 0 && (
+					{(trackCount ?? playlist.tracks.length) > 0 && (
 						<>
 							<DotIcon className="text-muted-foreground" />
 							<span className="text-muted-foreground">
-								{playlist.tracks.length.toLocaleString()} songs
+								{(trackCount ?? playlist.tracks.length).toLocaleString()} songs
 							</span>
 						</>
 					)}
