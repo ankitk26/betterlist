@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 import type { QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import {
 	createRootRouteWithContext,
 	HeadContent,
@@ -62,7 +63,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 				>
 					{children}
 					<Toaster style={{ fontFamily: "inherit" }} />
-					{/* <ReactQueryDevtools /> */}
+					<ReactQueryDevtoolsPanel />
 				</NextThemesProvider>
 				<Scripts />
 			</body>
