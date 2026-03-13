@@ -30,8 +30,7 @@ export default function StatsWrapped(props: Props) {
 		userTopArtistsQuery({ range: props.range }),
 	);
 
-	const topArtistImages = artists?.[0].images.length;
-	const randomIndex = Math.floor(Math.random() * (topArtistImages ?? 1));
+	const largestImage = artists?.[0].images[0];
 
 	const allGenres = artists
 		?.flatMap((artist) => artist.genres)
@@ -53,12 +52,12 @@ export default function StatsWrapped(props: Props) {
 
 				{/* Character image */}
 				<div className="mb-8 flex justify-center">
-					<div className="h-48 w-48 rounded-lg bg-white p-2 shadow-lg">
+					<div className="h-48 w-48 shadow-lg">
 						<Image
 							alt={artists?.[0].name}
 							className="h-full w-full rounded object-contain"
 							height={180}
-							src={artists?.[0].images[randomIndex].url || ""}
+							src={largestImage?.url || ""}
 							width={180}
 						/>
 					</div>
