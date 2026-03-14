@@ -1,5 +1,4 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
+import { env } from "cloudflare:workers";
+import { drizzle } from "drizzle-orm/d1";
 
-const client = postgres(process.env.DATABASE_URL as string);
-export const db = drizzle({ client });
+export const db = drizzle(env.DB);

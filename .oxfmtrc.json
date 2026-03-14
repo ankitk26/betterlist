@@ -1,6 +1,10 @@
 {
 	"$schema": "./node_modules/oxfmt/configuration_schema.json",
-	"ignorePatterns": ["bun.lock", "src/routeTree.gen.ts"],
+	"ignorePatterns": [
+		"bun.lock",
+		"src/routeTree.gen.ts",
+		"worker-configuration.d.ts"
+	],
 	"useTabs": true,
 	"tabWidth": 2,
 	"printWidth": 80,

@@ -4,4 +4,33 @@
 	"compatibility_date": "2025-09-02",
 	"compatibility_flags": ["nodejs_compat"],
 	"main": "@tanstack/react-start/server-entry",
+	"vars": {
+		"CLOUDFLARE_ACCOUNT_ID": "111fb96a1edafc0fbf78a757ae7911e3",
+		"CLOUDFLARE_DATABASE_ID": "ac9a92ce-d978-484a-945a-d3915faa69c5",
+		"BETTER_AUTH_URL": "https://betterlist.diffview.workers.dev",
+		"SPOTIFY_CLIENT_ID": "f6c91ee2e4ae460ab8aafbfd6dfb9b7d",
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "betterlist",
+			"database_id": "ac9a92ce-d978-484a-945a-d3915faa69c5",
+			"remote": true,
+		},
+	],
+	"observability": {
+		"enabled": false,
+		"head_sampling_rate": 1,
+		"logs": {
+			"enabled": true,
+			"head_sampling_rate": 1,
+			"persist": true,
+			"invocation_logs": true,
+		},
+		"traces": {
+			"enabled": false,
+			"persist": true,
+			"head_sampling_rate": 1,
+		},
+	},
 }

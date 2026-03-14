@@ -3,7 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig, loadEnv } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), "");
@@ -12,14 +11,14 @@ export default defineConfig(({ mode }) => {
 
 	return {
 		plugins: [
-			tsconfigPaths({
-				projects: ["./tsconfig.json"],
-			}),
 			tailwindcss(),
 			cloudflare({ viteEnvironment: { name: "ssr" } }),
 			tanstackStart(),
 			viteReact(),
 		],
+		resolve: {
+			tsconfigPaths: true,
+		},
 		server: {
 			allowedHosts: devAllowedHost,
 			port: 3000,
