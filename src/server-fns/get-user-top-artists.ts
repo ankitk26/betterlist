@@ -24,12 +24,19 @@ export const getUserTopArtists = createServerFn({ method: "GET" })
 
 		const endpoint = `/me/top/artists?time_range=${data.range}&limit=${data.limit}`;
 
-		const res = await betterFetch<{ items: Artist[] }>(endpoint, {
+		const { data: responseData, error } = await betterFetch<{
+			items: Artist[];
+		}>(endpoint, {
 			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},
 		});
 
-		return res.data?.items;
+		if (error) {
+			console.log(error);
+			return [];
+		}
+
+		return responseData.items;
 	});

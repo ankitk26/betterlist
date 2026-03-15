@@ -43,17 +43,30 @@ export const getSearchItems = createServerFn({ method: "GET" })
 
 		const endpoint = `/search?q=${data.query}&market=from_token&type=${searchType}&limit=${data.limit}`;
 
-		const res = await betterFetch<SearchResults>(endpoint, {
-			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
-			headers: {
-				Authorization: `Bearer ${session.user.accessToken}`,
+		const { data: responseData, error } = await betterFetch<SearchResults>(
+			endpoint,
+			{
+				baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+				headers: {
+					Authorization: `Bearer ${session.user.accessToken}`,
+				},
 			},
-		});
+		);
+
+		if (error) {
+			console.log(error);
+			return {
+				tracks: [],
+				artists: [],
+				albums: [],
+				playlists: [],
+			};
+		}
 
 		return {
-			tracks: res.data?.tracks?.items ?? [],
-			artists: res.data?.artists?.items ?? [],
-			albums: res.data?.albums?.items ?? [],
-			playlists: res.data?.playlists?.items ?? [],
+			tracks: responseData.tracks?.items ?? [],
+			artists: responseData.artists?.items ?? [],
+			albums: responseData.albums?.items ?? [],
+			playlists: responseData.playlists?.items ?? [],
 		};
 	});

@@ -13,13 +13,20 @@ export const getRecentlyPlayed = createServerFn({ method: "GET" }).handler(
 
 		const endpoint = "/me/player/recently-played?limit=10";
 
-		const res = await betterFetch<{ items: { track: Track }[] }>(endpoint, {
+		const { data: responseData, error } = await betterFetch<{
+			items: { track: Track }[];
+		}>(endpoint, {
 			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},
 		});
 
-		return res.data?.items.map((item) => item.track);
+		if (error) {
+			console.log(error);
+			return [];
+		}
+
+		return responseData.items.map((item) => item.track);
 	},
 );

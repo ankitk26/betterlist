@@ -15,12 +15,19 @@ export const getArtistCompilation = createServerFn({ method: "GET" })
 
 		const endpoint = `/artists/${artistId}/albums?include_groups=compilation`;
 
-		const res = await betterFetch<{ items: Album[] }>(endpoint, {
+		const { data: responseData, error } = await betterFetch<{
+			items: Album[];
+		}>(endpoint, {
 			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},
 		});
 
-		return res.data?.items;
+		if (error) {
+			console.log(error);
+			return [];
+		}
+
+		return responseData.items;
 	});

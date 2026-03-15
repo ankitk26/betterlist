@@ -15,23 +15,25 @@ export const getPlaylistById = createServerFn({ method: "GET" })
 
 		const endpoint = `/playlists/${playlistId}`;
 
-		const res = await betterFetch<Playlist>(endpoint, {
-			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
-			headers: {
-				Authorization: `Bearer ${session.user.accessToken}`,
+		const { data: responseData, error } = await betterFetch<Playlist>(
+			endpoint,
+			{
+				baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+				headers: {
+					Authorization: `Bearer ${session.user.accessToken}`,
+				},
 			},
-		});
+		);
 
-		const resData = res.data;
-
-		if (!resData) {
+		if (error) {
+			console.log(error);
 			return null;
 		}
 
 		const playlist = {
-			...resData,
+			...responseData,
 			tracks: [],
-			count: resData.tracks.total,
+			count: responseData.tracks.total,
 		};
 
 		return playlist;

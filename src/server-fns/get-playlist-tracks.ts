@@ -28,24 +28,24 @@ export const getPlaylistTracks = createServerFn({ method: "GET" })
 
 		const endpoint = `/playlists/${playlistId}/items?offset=${offset}&limit=${PAGE_SIZE}`;
 
-		const res = await betterFetch<PlaylistTracksResponse>(endpoint, {
-			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
-			headers: {
-				Authorization: `Bearer ${session.user.accessToken}`,
-			},
-		});
+		const { data: responseData, error } =
+			await betterFetch<PlaylistTracksResponse>(endpoint, {
+				baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+				headers: {
+					Authorization: `Bearer ${session.user.accessToken}`,
+				},
+			});
 
-		const resData = res.data;
-
-		if (!resData) {
+		if (error) {
+			console.log(error);
 			return { tracks: [], nextOffset: null, total: 0 };
 		}
 
 		return {
-			tracks: resData.items
+			tracks: responseData.items
 				.map((item) => item.track)
 				.filter((track) => track !== null),
-			nextOffset: resData.next ? offset + PAGE_SIZE : null,
-			total: resData.total,
+			nextOffset: responseData.next ? offset + PAGE_SIZE : null,
+			total: responseData.total,
 		};
 	});

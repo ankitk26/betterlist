@@ -15,12 +15,19 @@ export const getArtistTopTracks = createServerFn({ method: "GET" })
 
 		const endpoint = `/artists/${artistId}/top-tracks?market=from_token`;
 
-		const res = await betterFetch<{ tracks: Track[] }>(endpoint, {
+		const { data: responseData, error } = await betterFetch<{
+			tracks: Track[];
+		}>(endpoint, {
 			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},
 		});
 
-		return res.data?.tracks;
+		if (error) {
+			console.log(error);
+			return [];
+		}
+
+		return responseData.tracks;
 	});

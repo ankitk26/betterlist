@@ -21,21 +21,25 @@ export const getLikedSongsCount = createServerFn({ method: "GET" }).handler(
 
 		const endpoint = "/me/tracks?limit=50";
 
-		const res = await betterFetch<LikedSongs>(endpoint, {
-			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
-			headers: {
-				Authorization: `Bearer ${session.user.accessToken}`,
+		const { data: responseData, error } = await betterFetch<LikedSongs>(
+			endpoint,
+			{
+				baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+				headers: {
+					Authorization: `Bearer ${session.user.accessToken}`,
+				},
 			},
-		});
+		);
 
-		if (!res.data) {
+		if (error) {
+			console.log(error);
 			return {
 				count: 0,
 			};
 		}
 
 		return {
-			count: res.data.total,
+			count: responseData.total,
 		};
 	},
 );

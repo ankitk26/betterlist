@@ -13,13 +13,20 @@ export const getUserPlaylists = createServerFn({ method: "GET" }).handler(
 
 		const endpoint = "/me/playlists";
 
-		const res = await betterFetch<{ items: Playlist[] }>(endpoint, {
+		const { data: responseData, error } = await betterFetch<{
+			items: Playlist[];
+		}>(endpoint, {
 			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},
 		});
 
-		return res.data?.items;
+		if (error) {
+			console.log(error);
+			return [];
+		}
+
+		return responseData.items;
 	},
 );

@@ -16,28 +16,34 @@ export const getArtistDiscography = createServerFn({ method: "GET" })
 		const albumsEndpoint = `/artists/${artistId}/albums?include_groups=album`;
 		const singlesEndpoint = `/artists/${artistId}/albums?include_groups=single`;
 
-		const albumResponse = await betterFetch<{ items: Album[] }>(
-			albumsEndpoint,
-			{
-				baseURL: albumsEndpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
-				headers: {
-					Authorization: `Bearer ${session.user.accessToken}`,
-				},
+		const { data: albumData, error: albumError } = await betterFetch<{
+			items: Album[];
+		}>(albumsEndpoint, {
+			baseURL: albumsEndpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+			headers: {
+				Authorization: `Bearer ${session.user.accessToken}`,
 			},
-		);
+		});
 
-		const singleResponse = await betterFetch<{ items: Album[] }>(
-			singlesEndpoint,
-			{
-				baseURL: singlesEndpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
-				headers: {
-					Authorization: `Bearer ${session.user.accessToken}`,
-				},
+		const { data: singleData, error: singleError } = await betterFetch<{
+			items: Album[];
+		}>(singlesEndpoint, {
+			baseURL: singlesEndpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+			headers: {
+				Authorization: `Bearer ${session.user.accessToken}`,
 			},
-		);
+		});
 
-		const albums = albumResponse.data?.items;
-		const singles = singleResponse.data?.items;
+		if (albumError) {
+			console.log(albumError);
+		}
+
+		if (singleError) {
+			console.log(singleError);
+		}
+
+		const albums = albumData?.items;
+		const singles = singleData?.items;
 
 		// Merge albums and singles
 		const merged = [

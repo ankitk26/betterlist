@@ -15,12 +15,17 @@ export const getAlbumById = createServerFn({ method: "GET" })
 
 		const endpoint = `/albums/${albumId}`;
 
-		const res = await betterFetch<Album>(endpoint, {
+		const { data: responseData, error } = await betterFetch<Album>(endpoint, {
 			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},
 		});
 
-		return res.data;
+		if (error) {
+			console.log(error);
+			return null;
+		}
+
+		return responseData;
 	});

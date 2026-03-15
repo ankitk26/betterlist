@@ -13,13 +13,20 @@ export const getUserArtists = createServerFn({ method: "GET" }).handler(
 
 		const endpoint = "/me/following?type=artist&limit=50";
 
-		const res = await betterFetch<{ artists: { items: Artist[] } }>(endpoint, {
+		const { data: responseData, error } = await betterFetch<{
+			artists: { items: Artist[] };
+		}>(endpoint, {
 			baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},
 		});
 
-		return res.data?.artists.items;
+		if (error) {
+			console.log(error);
+			return [];
+		}
+
+		return responseData.artists.items;
 	},
 );
