@@ -1,186 +1,135 @@
 export default function WrappedBackgroundDesign() {
 	return (
 		<div className="absolute inset-0 overflow-hidden">
-			<div className="absolute top-0 left-0 h-full w-full">
+			{/* Light mode - gradient based like dark mode */}
+			<div className="absolute inset-0 block dark:hidden">
 				<svg
 					viewBox="0 0 400 600"
 					className="h-full w-full"
-					aria-labelledby="wrappedBackgroundTitle"
 					preserveAspectRatio="xMidYMid slice"
 				>
-					<title id="wrappedBackgroundTitle">
-						Decorative music-themed background with sound waves
-					</title>
 					<defs>
-						{/* Gradients - Dark Mode */}
-						<radialGradient
-							id="grad1-dark"
-							cx="50%"
-							cy="50%"
-							r="50%"
-							fx="50%"
-							fy="50%"
-						>
-							<stop offset="0%" stopColor="#e11d48" stopOpacity="0.6" />
-							<stop offset="100%" stopColor="#9f1239" stopOpacity="0.1" />
+						<linearGradient id="lux-light" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" stopColor="oklch(0.98 0 0)" />
+							<stop offset="50%" stopColor="oklch(0.95 0 0)" />
+							<stop offset="100%" stopColor="oklch(0.92 0 0)" />
+						</linearGradient>
+						<radialGradient id="orb-light-1" cx="25%" cy="25%" r="55%">
+							<stop offset="0%" stopColor="oklch(1 0 0)" stopOpacity="0.8" />
+							<stop
+								offset="50%"
+								stopColor="oklch(0.96 0 0)"
+								stopOpacity="0.4"
+							/>
+							<stop
+								offset="100%"
+								stopColor="oklch(0.92 0 0)"
+								stopOpacity="0.1"
+							/>
 						</radialGradient>
-						<radialGradient
-							id="grad2-dark"
-							cx="30%"
-							cy="70%"
-							r="60%"
-							fx="30%"
-							fy="70%"
-						>
-							<stop offset="0%" stopColor="#fb7185" stopOpacity="0.4" />
-							<stop offset="100%" stopColor="#881337" stopOpacity="0.05" />
+						<radialGradient id="orb-light-2" cx="75%" cy="75%" r="50%">
+							<stop offset="0%" stopColor="oklch(0.97 0 0)" stopOpacity="0.6" />
+							<stop
+								offset="50%"
+								stopColor="oklch(0.94 0 0)"
+								stopOpacity="0.3"
+							/>
+							<stop
+								offset="100%"
+								stopColor="oklch(0.9 0 0)"
+								stopOpacity="0.05"
+							/>
 						</radialGradient>
-						<radialGradient
-							id="grad3-dark"
-							cx="80%"
-							cy="20%"
-							r="50%"
-							fx="80%"
-							fy="20%"
-						>
-							<stop offset="0%" stopColor="#f43f5e" stopOpacity="0.35" />
-							<stop offset="100%" stopColor="#4c0519" stopOpacity="0.05" />
-						</radialGradient>
-						{/* Gradients - Light Mode */}
-						<radialGradient
-							id="grad1-light"
-							cx="50%"
-							cy="50%"
-							r="50%"
-							fx="50%"
-							fy="50%"
-						>
-							<stop offset="0%" stopColor="#fb7185" stopOpacity="0.85" />
-							<stop offset="100%" stopColor="#fecdd3" stopOpacity="0.25" />
-						</radialGradient>
-						<radialGradient
-							id="grad2-light"
-							cx="30%"
-							cy="70%"
-							r="60%"
-							fx="30%"
-							fy="70%"
-						>
-							<stop offset="0%" stopColor="#f43f5e" stopOpacity="0.7" />
-							<stop offset="100%" stopColor="#fda4af" stopOpacity="0.15" />
-						</radialGradient>
-						<radialGradient
-							id="grad3-light"
-							cx="80%"
-							cy="20%"
-							r="50%"
-							fx="80%"
-							fy="20%"
-						>
-							<stop offset="0%" stopColor="#e11d48" stopOpacity="0.65" />
-							<stop offset="100%" stopColor="#fecdd3" stopOpacity="0.2" />
-						</radialGradient>
-						<filter id="glow">
-							<feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-							<feMerge>
-								<feMergeNode in="coloredBlur" />
-								<feMergeNode in="SourceGraphic" />
-							</feMerge>
-						</filter>
 					</defs>
-
-					{/* Base background - switches between light and dark */}
-					<rect
-						width="100%"
-						height="100%"
-						className="fill-white dark:fill-[#0a0a0a]"
+					<rect width="100%" height="100%" fill="url(#lux-light)" />
+					<circle
+						cx="100"
+						cy="120"
+						r="190"
+						fill="url(#orb-light-1)"
+						opacity="0.8"
 					/>
-
-					{/* Gradient orbs - Dark mode */}
-					<g className="hidden dark:block">
-						<circle
-							cx="50"
-							cy="100"
-							r="120"
-							fill="url(#grad1-dark)"
-							opacity="0.6"
-						/>
-						<circle
-							cx="350"
-							cy="200"
-							r="100"
-							fill="url(#grad2-dark)"
-							opacity="0.5"
-						/>
-						<circle
-							cx="200"
-							cy="500"
-							r="150"
-							fill="url(#grad3-dark)"
-							opacity="0.4"
-						/>
-						<circle
-							cx="100"
-							cy="400"
-							r="80"
-							fill="url(#grad1-dark)"
-							opacity="0.3"
-						/>
-					</g>
-
-					{/* Gradient orbs - Light mode */}
-					<g className="block dark:hidden">
-						<circle
-							cx="50"
-							cy="100"
-							r="120"
-							fill="url(#grad1-light)"
-							opacity="0.9"
-						/>
-						<circle
-							cx="350"
-							cy="200"
-							r="100"
-							fill="url(#grad2-light)"
-							opacity="0.8"
-						/>
-						<circle
-							cx="200"
-							cy="500"
-							r="150"
-							fill="url(#grad3-light)"
-							opacity="0.75"
-						/>
-						<circle
-							cx="100"
-							cy="400"
-							r="80"
-							fill="url(#grad1-light)"
-							opacity="0.7"
-						/>
-					</g>
-
-					{/* Decorative circles - Dark mode */}
-					<g className="hidden dark:block" opacity="0.4">
-						<circle cx="30" cy="30" r="3" fill="#fb7185" />
-						<circle cx="370" cy="550" r="4" fill="#f43f5e" />
-						<circle cx="120" cy="550" r="2" fill="#fda4af" />
-						<circle cx="300" cy="40" r="2.5" fill="#e11d48" />
-						<circle cx="80" cy="180" r="2" fill="#fb7185" opacity="0.3" />
-						<circle cx="320" cy="350" r="3" fill="#fda4af" opacity="0.35" />
-					</g>
-
-					{/* Decorative circles - Light mode */}
-					<g className="block dark:hidden" opacity="0.6">
-						<circle cx="30" cy="30" r="3" fill="#e11d48" />
-						<circle cx="370" cy="550" r="4" fill="#be123c" />
-						<circle cx="120" cy="550" r="2" fill="#f43f5e" />
-						<circle cx="300" cy="40" r="2.5" fill="#be123c" />
-						<circle cx="80" cy="180" r="2" fill="#e11d48" opacity="0.5" />
-						<circle cx="320" cy="350" r="3" fill="#f43f5e" opacity="0.55" />
-					</g>
+					<circle
+						cx="300"
+						cy="500"
+						r="170"
+						fill="url(#orb-light-2)"
+						opacity="0.7"
+					/>
 				</svg>
 			</div>
+
+			{/* Dark mode - gradient based */}
+			<div className="absolute inset-0 hidden dark:block">
+				<svg
+					viewBox="0 0 400 600"
+					className="h-full w-full"
+					preserveAspectRatio="xMidYMid slice"
+				>
+					<defs>
+						<linearGradient id="lux-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" stopColor="oklch(0.05 0 0)" />
+							<stop offset="50%" stopColor="oklch(0.1 0 0)" />
+							<stop offset="100%" stopColor="oklch(0.15 0 0)" />
+						</linearGradient>
+						<radialGradient id="orb-dark-1" cx="25%" cy="25%" r="55%">
+							<stop offset="0%" stopColor="oklch(0.32 0 0)" stopOpacity="0.6" />
+							<stop
+								offset="50%"
+								stopColor="oklch(0.25 0 0)"
+								stopOpacity="0.3"
+							/>
+							<stop
+								offset="100%"
+								stopColor="oklch(0.1 0 0)"
+								stopOpacity="0.1"
+							/>
+						</radialGradient>
+						<radialGradient id="orb-dark-2" cx="75%" cy="75%" r="50%">
+							<stop offset="0%" stopColor="oklch(0.28 0 0)" stopOpacity="0.5" />
+							<stop
+								offset="50%"
+								stopColor="oklch(0.22 0 0)"
+								stopOpacity="0.25"
+							/>
+							<stop
+								offset="100%"
+								stopColor="oklch(0.08 0 0)"
+								stopOpacity="0.05"
+							/>
+						</radialGradient>
+						<radialGradient id="corner-dark" cx="50%" cy="50%" r="80%">
+							<stop offset="0%" stopColor="oklch(0 0 0)" stopOpacity="0" />
+							<stop offset="60%" stopColor="oklch(0 0 0)" stopOpacity="0.2" />
+							<stop offset="100%" stopColor="oklch(0 0 0)" stopOpacity="0.45" />
+						</radialGradient>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#lux-dark)" />
+					<circle
+						cx="100"
+						cy="120"
+						r="190"
+						fill="url(#orb-dark-1)"
+						opacity="0.8"
+					/>
+					<circle
+						cx="300"
+						cy="500"
+						r="170"
+						fill="url(#orb-dark-2)"
+						opacity="0.7"
+					/>
+					<rect width="100%" height="100%" fill="url(#corner-dark)" />
+				</svg>
+			</div>
+
+			{/* Subtle grain texture */}
+			<div
+				className="pointer-events-none absolute inset-0 opacity-[0.015] dark:opacity-[0.025]"
+				style={{
+					backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+				}}
+			/>
 		</div>
 	);
 }

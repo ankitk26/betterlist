@@ -39,68 +39,80 @@ export default function StatsWrapped(props: Props) {
 	const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
 
 	return (
-		<div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-neutral-200 bg-white text-neutral-900 dark:border-neutral-900 dark:bg-black dark:text-white">
-			{/* Background decorative elements */}
+		<div className="border-border bg-card text-card-foreground relative mx-auto w-full overflow-hidden rounded-3xl border">
+			{/* Background */}
 			<WrappedBackgroundDesign />
 
-			<div className="relative z-10 p-6">
-				<div className="mb-6 text-center">
-					<h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
+			{/* Content */}
+			<div className="relative z-10">
+				{/* Header */}
+				<div className="border-border flex items-center justify-between border-b px-6 py-4">
+					<span className="text-muted-foreground text-xs font-medium tracking-wider">
 						{getRangeTitle(props.range)}
-					</h1>
+					</span>
 				</div>
 
-				{/* Character image */}
-				<div className="mb-8 flex justify-center">
-					<div className="h-48 w-48 shadow-lg">
-						<Image
-							alt={artists?.[0].name}
-							className="h-full w-full rounded object-contain"
-							height={180}
-							src={largestImage?.url || ""}
-							width={180}
-						/>
+				{/* Main content */}
+				<div className="px-6 pt-4 pb-5">
+					{/* Top Artist Hero */}
+					<div className="mb-6 text-center">
+						<p className="text-muted-foreground mb-2 text-xs font-medium tracking-[0.2em] uppercase">
+							Top Artist
+						</p>
+						<div className="border-border mb-3 inline-block overflow-hidden rounded-full border-2 p-1">
+							<div className="bg-muted relative size-40 overflow-hidden rounded-full">
+								<Image
+									alt={artists?.[0].name}
+									className="size-full object-cover"
+									height={80}
+									src={largestImage?.url || ""}
+									width={80}
+								/>
+							</div>
+						</div>
+						<h2 className="text-card-foreground text-lg font-semibold tracking-tight">
+							{artists?.[0].name}
+						</h2>
 					</div>
-				</div>
 
-				{/* Statistics */}
-				<div className="space-y-6">
-					<div className="grid grid-cols-2 gap-6">
+					{/* Stats Grid */}
+					<div className="mb-5 grid grid-cols-2 gap-5">
 						{/* Top Artists */}
 						<div>
-							<h2 className="mb-3 text-lg font-bold text-rose-700 dark:text-rose-50">
-								Top Artists
-							</h2>
-							<div className="space-y-1 text-sm">
+							<p className="text-muted-foreground mb-2 text-xs font-medium tracking-[0.2em] uppercase">
+								Artists
+							</p>
+							<div className="space-y-1.5">
 								{artists?.slice(0, 5).map((artist, index) => (
-									<div className="flex items-center gap-2" key={artist.id}>
-										<span className="font-bold text-neutral-900 dark:text-white">
-											#{index + 1}
+									<Link
+										to="/artists/$artistId"
+										params={{ artistId: artist.id }}
+										key={artist.id}
+										className="group flex items-center gap-2"
+									>
+										<span className="text-muted-foreground/60 flex h-4 w-4 items-center justify-center text-[9px] font-medium">
+											{index + 1}
 										</span>
-										<Link
-											to="/artists/$artistId"
-											params={{ artistId: artist.id }}
-											className="text-neutral-900 dark:text-white"
-										>
+										<span className="text-muted-foreground group-hover:text-card-foreground truncate text-xs font-medium transition-colors">
 											{artist.name}
-										</Link>
-									</div>
+										</span>
+									</Link>
 								))}
 							</div>
 						</div>
 
-						{/* Top Songs */}
+						{/* Top Tracks */}
 						<div>
-							<h2 className="mb-3 text-lg font-bold text-rose-700 dark:text-rose-50">
-								Top Songs
-							</h2>
-							<div className="space-y-1 text-sm">
+							<p className="text-muted-foreground mb-2 text-xs font-medium tracking-[0.2em] uppercase">
+								Tracks
+							</p>
+							<div className="space-y-1.5">
 								{tracks?.map((track, index) => (
-									<div className="flex gap-2" key={track.id}>
-										<span className="font-bold text-neutral-900 dark:text-white">
-											#{index + 1}
+									<div key={track.id} className="flex items-center gap-2">
+										<span className="text-muted-foreground/60 flex h-4 w-4 items-center justify-center text-[9px] font-medium">
+											{index + 1}
 										</span>
-										<span className="text-neutral-900 dark:text-white">
+										<span className="text-muted-foreground truncate text-xs font-medium">
 											{track.name}
 										</span>
 									</div>
@@ -109,16 +121,14 @@ export default function StatsWrapped(props: Props) {
 						</div>
 					</div>
 
-					{/* Top genre */}
-					<div className="flex justify-center">
-						<div className="text-center">
-							<h2 className="mb-2 text-lg font-bold text-rose-600 dark:text-rose-200">
-								Top Genre
-							</h2>
-							<div className="text-3xl font-bold text-neutral-900 capitalize dark:text-white">
-								{topGenre}
-							</div>
-						</div>
+					{/* Top Genre */}
+					<div className="border-border border-t pt-4">
+						<p className="text-muted-foreground mb-1 text-xs font-medium tracking-[0.2em] uppercase">
+							Top Genre
+						</p>
+						<p className="text-card-foreground font-mono text-xl font-light tracking-tight capitalize">
+							{topGenre}
+						</p>
 					</div>
 				</div>
 			</div>
