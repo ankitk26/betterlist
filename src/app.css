@@ -202,7 +202,7 @@
 		@apply border-border outline-ring/50;
 	}
 	body {
-		@apply bg-background text-foreground selection:bg-foreground selection:text-background font-sans antialiased;
+		@apply bg-background text-foreground selection:bg-foreground selection:text-background font-mono antialiased;
 	}
 	button {
 		@apply cursor-pointer;

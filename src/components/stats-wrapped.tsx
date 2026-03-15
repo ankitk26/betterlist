@@ -39,13 +39,13 @@ export default function StatsWrapped(props: Props) {
 	const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
 
 	return (
-		<div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-neutral-900 bg-black text-white">
+		<div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-neutral-200 bg-white text-neutral-900 dark:border-neutral-900 dark:bg-black dark:text-white">
 			{/* Background decorative elements */}
 			<WrappedBackgroundDesign />
 
 			<div className="relative z-10 p-6">
 				<div className="mb-6 text-center">
-					<h1 className="text-2xl font-bold text-white">
+					<h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
 						{getRangeTitle(props.range)}
 					</h1>
 				</div>
@@ -68,17 +68,19 @@ export default function StatsWrapped(props: Props) {
 					<div className="grid grid-cols-2 gap-6">
 						{/* Top Artists */}
 						<div>
-							<h2 className="mb-3 text-lg font-bold text-rose-50">
+							<h2 className="mb-3 text-lg font-bold text-rose-700 dark:text-rose-50">
 								Top Artists
 							</h2>
 							<div className="space-y-1 text-sm">
 								{artists?.slice(0, 5).map((artist, index) => (
 									<div className="flex items-center gap-2" key={artist.id}>
-										<span className="font-bold text-white">#{index + 1}</span>
+										<span className="font-bold text-neutral-900 dark:text-white">
+											#{index + 1}
+										</span>
 										<Link
 											to="/artists/$artistId"
 											params={{ artistId: artist.id }}
-											className="text-white"
+											className="text-neutral-900 dark:text-white"
 										>
 											{artist.name}
 										</Link>
@@ -89,12 +91,18 @@ export default function StatsWrapped(props: Props) {
 
 						{/* Top Songs */}
 						<div>
-							<h2 className="mb-3 text-lg font-bold text-rose-50">Top Songs</h2>
+							<h2 className="mb-3 text-lg font-bold text-rose-700 dark:text-rose-50">
+								Top Songs
+							</h2>
 							<div className="space-y-1 text-sm">
 								{tracks?.map((track, index) => (
 									<div className="flex gap-2" key={track.id}>
-										<span className="font-bold text-white">#{index + 1}</span>
-										<span className="text-white">{track.name}</span>
+										<span className="font-bold text-neutral-900 dark:text-white">
+											#{index + 1}
+										</span>
+										<span className="text-neutral-900 dark:text-white">
+											{track.name}
+										</span>
 									</div>
 								))}
 							</div>
@@ -104,10 +112,10 @@ export default function StatsWrapped(props: Props) {
 					{/* Top genre */}
 					<div className="flex justify-center">
 						<div className="text-center">
-							<h2 className="mb-2 text-lg font-bold text-rose-200">
+							<h2 className="mb-2 text-lg font-bold text-rose-600 dark:text-rose-200">
 								Top Genre
 							</h2>
-							<div className="text-3xl font-bold text-white capitalize">
+							<div className="text-3xl font-bold text-neutral-900 capitalize dark:text-white">
 								{topGenre}
 							</div>
 						</div>
