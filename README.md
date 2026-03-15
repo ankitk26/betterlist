@@ -30,15 +30,19 @@ betterlist is a Spotify playlist management app built with TanStack Start.
 
 **Backend**
 
-- [Better Auth](https://www.better-auth.com/), [Drizzle ORM](https://orm.drizzle.team/), [PostgreSQL](https://www.postgresql.org/)
-- [Spotify Web API](https://developer.spotify.com/documentation/web-api)
+- [Cloudflare Workers](https://workers.cloudflare.com/) - Edge computing platform
+- [Better Auth](https://www.better-auth.com/) - Authentication library
+- [Drizzle ORM](https://orm.drizzle.team/) - Database ORM
+- [Cloudflare D1](https://developers.cloudflare.com/d1/) - SQLite database
+- [Spotify Web API](https://developer.spotify.com/documentation/web-api) - Music data API
 
 ## Installation
 
 ### Prerequisites
 
 - Node.js 18+
-- PostgreSQL database (local or cloud)
+- [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/)
+- Cloudflare account
 - Spotify Developer account
 
 ### Setup
@@ -58,30 +62,48 @@ betterlist is a Spotify playlist management app built with TanStack Start.
    npm install
    ```
 
-3. Set up your PostgreSQL database and get the connection string
+3. Authenticate with Cloudflare:
 
-4. Create a `.env` file in the root directory with placeholder values:
+   ```bash
+   npx wrangler login
+   ```
+
+4. Create a D1 database:
+
+   ```bash
+   npx wrangler d1 create betterlist
+   ```
+
+5. Create a `.dev.vars` file in the root directory:
 
    ```env
-   # Database (Required)
-   DATABASE_URL=postgresql://username:password@host:port/database
+   # Cloudflare (Required)
+   CLOUDFLARE_ACCOUNT_ID=your_cloudflare_account_id
+   CLOUDFLARE_DATABASE_ID=your_d1_database_id
+   CLOUDFLARE_D1_TOKEN=your_cloudflare_api_token
 
    # Better Auth (Required)
    BETTER_AUTH_SECRET=your_random_secret_key
-   BETTER_AUTH_URL=<YOUR_TUNNEL_URL>
+   BETTER_AUTH_URL=<ngrok_url>
 
    # Spotify OAuth (Required)
    SPOTIFY_CLIENT_ID=your_spotify_client_id
    SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
    ```
 
-5. Set up the database schema:
+6. Set up the database schema:
 
    ```bash
    npx drizzle-kit push
    ```
 
-6. Run the development server:
+7. Start ngrok tunnel (in a separate terminal):
+
+   ```bash
+   ngrok http 3000
+   ```
+
+8. Run the development server:
 
    ```bash
    bun run dev
@@ -89,11 +111,19 @@ betterlist is a Spotify playlist management app built with TanStack Start.
    npm run dev
    ```
 
-7. Open your browser and navigate to your tunnel URL
+9. Open your browser and navigate to your ngrok URL
 
-## Local Development with HTTPS
+## Deployment
 
-Spotify's OAuth requires HTTPS redirect URIs for authentication. For local development, you need to use a tunneling service like **ngrok**.
+Deploy to Cloudflare Workers:
+
+```bash
+bun run deploy
+# or
+npm run deploy
+```
+
+This builds the app and deploys it to Cloudflare Workers using the configuration in `wrangler.jsonc`.
 
 ### Setup ngrok Tunnel
 
@@ -114,13 +144,15 @@ Spotify's OAuth requires HTTPS redirect URIs for authentication. For local devel
    ```
 4. Save the changes
 
-### Update Environment Variables
+## Scripts
 
-Update your `.env` file with the ngrok URL:
-
-```env
-BETTER_AUTH_URL=https://abc123.ngrok-free.app
-```
+- `dev` - Start the development server
+- `build` - Build for production
+- `preview` - Preview the production build locally
+- `deploy` - Build and deploy to Cloudflare Workers
+- `cf-typegen` - Generate Cloudflare Workers types
+- `fmt` - Format code with oxfmt
+- `fmt:check` - Check code formatting
 
 ## Support
 
