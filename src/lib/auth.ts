@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { customSession } from "better-auth/plugins";
 import { env } from "cloudflare:workers";
-import { getUserAccount } from "./get-user-account";
+import { getUserAccount } from "../server-fns/get-user-account";
 
 export const auth = betterAuth({
 	database: env.DB,
