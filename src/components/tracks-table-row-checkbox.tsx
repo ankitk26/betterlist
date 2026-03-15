@@ -15,8 +15,19 @@ function PureTracksTableRowCheckbox({ index, trackId }: Props) {
 	const addTrack = usePlaylistEditorStore((store) => store.add);
 	const removeTrack = usePlaylistEditorStore((store) => store.remove);
 
+	const toggle = () => {
+		if (isSelected) {
+			removeTrack(trackId);
+		} else {
+			addTrack(trackId);
+		}
+	};
+
 	return (
-		<div className="relative col-span-1 flex items-center">
+		<div
+			className="group/checkbox relative col-span-1 flex cursor-pointer items-center"
+			onClick={toggle}
+		>
 			<span
 				className={`text-muted-foreground text-sm transition-opacity duration-100 ease-out ${
 					isSelected ? "opacity-0" : "group-hover:opacity-0"
@@ -25,19 +36,17 @@ function PureTracksTableRowCheckbox({ index, trackId }: Props) {
 				{index + 1}
 			</span>
 			<div
-				className={`absolute inset-0 flex items-center transition-opacity ${
+				className={`pointer-events-none absolute inset-0 flex items-center transition-opacity ${
 					isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-100"
 				}`}
 			>
 				<Checkbox
-					checked={
-						isSelected // <— controlled!
-					}
+					checked={isSelected}
 					onCheckedChange={(checked) => {
 						if (checked) {
-							addTrack(trackId); // add when checked
+							addTrack(trackId);
 						} else {
-							removeTrack(trackId); // remove when unchecked
+							removeTrack(trackId);
 						}
 					}}
 				/>
