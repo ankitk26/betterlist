@@ -13,7 +13,7 @@ export default function TrackCards({ tracks }: Props) {
 				?.filter((track) => track !== null)
 				.map((track: Track) => (
 					<div
-						className="group/item bg-input/30 text-secondary-foreground hover:bg-secondary h-full rounded-lg border p-4 transition duration-300 dark:border-none"
+						className="group/item h-full rounded-lg border bg-input/30 p-4 text-secondary-foreground transition duration-300 hover:bg-secondary dark:border-none"
 						key={track.id}
 					>
 						<div className="relative">
@@ -27,12 +27,12 @@ export default function TrackCards({ tracks }: Props) {
 								/>
 							) : (
 								<div className="h-40 w-full">
-									<MusicNoteIcon className="bg-secondary h-full w-full" />
+									<MusicNoteIcon className="h-full w-full bg-secondary" />
 								</div>
 							)}
 						</div>
 						<h3 className="mt-5 truncate font-bold">{track.name}</h3>
-						<h6 className="text-muted-foreground mt-1 truncate text-xs font-semibold">
+						<h6 className="mt-1 truncate text-xs font-semibold text-muted-foreground">
 							{track.artists[0].name}
 						</h6>
 					</div>

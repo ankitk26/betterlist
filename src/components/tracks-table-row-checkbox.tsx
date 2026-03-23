@@ -29,7 +29,7 @@ function PureTracksTableRowCheckbox({ index, trackId }: Props) {
 			onClick={toggle}
 		>
 			<span
-				className={`text-muted-foreground text-sm transition-opacity duration-100 ease-out ${
+				className={`text-sm text-muted-foreground transition-opacity duration-100 ease-out ${
 					isSelected ? "opacity-0" : "group-hover:opacity-0"
 				}`}
 			>

@@ -18,7 +18,7 @@ export default function UserTopTracks() {
 
 	return data?.map((track) => (
 		<div
-			className="group/item bg-input/30 text-secondary-foreground hover:bg-secondary col-span-4 flex items-center justify-between truncate rounded-md border pr-4 dark:border-none"
+			className="group/item col-span-4 flex items-center justify-between truncate rounded-md border bg-input/30 pr-4 text-secondary-foreground hover:bg-secondary dark:border-none"
 			key={track.id}
 		>
 			<div className="flex items-center gap-4">
@@ -35,7 +35,7 @@ export default function UserTopTracks() {
 				)}
 				<div className="flex flex-col">
 					<h3 className="truncate font-semibold">{track.name}</h3>
-					<h5 className="text-muted-foreground text-sm">
+					<h5 className="text-sm text-muted-foreground">
 						{track.artists?.[0].name}
 					</h5>
 				</div>

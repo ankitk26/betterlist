@@ -23,10 +23,10 @@ export default function TracksTableHeader({
 
 	return (
 		<>
-			<header className="text-muted-foreground grid grid-cols-12 gap-2 p-4 pb-1">
+			<header className="grid grid-cols-12 gap-2 p-4 pb-1 text-muted-foreground">
 				<div className="group relative col-span-1 flex items-center text-left font-semibold tracking-wider uppercase">
 					<span
-						className={`text-muted-foreground text-sm transition-opacity duration-100 ease-out ${
+						className={`text-sm text-muted-foreground transition-opacity duration-100 ease-out ${
 							areTracksSelected ? "opacity-0" : "group-hover:opacity-0"
 						}`}
 					>

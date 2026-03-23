@@ -36,19 +36,19 @@ export default function ArtistHero() {
 					{artist.images.length > 0 ? (
 						<Image
 							alt={artist.name}
-							className="ring-border h-64 w-64 rounded-full object-cover shadow-xl ring-1"
+							className="h-64 w-64 rounded-full object-cover shadow-xl ring-1 ring-border"
 							height={256}
 							src={artist.images[0].url}
 							width={256}
 						/>
 					) : (
 						<div className="h-40 w-full">
-							<MusicNoteIcon className="bg-card h-full w-full" size={160} />
+							<MusicNoteIcon className="h-full w-full bg-card" size={160} />
 						</div>
 					)}
 					<div className="flex flex-col items-start gap-3">
 						<h2 className="text-5xl font-bold">{artist.name}</h2>
-						<span className="text-muted-foreground text-sm">
+						<span className="text-sm text-muted-foreground">
 							{artist.followers?.total.toLocaleString()} followers
 						</span>
 						<div className="flex items-center gap-5 text-sm">

@@ -20,7 +20,7 @@ export default function TracksTableRow({
 	showSubtitle,
 }: Props) {
 	return (
-		<div className="group hover:bg-muted/50 grid grid-cols-12 rounded-lg px-4 py-2 transition-colors">
+		<div className="group grid grid-cols-12 rounded-lg px-4 py-2 transition-colors hover:bg-muted/50">
 			<TracksTableRowCheckbox index={index} trackId={track.id} />
 
 			<TracksTableTitleColumn
@@ -31,7 +31,7 @@ export default function TracksTableRow({
 			/>
 
 			{showAlbum && (
-				<div className="text-muted-foreground col-span-4 flex w-10/12 items-center text-sm">
+				<div className="col-span-4 flex w-10/12 items-center text-sm text-muted-foreground">
 					<Link
 						className="truncate hover:underline"
 						params={{ albumId: track.album.id }}
@@ -42,7 +42,7 @@ export default function TracksTableRow({
 				</div>
 			)}
 
-			<small className="text-muted-foreground col-span-1 flex items-center text-sm font-medium">
+			<small className="col-span-1 flex items-center text-sm font-medium text-muted-foreground">
 				{formatMs(track.duration_ms)}
 			</small>
 		</div>

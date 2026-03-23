@@ -39,7 +39,7 @@ export default function TracksTableTitleColumn({
 						</div>
 					) : (
 						<MusicNoteIcon
-							className="bg-input/30 h-10 w-10 rounded p-2"
+							className="h-10 w-10 rounded bg-input/30 p-2"
 							size={16}
 						/>
 					))}
@@ -50,7 +50,7 @@ export default function TracksTableTitleColumn({
 					</span>
 
 					{showSubtitle && (
-						<div className="text-muted-foreground flex w-full flex-wrap items-center gap-1 pr-3 text-sm">
+						<div className="flex w-full flex-wrap items-center gap-1 pr-3 text-sm text-muted-foreground">
 							<span className="truncate">
 								{track.artists.map((artist, index) => (
 									<Fragment key={artist.id + track.id}>

@@ -13,7 +13,7 @@ export default function AlbumHeader({ album }: Props) {
 			{album.images && album.images.length > 0 ? (
 				<Image
 					alt={album.name}
-					className="ring-border h-64 w-64 rounded-lg object-cover shadow-xl ring-1"
+					className="h-64 w-64 rounded-lg object-cover shadow-xl ring-1 ring-border"
 					height={256}
 					src={album.images[0].url ?? ""}
 					width={256}
@@ -27,7 +27,7 @@ export default function AlbumHeader({ album }: Props) {
 				<h5 className="text-xs font-bold uppercase">{album.album_type}</h5>
 				<h2 className="text-5xl font-bold">{album.name}</h2>
 
-				<div className="text-muted-foreground flex items-center text-sm font-semibold">
+				<div className="flex items-center text-sm font-semibold text-muted-foreground">
 					<Link
 						className="hover:underline"
 						params={{ artistId: album.artists[0].id }}

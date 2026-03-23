@@ -103,10 +103,10 @@ export default function AddToPlaylistButton() {
 										onClick={() => togglePlaylistSelection(playlist.id)}
 										disabled={!isSelected && selectedPlaylists.length >= 5}
 										className={cn(
-											"hover:bg-accent/50 flex w-full items-center gap-3 rounded-lg border p-3 transition-all",
+											"flex w-full items-center gap-3 rounded-lg border p-3 transition-all hover:bg-accent/50",
 											isSelected
-												? "bg-primary/10 border-primary"
-												: "bg-card border-border hover:border-accent-foreground/20",
+												? "border-primary bg-primary/10"
+												: "border-border bg-card hover:border-accent-foreground/20",
 											!isSelected &&
 												selectedPlaylists.length >= 5 &&
 												"cursor-not-allowed opacity-50",
@@ -120,15 +120,15 @@ export default function AddToPlaylistButton() {
 													className="h-12 w-12 rounded object-cover"
 												/>
 											) : (
-												<div className="bg-muted flex h-12 w-12 items-center justify-center rounded">
-													<span className="text-muted-foreground text-xs">
+												<div className="flex h-12 w-12 items-center justify-center rounded bg-muted">
+													<span className="text-xs text-muted-foreground">
 														<MusicNoteIcon />
 													</span>
 												</div>
 											)}
 											{isSelected && (
-												<div className="bg-primary absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full">
-													<CheckIcon className="text-primary-foreground h-3 w-3" />
+												<div className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary">
+													<CheckIcon className="h-3 w-3 text-primary-foreground" />
 												</div>
 											)}
 										</div>

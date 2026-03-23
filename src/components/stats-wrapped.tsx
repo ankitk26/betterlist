@@ -38,12 +38,12 @@ export default function StatsWrapped(props: Props) {
 	const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
 
 	return (
-		<div className="border-border relative mx-auto w-full overflow-hidden rounded-3xl border">
+		<div className="relative mx-auto w-full overflow-hidden rounded-3xl border border-border">
 			{/* Content */}
 			<div>
 				{/* Header */}
-				<div className="border-border flex items-center justify-between border-b px-6 py-4">
-					<span className="text-muted-foreground text-xs font-medium tracking-wider">
+				<div className="flex items-center justify-between border-b border-border px-6 py-4">
+					<span className="text-xs font-medium tracking-wider text-muted-foreground">
 						{getRangeTitle(props.range)}
 					</span>
 				</div>
@@ -52,11 +52,11 @@ export default function StatsWrapped(props: Props) {
 				<div className="px-6 pt-4 pb-5">
 					{/* Top Artist Hero */}
 					<div className="mb-6 text-center">
-						<p className="text-muted-foreground mb-2 text-xs font-medium tracking-[0.2em] uppercase">
+						<p className="mb-2 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
 							Top Artist
 						</p>
-						<div className="border-border mb-3 inline-block overflow-hidden rounded-full border-2 p-1">
-							<div className="bg-muted relative size-40 overflow-hidden rounded-full">
+						<div className="mb-3 inline-block overflow-hidden rounded-full border-2 border-border p-1">
+							<div className="relative size-40 overflow-hidden rounded-full bg-muted">
 								<Image
 									alt={artists?.[0].name}
 									className="size-full object-cover"
@@ -66,7 +66,7 @@ export default function StatsWrapped(props: Props) {
 								/>
 							</div>
 						</div>
-						<h2 className="text-foreground text-lg font-semibold tracking-tight">
+						<h2 className="text-lg font-semibold tracking-tight text-foreground">
 							{artists?.[0].name}
 						</h2>
 					</div>
@@ -75,7 +75,7 @@ export default function StatsWrapped(props: Props) {
 					<div className="mb-5 grid grid-cols-2 gap-5">
 						{/* Top Artists */}
 						<div>
-							<p className="text-muted-foreground mb-2 text-xs font-medium tracking-[0.2em] uppercase">
+							<p className="mb-2 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
 								Artists
 							</p>
 							<div className="space-y-1.5">
@@ -86,10 +86,10 @@ export default function StatsWrapped(props: Props) {
 										key={artist.id}
 										className="group flex items-center gap-2"
 									>
-										<span className="text-muted-foreground/60 flex h-4 w-4 items-center justify-center text-[9px] font-medium">
+										<span className="flex h-4 w-4 items-center justify-center text-[9px] font-medium text-muted-foreground/60">
 											{index + 1}
 										</span>
-										<span className="text-muted-foreground hover:text-foreground group-hover:text-foreground truncate text-xs font-medium transition-colors">
+										<span className="truncate text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground hover:text-foreground">
 											{artist.name}
 										</span>
 									</Link>
@@ -99,16 +99,16 @@ export default function StatsWrapped(props: Props) {
 
 						{/* Top Tracks */}
 						<div>
-							<p className="text-muted-foreground mb-2 text-xs font-medium tracking-[0.2em] uppercase">
+							<p className="mb-2 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
 								Tracks
 							</p>
 							<div className="space-y-1.5">
 								{tracks?.map((track, index) => (
 									<div key={track.id} className="flex items-center gap-2">
-										<span className="text-muted-foreground/60 flex h-4 w-4 items-center justify-center text-[9px] font-medium">
+										<span className="flex h-4 w-4 items-center justify-center text-[9px] font-medium text-muted-foreground/60">
 											{index + 1}
 										</span>
-										<span className="text-muted-foreground truncate text-xs font-medium">
+										<span className="truncate text-xs font-medium text-muted-foreground">
 											{track.name}
 										</span>
 									</div>
@@ -118,11 +118,11 @@ export default function StatsWrapped(props: Props) {
 					</div>
 
 					{/* Top Genre */}
-					<div className="border-border border-t pt-4">
-						<p className="text-muted-foreground mb-1 text-xs font-medium tracking-[0.2em] uppercase">
+					<div className="border-t border-border pt-4">
+						<p className="mb-1 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
 							Top Genre
 						</p>
-						<p className="text-foreground font-mono text-xl font-light tracking-tight capitalize">
+						<p className="font-mono text-xl font-light tracking-tight text-foreground capitalize">
 							{topGenre}
 						</p>
 					</div>

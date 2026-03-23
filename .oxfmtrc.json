@@ -8,10 +8,11 @@
 	"useTabs": true,
 	"tabWidth": 2,
 	"printWidth": 80,
-	"experimentalSortImports": {
+	"sortImports": {
 		"newlinesBetween": false
 	},
-	"experimentalTailwindcss": {
+	"sortTailwindcss": {
+		"stylesheet": "./src/app.css",
 		"functions": ["clsx", "cn", "cva"]
 	}
 }
