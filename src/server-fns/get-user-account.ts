@@ -10,7 +10,7 @@ import { account } from "~/db/auth-schema";
 const getNewExpiryDate = (expiresIn: number) => {
 	const currentTime = Date.now();
 	const expiryTime = currentTime + expiresIn * 1000;
-	return new Date(expiryTime);
+	return new Date(expiryTime).toISOString();
 };
 
 const refreshTokenFromSpotify = createServerFn({ method: "POST" })
@@ -31,11 +31,15 @@ const refreshTokenFromSpotify = createServerFn({ method: "POST" })
 			method: "POST",
 			headers: {
 				"content-type": "application/x-www-form-urlencoded",
+				Authorization:
+					"Basic " +
+					Buffer.from(
+						`${env.SPOTIFY_CLIENT_ID}:${env.SPOTIFY_CLIENT_SECRET}`,
+					).toString("base64"),
 			},
 			body: new URLSearchParams({
 				grant_type: "refresh_token",
 				refresh_token: refreshToken,
-				client_id: env.SPOTIFY_CLIENT_ID,
 			}),
 		});
 
@@ -108,12 +112,14 @@ export const getUserAccount = createServerFn({ method: "GET" })
 		console.log(
 			`[${new Date().toISOString()}] [checking token expiration date]`,
 		);
-		const tokenExpiry = new Date(
-			accountData.accessTokenExpiresAt ?? Date.now(),
-		).getTime();
+
+		let tokenExpiry = Date.now();
+		if (accountData.accessTokenExpiresAt) {
+			tokenExpiry = new Date(accountData.accessTokenExpiresAt).getTime();
+		}
 		const currentTime = Date.now();
 
-		if (currentTime >= tokenExpiry) {
+		if (currentTime > tokenExpiry) {
 			// Refresh token if it expired
 			console.log(`[${new Date().toISOString()}] [token is expired]`);
 
