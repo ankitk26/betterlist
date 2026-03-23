@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { getMostFrequentGenre } from "../lib/get-most-frequent-genre";
 import { userTopArtistsQuery, userTopTracksQuery } from "../queries";
-import WrappedBackgroundDesign from "./wrapped-background-design";
 
 type Props = {
 	range: "long_term" | "short_term" | "medium_term";
@@ -39,12 +38,9 @@ export default function StatsWrapped(props: Props) {
 	const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
 
 	return (
-		<div className="border-border bg-card text-card-foreground relative mx-auto w-full overflow-hidden rounded-3xl border">
-			{/* Background */}
-			<WrappedBackgroundDesign />
-
+		<div className="border-border relative mx-auto w-full overflow-hidden rounded-3xl border">
 			{/* Content */}
-			<div className="relative z-10">
+			<div>
 				{/* Header */}
 				<div className="border-border flex items-center justify-between border-b px-6 py-4">
 					<span className="text-muted-foreground text-xs font-medium tracking-wider">
@@ -70,7 +66,7 @@ export default function StatsWrapped(props: Props) {
 								/>
 							</div>
 						</div>
-						<h2 className="text-card-foreground text-lg font-semibold tracking-tight">
+						<h2 className="text-foreground text-lg font-semibold tracking-tight">
 							{artists?.[0].name}
 						</h2>
 					</div>
@@ -93,7 +89,7 @@ export default function StatsWrapped(props: Props) {
 										<span className="text-muted-foreground/60 flex h-4 w-4 items-center justify-center text-[9px] font-medium">
 											{index + 1}
 										</span>
-										<span className="text-muted-foreground group-hover:text-card-foreground truncate text-xs font-medium transition-colors">
+										<span className="text-muted-foreground truncate text-xs font-medium transition-colors group-hover:text-zinc-900">
 											{artist.name}
 										</span>
 									</Link>
@@ -126,7 +122,7 @@ export default function StatsWrapped(props: Props) {
 						<p className="text-muted-foreground mb-1 text-xs font-medium tracking-[0.2em] uppercase">
 							Top Genre
 						</p>
-						<p className="text-card-foreground font-mono text-xl font-light tracking-tight capitalize">
+						<p className="text-foreground font-mono text-xl font-light tracking-tight capitalize">
 							{topGenre}
 						</p>
 					</div>

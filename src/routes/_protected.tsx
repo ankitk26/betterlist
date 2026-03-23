@@ -1,4 +1,6 @@
+import { useHotkey } from "@tanstack/react-hotkeys";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { useTheme } from "next-themes";
 import Header from "~/components/header";
 import Sidebar from "~/components/sidebar";
 import { ScrollArea } from "~/components/ui/scroll-area";
@@ -17,6 +19,20 @@ export const Route = createFileRoute("/_protected")({
 });
 
 function RouteComponent() {
+	const { setTheme, theme } = useTheme();
+
+	const toggleTheme = () => {
+		if (theme === "dark") {
+			setTheme("light");
+		} else {
+			setTheme("dark");
+		}
+	};
+
+	useHotkey("D", () => {
+		toggleTheme();
+	});
+
 	return (
 		<div className="flex h-full flex-col">
 			<Header />
