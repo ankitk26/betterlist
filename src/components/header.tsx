@@ -1,13 +1,10 @@
 import { CaretLeftIcon } from "@phosphor-icons/react";
 import { Link, useCanGoBack, useRouter } from "@tanstack/react-router";
-import { authClient } from "~/lib/auth-client";
 import HeaderAvatar from "./header-avatar";
 import SearchInput from "./search-input";
 import { Button } from "./ui/button";
-import { Skeleton } from "./ui/skeleton";
 
 export default function Header() {
-	const { isPending } = authClient.useSession();
 	const canGoBack = useCanGoBack();
 	const router = useRouter();
 
@@ -34,14 +31,7 @@ export default function Header() {
 			</div>
 
 			<div className="flex items-center gap-3">
-				{isPending && (
-					<div className="flex items-center gap-2">
-						<Skeleton className="size-10 rounded-full" />
-						<Skeleton className="h-4 w-24" />
-					</div>
-				)}
-
-				{!isPending && <HeaderAvatar />}
+				<HeaderAvatar />
 			</div>
 		</header>
 	);

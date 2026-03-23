@@ -40,7 +40,9 @@ const refreshTokenFromSpotify = createServerFn({ method: "POST" })
 		});
 
 		if (error) {
-			console.error("[error in refreshing token]");
+			console.error(
+				`[${new Date().toISOString()}] [error in refreshing token]`,
+			);
 			console.error(error);
 			return null;
 		}
@@ -56,7 +58,9 @@ const refreshTokenFromSpotify = createServerFn({ method: "POST" })
 				})
 				.where(eq(account.userId, userId));
 		} catch (e) {
-			console.error("[error updating account in database]");
+			console.error(
+				`[${new Date().toISOString()}] [error updating account in database]`,
+			);
 			console.error(e);
 			return null;
 		}
@@ -69,7 +73,7 @@ export const getUserAccount = createServerFn({ method: "GET" })
 	.handler(async ({ data: session }) => {
 		const db = drizzle(env.DB);
 
-		console.log("[fetching account data]");
+		console.log(`[${new Date().toISOString()}] [fetching account data]`);
 
 		let accountData;
 		try {
@@ -85,21 +89,25 @@ export const getUserAccount = createServerFn({ method: "GET" })
 				.limit(1)
 				.then((res) => res[0]);
 		} catch (error) {
-			console.error("[error fetching account data from database]");
+			console.error(
+				`[${new Date().toISOString()}] [error fetching account data from database]`,
+			);
 			console.error(error);
 			return { token: null, accountId: null };
 		}
 
-		console.log("[received account data]");
+		console.log(`[${new Date().toISOString()}] [received account data]`);
 
 		// Return null if no account is found
 		if (!accountData) {
-			console.log("[account data is null]");
+			console.log(`[${new Date().toISOString()}] [account data is null]`);
 			return { token: null, accountId: null };
 		}
 
 		// check expiry date of access token
-		console.log("[checking token expiration date]");
+		console.log(
+			`[${new Date().toISOString()}] [checking token expiration date]`,
+		);
 		const tokenExpiry = new Date(
 			accountData.accessTokenExpiresAt ?? Date.now(),
 		).getTime();
@@ -107,15 +115,17 @@ export const getUserAccount = createServerFn({ method: "GET" })
 
 		if (currentTime >= tokenExpiry) {
 			// Refresh token if it expired
-			console.log("[token is expired]");
+			console.log(`[${new Date().toISOString()}] [token is expired]`);
 
 			// Check if refresh token exists
 			if (!accountData.refreshToken) {
-				console.error("[no refresh token available]");
+				console.error(
+					`[${new Date().toISOString()}] [no refresh token available]`,
+				);
 				return { token: null, accountId: accountData.accountId };
 			}
 
-			console.log("[refreshing token]");
+			console.log(`[${new Date().toISOString()}] [refreshing token]`);
 
 			let newAccessToken;
 			try {
@@ -126,20 +136,22 @@ export const getUserAccount = createServerFn({ method: "GET" })
 					},
 				});
 			} catch (error) {
-				console.error("[error refreshing token]");
+				console.error(`[${new Date().toISOString()}] [error refreshing token]`);
 				console.error(error);
 				return { token: null, accountId: accountData.accountId };
 			}
 
 			if (!newAccessToken) {
-				console.error("[token refresh failed. null token received]");
+				console.error(
+					`[${new Date().toISOString()}] [token refresh failed. null token received]`,
+				);
 				return { token: null, accountId: accountData.accountId };
 			}
 
-			console.log("[token refreshed]");
+			console.log(`[${new Date().toISOString()}] [token refreshed]`);
 			return { token: newAccessToken, accountId: accountData.accountId };
 		}
 
-		console.log("[token is not expired]");
+		console.log(`[${new Date().toISOString()}] [token is not expired]`);
 		return { token: accountData.accessToken, accountId: accountData.accountId };
 	});

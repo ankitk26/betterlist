@@ -1,13 +1,12 @@
 import { DotIcon } from "@phosphor-icons/react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouteContext } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { useMemo } from "react";
 import TracksTable from "~/components/tracks-table";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
-import { authClient } from "~/lib/auth-client";
 import { likedSongsInfiniteQuery } from "~/queries";
 
 export const Route = createFileRoute("/_protected/collection/tracks")({
@@ -15,6 +14,7 @@ export const Route = createFileRoute("/_protected/collection/tracks")({
 });
 
 function RouteComponent() {
+	const { session } = useRouteContext({ from: "/_protected" });
 	const {
 		data: tracksData,
 		fetchNextPage,
@@ -22,7 +22,6 @@ function RouteComponent() {
 		isFetchingNextPage,
 		isPending: isTracksPending,
 	} = useInfiniteQuery(likedSongsInfiniteQuery);
-	const { data: authData, isPending: authIsPending } = authClient.useSession();
 
 	const tracks = useMemo(() => {
 		if (!tracksData) return [];
@@ -31,7 +30,7 @@ function RouteComponent() {
 
 	const totalTracks = tracksData?.pages[0]?.total ?? 0;
 
-	if (isTracksPending || authIsPending) {
+	if (isTracksPending) {
 		return (
 			<section className="space-y-20">
 				<div className="flex items-end gap-4">
@@ -66,7 +65,7 @@ function RouteComponent() {
 					<h2 className="mt-2 text-6xl font-bold">Liked Songs</h2>
 
 					<div className="flex items-center text-sm font-semibold">
-						<span>{authData?.user.name}</span>
+						<span>{session.user.name}</span>
 						{totalTracks > 0 && (
 							<>
 								<DotIcon />

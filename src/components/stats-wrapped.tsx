@@ -89,7 +89,7 @@ export default function StatsWrapped(props: Props) {
 										<span className="text-muted-foreground/60 flex h-4 w-4 items-center justify-center text-[9px] font-medium">
 											{index + 1}
 										</span>
-										<span className="text-muted-foreground truncate text-xs font-medium transition-colors group-hover:text-zinc-900">
+										<span className="text-muted-foreground hover:text-foreground group-hover:text-foreground truncate text-xs font-medium transition-colors">
 											{artist.name}
 										</span>
 									</Link>

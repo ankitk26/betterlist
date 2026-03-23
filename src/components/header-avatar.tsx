@@ -1,5 +1,5 @@
 import { SignOutIcon, UserIcon } from "@phosphor-icons/react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useRouteContext } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { authClient } from "~/lib/auth-client";
 import ThemeHandler from "./theme-handler";
@@ -14,7 +14,7 @@ import {
 } from "./ui/dropdown-menu";
 
 export default function HeaderAvatar() {
-	const { data: session } = authClient.useSession();
+	const { session } = useRouteContext({ from: "/_protected" });
 	const navigate = useNavigate();
 
 	const handleSignOut = async () => {
@@ -27,18 +27,18 @@ export default function HeaderAvatar() {
 			<DropdownMenuTrigger
 				render={
 					<button className="border-border bg-card hover:bg-accent flex cursor-pointer items-center gap-3 rounded-full border py-1 pr-3 pl-1 transition-colors">
-						{session?.user.image ? (
+						{session.user.image ? (
 							<Image
-								alt={session?.user?.name}
+								alt={session.user.name}
 								className="size-6 rounded-full object-contain"
 								height={28}
-								src={(session?.user.image as string) || "/placeholder.svg"}
+								src={(session.user.image as string) || "/placeholder.svg"}
 								width={28}
 							/>
 						) : (
 							<UserIcon className="rounded-full p-1" />
 						)}
-						<span className="text-xs">{session?.user.name}</span>
+						<span className="text-xs">{session.user.name}</span>
 					</button>
 				}
 			/>
