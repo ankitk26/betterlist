@@ -20,7 +20,7 @@ export default function TracksTableRow({
 	showSubtitle,
 }: Props) {
 	return (
-		<div className="group grid grid-cols-12 rounded-lg px-4 py-2 transition-colors hover:bg-muted/50">
+		<div className="group grid grid-cols-12 px-4 py-2 transition-colors hover:bg-muted/50">
 			<TracksTableRowCheckbox index={index} trackId={track.id} />
 
 			<TracksTableTitleColumn

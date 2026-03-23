@@ -13,14 +13,14 @@ export default function TrackCards({ tracks }: Props) {
 				?.filter((track) => track !== null)
 				.map((track: Track) => (
 					<div
-						className="group/item h-full rounded-lg border bg-input/30 p-4 text-secondary-foreground transition duration-300 hover:bg-secondary dark:border-none"
+						className="group/item h-full border bg-input/30 p-4 text-secondary-foreground transition duration-300 hover:bg-secondary dark:border-none"
 						key={track.id}
 					>
 						<div className="relative">
 							{track.album.images.length > 0 ? (
 								<Image
 									alt={track.name}
-									className="aspect-square w-full rounded-md object-cover"
+									className="aspect-square w-full object-cover"
 									height={160}
 									src={track.album.images[0].url}
 									width={160}

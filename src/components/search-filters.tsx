@@ -17,7 +17,7 @@ export default function SearchFilters() {
 				const href = `/search/$query/${tag.link}`;
 				return (
 					<Link
-						className="rounded-full bg-secondary px-4 py-1 font-medium transition-colors"
+						className="bg-secondary px-4 py-1 font-medium transition-colors"
 						key={tag.label}
 						params={{ query }}
 						to={href}

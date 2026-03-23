@@ -19,12 +19,12 @@ export default function SidebarLikedSongs() {
 			activeProps={{
 				className: "bg-secondary",
 			}}
-			className="flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-md p-2 hover:bg-secondary"
+			className="flex w-full min-w-0 items-center gap-3 overflow-hidden p-2 hover:bg-secondary"
 			to="/collection/tracks"
 		>
 			<Image
 				alt="Liked playlist cover"
-				className="shrink-0 rounded-md"
+				className="shrink-0"
 				height={50}
 				src={likesSongsPlaylistCoverImage}
 				width={50}

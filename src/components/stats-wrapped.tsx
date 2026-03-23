@@ -38,7 +38,7 @@ export default function StatsWrapped(props: Props) {
 	const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
 
 	return (
-		<div className="relative mx-auto w-full overflow-hidden rounded-3xl border border-border">
+		<div className="relative mx-auto w-full overflow-hidden border border-border">
 			{/* Content */}
 			<div>
 				{/* Header */}
@@ -55,8 +55,8 @@ export default function StatsWrapped(props: Props) {
 						<p className="mb-2 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
 							Top Artist
 						</p>
-						<div className="mb-3 inline-block overflow-hidden rounded-full border-2 border-border p-1">
-							<div className="relative size-40 overflow-hidden rounded-full bg-muted">
+						<div className="mb-3 inline-block overflow-hidden border-2 border-border p-1">
+							<div className="relative size-40 overflow-hidden bg-muted">
 								<Image
 									alt={artists?.[0].name}
 									className="size-full object-cover"

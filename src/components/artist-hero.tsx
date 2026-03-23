@@ -14,7 +14,7 @@ export default function ArtistHero() {
 		return (
 			<div>
 				<div className="flex items-end gap-4">
-					<Skeleton className="aspect-square w-64 rounded-full" />
+					<Skeleton className="aspect-square w-64" />
 					<div className="flex-1 space-y-4">
 						<Skeleton className="h-6 w-3/4" />
 						<Skeleton className="h-6 w-32" />
@@ -36,7 +36,7 @@ export default function ArtistHero() {
 					{artist.images.length > 0 ? (
 						<Image
 							alt={artist.name}
-							className="h-64 w-64 rounded-full object-cover shadow-xl ring-1 ring-border"
+							className="h-64 w-64 object-cover shadow-xl ring-1 ring-border"
 							height={256}
 							src={artist.images[0].url}
 							width={256}

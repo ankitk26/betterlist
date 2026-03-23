@@ -10,7 +10,7 @@ export default function UserTopTracks() {
 	if (isPending) {
 		return Array.from({ length: 6 }).map(() => (
 			<Skeleton
-				className="col-span-4 h-16 w-full rounded-md"
+				className="col-span-4 h-16 w-full"
 				key={`top_tracks_${crypto.randomUUID()}`}
 			/>
 		));
@@ -18,14 +18,14 @@ export default function UserTopTracks() {
 
 	return data?.map((track) => (
 		<div
-			className="group/item col-span-4 flex items-center justify-between truncate rounded-md border bg-input/30 pr-4 text-secondary-foreground hover:bg-secondary dark:border-none"
+			className="group/item col-span-4 flex items-center justify-between truncate border bg-input/30 pr-4 text-secondary-foreground hover:bg-secondary dark:border-none"
 			key={track.id}
 		>
 			<div className="flex items-center gap-4">
 				{track.album.images && track.album.images.length > 0 ? (
 					<Image
 						alt={track.name}
-						className="aspect-square h-full rounded-tl-md rounded-bl-md object-cover"
+						className="aspect-square h-full object-cover"
 						height={72}
 						src={track.album.images[0].url}
 						width={72}

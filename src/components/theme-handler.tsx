@@ -12,7 +12,7 @@ export default function ThemeHandler() {
 	return (
 		<div className="flex items-center justify-between">
 			<span className="text-sm">Theme</span>
-			<div className="flex items-center gap-1 rounded-md bg-muted p-1">
+			<div className="flex items-center gap-1 bg-muted p-1">
 				<Button
 					className="size-6 p-0"
 					onClick={() => handleThemeChange("light")}

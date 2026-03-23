@@ -13,20 +13,18 @@ type Props = {
 
 export default function CardItemContent({ item }: Props) {
 	return (
-		<div className="h-full cursor-pointer rounded-lg border bg-input/30 p-4 transition duration-300 hover:bg-secondary dark:border-none">
+		<div className="h-full cursor-pointer border bg-input/30 p-4 transition duration-300 hover:bg-secondary dark:border-none">
 			{item.image ? (
 				<Image
 					alt={item.title}
-					className={`aspect-square w-full object-cover ${
-						item.type === "artists" ? "rounded-full" : "rounded-md"
-					}`}
+					className="aspect-square w-full object-cover"
 					height={160}
 					src={item.image}
 					width={160}
 				/>
 			) : (
 				<div className="h-40 w-full">
-					<MusicNoteIcon className="h-full w-full rounded-md" />
+					<MusicNoteIcon className="h-full w-full" />
 				</div>
 			)}
 			<h3 className="mt-5 truncate font-bold">{item.title}</h3>

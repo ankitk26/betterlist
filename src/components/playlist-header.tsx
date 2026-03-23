@@ -14,13 +14,13 @@ export default function PlaylistHeader({ playlist, trackCount }: Props) {
 			{(playlist.images?.length ?? 0) > 0 ? (
 				<Image
 					alt={playlist.name}
-					className="h-64 w-64 rounded-lg object-cover shadow-xl ring-1 ring-border"
+					className="h-64 w-64 object-cover shadow-xl ring-1 ring-border"
 					height={256}
 					src={playlist.images?.[0].url || "/placeholder.svg"}
 					width={256}
 				/>
 			) : (
-				<div className="flex h-64 w-64 items-center justify-center rounded-lg bg-muted shadow-xl ring-1 ring-border">
+				<div className="flex h-64 w-64 items-center justify-center bg-muted shadow-xl ring-1 ring-border">
 					<MusicNoteIcon className="h-24 w-24 text-muted-foreground" />
 				</div>
 			)}

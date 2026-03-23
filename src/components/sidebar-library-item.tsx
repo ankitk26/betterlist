@@ -26,23 +26,20 @@ export default function SidebarLibraryItem({
 			activeProps={{
 				className: "bg-secondary",
 			}}
-			className="flex w-full min-w-0 items-center gap-3 overflow-hidden rounded-md p-2 hover:bg-secondary"
+			className="flex w-full min-w-0 items-center gap-3 overflow-hidden p-2 hover:bg-secondary"
 			to={href}
 		>
 			{image ? (
 				<Image
 					alt={title}
-					className={cn(
-						"aspect-square shrink-0 object-cover",
-						library === "artists" ? "rounded-full" : "rounded-md",
-					)}
+					className={cn("aspect-square shrink-0 object-cover")}
 					height={48}
 					src={image}
 					width={48}
 				/>
 			) : (
-				<div className="flex aspect-square h-12 shrink-0 items-center justify-center rounded-md border bg-muted dark:border-muted">
-					<MusicNoteIcon className="size-6 rounded-md" />
+				<div className="flex aspect-square h-12 shrink-0 items-center justify-center border bg-muted dark:border-muted">
+					<MusicNoteIcon className="size-6" />
 				</div>
 			)}
 

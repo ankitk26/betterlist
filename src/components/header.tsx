@@ -9,7 +9,7 @@ export default function Header() {
 	const router = useRouter();
 
 	return (
-		<header className="sticky top-0 z-50 mx-4 flex items-center justify-between rounded-lg p-2">
+		<header className="sticky top-0 z-50 mx-4 flex items-center justify-between p-2">
 			<Link to="/">
 				<h1>betterlist</h1>
 			</Link>

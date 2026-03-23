@@ -13,7 +13,7 @@ export default function TimeCapsule() {
 			<div className="mt-4 grid grid-cols-5 items-stretch gap-8">
 				{Array.from({ length: 5 }).map(() => (
 					<Skeleton
-						className="col-span-1 aspect-square w-full rounded-md"
+						className="col-span-1 aspect-square w-full"
 						key={`time_capsule_${crypto.randomUUID()}`}
 					/>
 				))}

@@ -5,7 +5,7 @@ export default function SquareSkeletons({ count = 5 }: { count?: number }) {
 		<div className="mt-4 grid grid-cols-5 items-stretch gap-8">
 			{Array.from({ length: count }).map(() => (
 				<Skeleton
-					className="col-span-1 aspect-square w-full rounded-md"
+					className="col-span-1 aspect-square w-full"
 					key={`recently_played_${crypto.randomUUID()}`}
 				/>
 			))}

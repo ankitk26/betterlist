@@ -26,17 +26,17 @@ export default function HeaderAvatar() {
 		<DropdownMenu>
 			<DropdownMenuTrigger
 				render={
-					<button className="flex cursor-pointer items-center gap-3 rounded-full border border-border bg-card py-1 pr-3 pl-1 transition-colors hover:bg-accent">
+					<button className="flex cursor-pointer items-center gap-3 border border-border bg-card py-1 pr-3 pl-1 transition-colors hover:bg-accent">
 						{session.user.image ? (
 							<Image
 								alt={session.user.name}
-								className="size-6 rounded-full object-contain"
+								className="size-6 object-contain"
 								height={28}
 								src={(session.user.image as string) || "/placeholder.svg"}
 								width={28}
 							/>
 						) : (
-							<UserIcon className="rounded-full p-1" />
+							<UserIcon className="p-1" />
 						)}
 						<span className="text-xs">{session.user.name}</span>
 					</button>

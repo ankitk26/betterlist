@@ -55,7 +55,7 @@ function RouteComponent() {
 			<div className="flex items-end gap-6">
 				<Image
 					alt="Liked Songs"
-					className="h-64 w-64 rounded-lg object-cover shadow-xl ring-1 ring-border"
+					className="h-64 w-64 object-cover shadow-xl ring-1 ring-border"
 					height={256}
 					src="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"
 					width={256}
@@ -102,7 +102,7 @@ function RouteComponent() {
 			)}
 
 			{tracks.length === 0 && (
-				<div className="mt-12 rounded-lg bg-muted p-12 shadow-sm">
+				<div className="mt-12 bg-muted p-12 shadow-sm">
 					<div className="flex flex-col items-center space-y-3 text-center">
 						<p className="text-foreground">No liked songs yet</p>
 						<p className="text-sm text-muted-foreground">
