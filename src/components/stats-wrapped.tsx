@@ -35,6 +35,7 @@ export default function StatsWrapped(props: Props) {
 		.flatMap((artist) => artist.genres)
 		.filter((genre) => genre !== undefined);
 
+	const rangeTitle = getRangeTitle(props.range);
 	const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
 
 	return (
@@ -44,7 +45,7 @@ export default function StatsWrapped(props: Props) {
 				{/* Header */}
 				<div className="flex items-center justify-between border-b border-border px-6 py-4">
 					<span className="text-xs font-medium tracking-wider text-muted-foreground">
-						{getRangeTitle(props.range)}
+						{rangeTitle}
 					</span>
 				</div>
 
@@ -58,7 +59,7 @@ export default function StatsWrapped(props: Props) {
 						<div className="mb-3 inline-block overflow-hidden border-2 border-border p-1">
 							<div className="relative size-40 overflow-hidden bg-muted">
 								<Image
-									alt={artists?.[0].name}
+									alt={artists[0].name}
 									className="size-full object-cover"
 									height={80}
 									src={largestImage?.url || ""}
@@ -67,7 +68,7 @@ export default function StatsWrapped(props: Props) {
 							</div>
 						</div>
 						<h2 className="text-lg font-semibold tracking-tight text-foreground">
-							{artists?.[0].name}
+							{artists[0].name}
 						</h2>
 					</div>
 
