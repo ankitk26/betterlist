@@ -1,4 +1,4 @@
-import { DotIcon, MusicNoteIcon } from "@phosphor-icons/react";
+import { DotIcon, VinylRecordIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import type { getAlbumById } from "~/server-fns/get-album-by-id";
@@ -19,15 +19,15 @@ export default function AlbumHeader({ album }: Props) {
 					width={256}
 				/>
 			) : (
-				<div className="h-40 w-full">
-					<MusicNoteIcon className="h-full w-full" size={160} />
+				<div className="flex h-64 w-64 items-center justify-center bg-muted">
+					<VinylRecordIcon className="size-52" />
 				</div>
 			)}
 			<div className="flex flex-col gap-3">
-				<h5 className="text-xs font-bold uppercase">{album.album_type}</h5>
-				<h2 className="text-5xl font-bold">{album.name}</h2>
+				<h5 className="text-xs uppercase">{album.album_type}</h5>
+				<h2 className="text-5xl font-medium">{album.name}</h2>
 
-				<div className="flex items-center text-sm font-semibold text-muted-foreground">
+				<div className="flex items-center text-sm text-muted-foreground">
 					<Link
 						className="hover:underline"
 						params={{ artistId: album.artists[0].id }}
