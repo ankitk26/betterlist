@@ -20,7 +20,7 @@ export default function AlbumHeader({ album }: Props) {
 				/>
 			) : (
 				<div className="flex h-64 w-64 items-center justify-center bg-muted">
-					<VinylRecordIcon className="size-52" />
+					<VinylRecordIcon className="text-muted-background size-32" />
 				</div>
 			)}
 			<div className="flex flex-col gap-3">

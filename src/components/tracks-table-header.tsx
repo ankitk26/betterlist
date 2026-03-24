@@ -24,7 +24,7 @@ export default function TracksTableHeader({
 	return (
 		<>
 			<header className="grid grid-cols-12 gap-2 p-4 pb-1 text-muted-foreground">
-				<div className="group relative col-span-1 flex items-center text-left font-semibold tracking-wider uppercase">
+				<div className="group relative col-span-1 flex items-center text-left font-medium tracking-wider uppercase">
 					<span
 						className={`text-sm text-muted-foreground transition-opacity duration-100 ease-out ${
 							areTracksSelected ? "opacity-0" : "group-hover:opacity-0"
@@ -54,7 +54,7 @@ export default function TracksTableHeader({
 
 				<div
 					className={cn(
-						"text-left text-sm font-semibold",
+						"text-left text-sm font-medium",
 						showAlbum ? "col-span-6" : "col-span-10",
 					)}
 				>
@@ -62,12 +62,10 @@ export default function TracksTableHeader({
 				</div>
 
 				{showAlbum && (
-					<div className="col-span-4 text-left text-sm font-semibold">
-						Album
-					</div>
+					<div className="col-span-4 text-left text-sm font-medium">Album</div>
 				)}
 
-				<div className="col-span-1 text-left font-semibold">
+				<div className="col-span-1 text-left font-medium">
 					<ClockIcon size={16} />
 				</div>
 			</header>

@@ -31,26 +31,23 @@ export default function TracksTableTitleColumn({
 						<div className="h-10 w-10 shrink-0">
 							<Image
 								alt={track.name}
-								className="h-10 w-10 rounded object-contain"
+								className="h-10 w-10 object-contain"
 								height={40}
 								src={track.album.images?.[0].url as string}
 								width={40}
 							/>
 						</div>
 					) : (
-						<MusicNoteIcon
-							className="h-10 w-10 rounded bg-input/30 p-2"
-							size={16}
-						/>
+						<div className="flex size-10 items-center justify-center bg-muted">
+							<MusicNoteIcon className="size-4 text-muted-foreground" />
+						</div>
 					))}
 
 				<div className="w-full truncate pr-3">
-					<span className="w-10/12 truncate text-sm font-medium">
-						{track.name}
-					</span>
+					<span className="w-10/12 truncate text-sm">{track.name}</span>
 
 					{showSubtitle && (
-						<div className="flex w-full flex-wrap items-center gap-1 pr-3 text-sm text-muted-foreground">
+						<div className="flex w-full flex-wrap items-center gap-1 pr-3 text-xs text-muted-foreground">
 							<span className="truncate">
 								{track.artists.map((artist, index) => (
 									<Fragment key={artist.id + track.id}>

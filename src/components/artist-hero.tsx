@@ -1,8 +1,4 @@
-import {
-	MicrophoneStageIcon,
-	MusicNoteIcon,
-	MusicNotesIcon,
-} from "@phosphor-icons/react";
+import { UserSoundIcon } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
@@ -47,7 +43,7 @@ export default function ArtistHero() {
 						/>
 					) : (
 						<div className="flex aspect-square h-64 w-64 items-center justify-center bg-muted">
-							<MusicNoteIcon className="size-52" />
+							<UserSoundIcon className="size-24 text-muted-foreground" />
 						</div>
 					)}
 					<div className="flex flex-col items-start gap-3">

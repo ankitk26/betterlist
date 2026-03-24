@@ -42,7 +42,7 @@ export default function TracksTableRow({
 				</div>
 			)}
 
-			<small className="col-span-1 flex items-center text-sm font-medium text-muted-foreground">
+			<small className="col-span-1 flex items-center text-xs text-muted-foreground">
 				{formatMs(track.duration_ms)}
 			</small>
 		</div>

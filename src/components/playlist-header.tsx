@@ -20,22 +20,22 @@ export default function PlaylistHeader({ playlist, trackCount }: Props) {
 					width={256}
 				/>
 			) : (
-				<div className="flex h-64 w-64 items-center justify-center bg-muted shadow-xl ring-1 ring-border">
-					<MusicNoteIcon className="h-24 w-24 text-muted-foreground" />
+				<div className="flex h-64 w-64 items-center justify-center bg-muted">
+					<MusicNoteIcon className="size-32 text-muted-foreground" />
 				</div>
 			)}
 
 			<div className="flex flex-col gap-3">
-				<h5 className="text-xs font-bold text-muted-foreground uppercase">
+				<h5 className="text-xs text-muted-foreground uppercase">
 					{playlist.type}
 				</h5>
-				<h2 className="text-6xl font-bold">{playlist.name}</h2>
+				<h2 className="text-5xl font-medium">{playlist.name}</h2>
 
 				{playlist.description && playlist.description !== "null" && (
 					<PlaylistDescription description={playlist.description} />
 				)}
 
-				<div className="flex items-center text-sm font-semibold">
+				<div className="flex items-center text-sm">
 					<span className="text-muted-foreground">
 						{playlist.owner?.display_name}
 					</span>
