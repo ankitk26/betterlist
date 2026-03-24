@@ -7,7 +7,7 @@ import { ScrollArea } from "./ui/scroll-area";
 
 export default function SideBar() {
 	return (
-		<aside className="col-span-2 flex h-[calc(100dvh-5.5rem)] flex-col overflow-hidden border bg-card px-2 text-card-foreground dark:border-none">
+		<aside className="col-span-2 flex h-[calc(100dvh-5.5rem)] flex-col overflow-hidden border bg-card px-2 text-card-foreground">
 			<div className="mt-2 flex min-w-0 flex-1 flex-col overflow-hidden px-2 py-4">
 				<CreatePlaylistDialog />
 
