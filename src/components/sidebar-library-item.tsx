@@ -44,7 +44,7 @@ export default function SidebarLibraryItem({
 			)}
 
 			<div className="min-w-0 flex-1 overflow-hidden">
-				<h6 className="truncate text-xs">{title}</h6>
+				<h6 className="truncate text-xs font-medium">{title}</h6>
 				{library !== "artists" && (
 					<span className="mt-1 truncate text-xs font-medium text-muted-foreground">
 						{subtitle}

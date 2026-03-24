@@ -31,7 +31,7 @@ export default function SidebarLikedSongs() {
 			/>
 
 			<div className="flex min-w-0 flex-1 flex-col gap-1 overflow-hidden">
-				<h6 className="truncate text-sm font-medium">Liked Songs</h6>
+				<h6 className="truncate text-xs font-medium">Liked Songs</h6>
 				<span className="block truncate text-xs text-muted-foreground">
 					{isPending ? (
 						<Skeleton className="h-3 w-1/2" />
