@@ -80,7 +80,7 @@ export default function AddToPlaylistButton() {
 					</Button>
 				}
 			/>
-			<DialogContent className="max-w-md">
+			<DialogContent className="max-w-2xl min-w-xl">
 				<DialogTitle>Add selected tracks to other playlists</DialogTitle>
 				<DialogDescription>Can select 5 playlists at a time</DialogDescription>
 				<div className="max-h-96 overflow-y-auto">
