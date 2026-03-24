@@ -29,6 +29,7 @@ const refreshTokenFromSpotify = createServerFn({ method: "POST" })
 			refresh_token: string;
 		}>("https://accounts.spotify.com/api/token", {
 			method: "POST",
+			timeout: 10000,
 			headers: {
 				"content-type": "application/x-www-form-urlencoded",
 				Authorization:

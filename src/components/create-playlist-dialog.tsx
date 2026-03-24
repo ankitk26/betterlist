@@ -9,7 +9,9 @@ import type { Playlist } from "~/types";
 import { Button } from "./ui/button";
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -54,8 +56,8 @@ export default function CreatePlaylistDialog() {
 		<Dialog onOpenChange={setIsOpen} open={isOpen}>
 			<DialogTrigger
 				render={
-					<Button size="lg">
-						<PlusIcon className="mr-1 size-4" />
+					<Button>
+						<PlusIcon className="size-4" />
 						Create playlist
 					</Button>
 				}
@@ -79,17 +81,20 @@ export default function CreatePlaylistDialog() {
 						/>
 					</div>
 
-					<div className="flex justify-end gap-3 pt-2">
+					<DialogFooter>
+						<DialogClose
+							render={
+								<Button
+									className="px-6"
+									onClick={() => setIsOpen(false)}
+									type="button"
+									variant="outline"
+								>
+									Cancel
+								</Button>
+							}
+						/>
 						<Button
-							className="px-6"
-							onClick={() => setIsOpen(false)}
-							type="button"
-							variant="outline"
-						>
-							Cancel
-						</Button>
-						<Button
-							className="px-6"
 							disabled={
 								!playlistName.trim() || createPlaylistMutation.isPending
 							}
@@ -101,7 +106,7 @@ export default function CreatePlaylistDialog() {
 								"Create Playlist"
 							)}
 						</Button>
-					</div>
+					</DialogFooter>
 				</form>
 			</DialogContent>
 		</Dialog>

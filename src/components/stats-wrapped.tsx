@@ -29,16 +29,16 @@ export default function StatsWrapped(props: Props) {
 		userTopArtistsQuery({ range: props.range }),
 	);
 
-	const largestImage = artists?.[0].images[0];
+	const largestImage = artists[0].images[0];
 
 	const allGenres = artists
-		?.flatMap((artist) => artist.genres)
+		.flatMap((artist) => artist.genres)
 		.filter((genre) => genre !== undefined);
 
 	const topGenre = getMostFrequentGenre(allGenres ?? ["NA"]);
 
 	return (
-		<div className="relative mx-auto w-full overflow-hidden border border-border">
+		<div className="mx-auto w-full overflow-hidden border border-border">
 			{/* Content */}
 			<div>
 				{/* Header */}
