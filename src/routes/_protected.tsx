@@ -39,7 +39,10 @@ function RouteComponent() {
 			<div className="mb-2 grid flex-1 grid-cols-10 gap-4 overflow-hidden p-4 pt-0">
 				<Sidebar />
 				<div className="col-span-8 flex flex-col border bg-card text-card-foreground">
-					<ScrollArea className="h-[calc(100dvh-6rem)]">
+					<ScrollArea
+						className="h-[calc(100dvh-6rem)]"
+						viewportClassName="focus-visible:ring-0 focus-visible:outline-none"
+					>
 						<main className="mx-8 my-8">
 							<Outlet />
 						</main>
