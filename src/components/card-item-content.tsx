@@ -23,13 +23,13 @@ export default function CardItemContent({ item }: Props) {
 					width={160}
 				/>
 			) : (
-				<div className="h-40 w-full">
-					<MusicNoteIcon className="h-full w-full" />
+				<div className="flex aspect-square size-40 items-center justify-center bg-card">
+					<MusicNoteIcon className="size-20 text-muted-foreground" />
 				</div>
 			)}
-			<h3 className="mt-5 truncate font-bold">{item.title}</h3>
+			<h3 className="mt-5 truncate">{item.title}</h3>
 			{item.subtitle && (
-				<h6 className="mt-1 truncate text-xs font-semibold text-muted-foreground">
+				<h6 className="mt-1 truncate text-xs text-muted-foreground">
 					{item.subtitle}
 				</h6>
 			)}

@@ -67,7 +67,7 @@ export default function StatsWrapped(props: Props) {
 								/>
 							</div>
 						</div>
-						<h2 className="text-lg font-semibold tracking-tight text-foreground">
+						<h2 className="text-lg font-medium tracking-tight text-muted-foreground">
 							{artists[0].name}
 						</h2>
 					</div>
@@ -87,10 +87,10 @@ export default function StatsWrapped(props: Props) {
 										key={artist.id}
 										className="group flex items-center gap-2"
 									>
-										<span className="flex h-4 w-4 items-center justify-center text-[9px] font-medium text-muted-foreground/60">
+										<span className="flex h-4 w-4 items-center justify-center text-xs text-muted-foreground/60">
 											{index + 1}
 										</span>
-										<span className="truncate text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground hover:text-foreground">
+										<span className="truncate text-xs text-muted-foreground transition-colors group-hover:text-foreground hover:text-foreground">
 											{artist.name}
 										</span>
 									</Link>
@@ -106,10 +106,10 @@ export default function StatsWrapped(props: Props) {
 							<div className="space-y-1.5">
 								{tracks?.map((track, index) => (
 									<div key={track.id} className="flex items-center gap-2">
-										<span className="flex h-4 w-4 items-center justify-center text-[9px] font-medium text-muted-foreground/60">
+										<span className="flex h-4 w-4 items-center justify-center text-xs text-muted-foreground/60">
 											{index + 1}
 										</span>
-										<span className="truncate text-xs font-medium text-muted-foreground">
+										<span className="truncate text-xs text-muted-foreground">
 											{track.name}
 										</span>
 									</div>

@@ -61,10 +61,10 @@ function RouteComponent() {
 					width={256}
 				/>
 				<div className="flex flex-col gap-3">
-					<h5 className="text-sm font-bold">Playlist</h5>
-					<h2 className="mt-2 text-6xl font-bold">Liked Songs</h2>
+					<h5 className="text-sm">Playlist</h5>
+					<h2 className="mt-2 text-5xl font-medium">Liked Songs</h2>
 
-					<div className="flex items-center text-sm font-semibold">
+					<div className="flex items-center text-sm">
 						<span>{session.user.name}</span>
 						{totalTracks > 0 && (
 							<>

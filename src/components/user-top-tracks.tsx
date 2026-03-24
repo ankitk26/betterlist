@@ -34,7 +34,7 @@ export default function UserTopTracks() {
 					<VinylRecordIcon size={20} />
 				)}
 				<div className="flex flex-col">
-					<h3 className="truncate font-semibold">{track.name}</h3>
+					<h3 className="truncate font-medium">{track.name}</h3>
 					<h5 className="text-sm text-muted-foreground">
 						{track.artists?.[0].name}
 					</h5>
