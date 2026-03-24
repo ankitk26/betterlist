@@ -1,4 +1,8 @@
-import { MusicNoteIcon } from "@phosphor-icons/react";
+import {
+	MicrophoneStageIcon,
+	MusicNoteIcon,
+	MusicNotesIcon,
+} from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
@@ -42,20 +46,18 @@ export default function ArtistHero() {
 							width={256}
 						/>
 					) : (
-						<div className="h-40 w-full">
-							<MusicNoteIcon className="h-full w-full bg-card" size={160} />
+						<div className="flex aspect-square h-64 w-64 items-center justify-center bg-muted">
+							<MusicNoteIcon className="size-52" />
 						</div>
 					)}
 					<div className="flex flex-col items-start gap-3">
-						<h2 className="text-5xl font-bold">{artist.name}</h2>
+						<h2 className="text-5xl font-medium">{artist.name}</h2>
 						<span className="text-sm text-muted-foreground">
 							{artist.followers?.total.toLocaleString()} followers
 						</span>
 						<div className="flex items-center gap-5 text-sm">
 							{artist?.genres?.map((genre: string) => (
-								<Badge key={genre} variant="secondary">
-									{genre}
-								</Badge>
+								<Badge key={genre}>{genre}</Badge>
 							))}
 						</div>
 					</div>
