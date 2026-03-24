@@ -34,7 +34,7 @@ function RouteComponent() {
 					<CardItem
 						item={{
 							id: playlist.id,
-							image: playlist.images[0].url ?? "",
+							image: playlist.images?.[0]?.url ?? "",
 							title: playlist.name,
 							subtitle: playlist.description,
 							type: "playlists",

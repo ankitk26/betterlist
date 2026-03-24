@@ -17,7 +17,7 @@ export default function SidebarArtists() {
 	}
 
 	if (isPending) {
-		return <SidebarSkeleton isArtist />;
+		return <SidebarSkeleton />;
 	}
 
 	return data?.map((artist) => (

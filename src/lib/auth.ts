@@ -54,8 +54,8 @@ export const auth = betterAuth({
 				}
 
 				return {
-					session: null,
-					user: null,
+					session: authSession,
+					user: { ...authUser, accessToken: null, accountId },
 				};
 			}
 			return {
