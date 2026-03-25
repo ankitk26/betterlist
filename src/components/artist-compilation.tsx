@@ -18,7 +18,7 @@ export default function ArtistCompilation() {
 
 	return (
 		<div>
-			<h1>Compilation</h1>
+			<h4>Compilation</h4>
 			<div className="mt-4 grid grid-cols-5 items-stretch gap-8">
 				{data?.map((album) => (
 					<CardItem

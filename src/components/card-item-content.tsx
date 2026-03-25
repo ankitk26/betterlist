@@ -27,7 +27,7 @@ export default function CardItemContent({ item }: Props) {
 					<MusicNoteIcon className="size-20 text-muted-foreground" />
 				</div>
 			)}
-			<h3 className="mt-5 truncate">{item.title}</h3>
+			<h3 className="mt-4 truncate">{item.title}</h3>
 			{item.subtitle && (
 				<h6 className="mt-1 truncate text-xs text-muted-foreground">
 					{item.subtitle}

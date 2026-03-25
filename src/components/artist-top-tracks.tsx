@@ -19,7 +19,7 @@ export default function ArtistTopTracks() {
 
 	return (
 		<div className="space-y-4">
-			<h1>Popular</h1>
+			<h4>Popular</h4>
 			<div className="space-y-4">
 				<TracksTableActions />
 				<div>

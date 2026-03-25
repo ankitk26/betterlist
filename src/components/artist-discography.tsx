@@ -18,7 +18,7 @@ export default function ArtistDiscography() {
 
 	return (
 		<div>
-			<h1>Discography</h1>
+			<h4>Discography</h4>
 			<div className="mt-4 grid grid-cols-5 items-stretch gap-8">
 				{data?.map((album) => {
 					const formatteReleaseDate = new Date(

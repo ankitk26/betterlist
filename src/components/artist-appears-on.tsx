@@ -18,7 +18,7 @@ export default function ArtistAppearsOn() {
 
 	return (
 		<div>
-			<h1>Appears On</h1>
+			<h4>Appears On</h4>
 			<div className="mt-4 grid grid-cols-5 items-stretch gap-8">
 				{data?.map((album) => (
 					<CardItem

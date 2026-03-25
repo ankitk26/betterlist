@@ -94,7 +94,6 @@ export default function RenamePlaylistDialog({
 						<Label htmlFor="playlist-name">Playlist Name</Label>
 						<Input
 							autoFocus
-							className="h-11"
 							id="playlist-name"
 							onChange={(e) => setPlaylistName(e.target.value)}
 							placeholder="Enter new playlist name..."

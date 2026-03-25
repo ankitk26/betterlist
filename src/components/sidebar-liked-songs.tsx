@@ -25,9 +25,9 @@ export default function SidebarLikedSongs() {
 			<Image
 				alt="Liked playlist cover"
 				className="shrink-0"
-				height={50}
+				height={48}
 				src={likesSongsPlaylistCoverImage}
-				width={50}
+				width={48}
 			/>
 
 			<div className="flex min-w-0 flex-1 flex-col gap-1 overflow-hidden">

@@ -4,7 +4,7 @@ import { Skeleton } from "./ui/skeleton";
 export default function SquareCoverPageSkeleton() {
 	return (
 		<section className="space-y-20">
-			<div className="flex items-end gap-4">
+			<div className="flex items-end gap-6">
 				<Skeleton className="aspect-square w-64" />
 				<div className="flex-1 space-y-4">
 					<Skeleton className="h-6 w-32" />
