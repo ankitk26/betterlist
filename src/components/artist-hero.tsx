@@ -43,7 +43,7 @@ export default function ArtistHero() {
 						/>
 					) : (
 						<div className="flex aspect-square h-64 w-64 items-center justify-center bg-muted">
-							<UserSoundIcon className="size-24 text-muted-foreground" />
+							<UserSoundIcon className="size-32 text-muted-foreground" />
 						</div>
 					)}
 					<div className="flex flex-col items-start gap-3">

@@ -61,15 +61,17 @@ function RouteComponent() {
 					width={256}
 				/>
 				<div className="flex flex-col gap-3">
-					<h5 className="text-sm">Playlist</h5>
-					<h2 className="mt-2 text-5xl font-medium">Liked Songs</h2>
+					<h5 className="text-xs text-muted-foreground uppercase">Playlist</h5>
+					<h2 className="text-5xl font-medium">Liked Songs</h2>
 
 					<div className="flex items-center text-sm">
-						<span>{session.user.name}</span>
+						<span className="text-muted-foreground">{session.user.name}</span>
 						{totalTracks > 0 && (
 							<>
-								<DotIcon />
-								<span>{totalTracks.toLocaleString()} songs</span>
+								<DotIcon className="text-muted-foreground" />
+								<span className="text-muted-foreground">
+									{totalTracks.toLocaleString()} songs
+								</span>
 							</>
 						)}
 					</div>

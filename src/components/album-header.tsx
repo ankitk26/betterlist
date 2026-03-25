@@ -20,27 +20,33 @@ export default function AlbumHeader({ album }: Props) {
 				/>
 			) : (
 				<div className="flex h-64 w-64 items-center justify-center bg-muted">
-					<VinylRecordIcon className="text-muted-background size-32" />
+					<VinylRecordIcon className="size-32 text-muted-foreground" />
 				</div>
 			)}
 			<div className="flex flex-col gap-3">
-				<h5 className="text-xs uppercase">{album.album_type}</h5>
+				<h5 className="text-xs text-muted-foreground uppercase">
+					{album.album_type}
+				</h5>
 				<h2 className="text-5xl font-medium">{album.name}</h2>
 
-				<div className="flex items-center text-sm text-muted-foreground">
+				<div className="flex items-center text-sm">
 					<Link
-						className="hover:underline"
+						className="text-muted-foreground hover:underline"
 						params={{ artistId: album.artists[0].id }}
 						to="/artists/$artistId"
 					>
 						{album.artists[0].name}
 					</Link>
-					<DotIcon />
-					<span>{new Date(album.release_date).getFullYear()}</span>
+					<DotIcon className="text-muted-foreground" />
+					<span className="text-muted-foreground">
+						{new Date(album.release_date).getFullYear()}
+					</span>
 					{album.tracks && album.tracks.items.length > 0 && (
 						<>
-							<DotIcon />
-							<span>{album.tracks.total} songs</span>
+							<DotIcon className="text-muted-foreground" />
+							<span className="text-muted-foreground">
+								{album.tracks.total} songs
+							</span>
 						</>
 					)}
 				</div>
