@@ -2,8 +2,15 @@ import { SpinnerIcon } from "@phosphor-icons/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
-import { playlistByIdQuery, userPlaylistsQuery } from "~/queries";
+import {
+	likedSongsCountQuery,
+	likedSongsInfiniteQuery,
+	playlistByIdQuery,
+	userPlaylistsQuery,
+} from "~/queries";
 import { deleteTracksFromPlaylist } from "~/server-fns/delete-tracks-from-playlist";
+import { updateLikedTracks } from "~/server-fns/update-liked-tracks";
+import { LIKED_SONGS_PLAYLIST_ID } from "~/static/constants";
 import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
 import {
 	AlertDialog,
@@ -36,9 +43,9 @@ export default function DeletePlaylistTracksButton({
 
 	const deleteTracksMutation = useMutation({
 		mutationFn: deleteTracksFromPlaylist,
-		onSuccess: async () => {
+		onSuccess: () => {
 			toast("Deleting tracks");
-			await queryClient.invalidateQueries({
+			queryClient.invalidateQueries({
 				queryKey: playlistByIdQuery(playlistId).queryKey,
 			});
 			queryClient.invalidateQueries({
@@ -54,12 +61,39 @@ export default function DeletePlaylistTracksButton({
 		},
 	});
 
+	const updateLikedTracksMutation = useMutation({
+		mutationFn: updateLikedTracks,
+		onSuccess: () => {
+			toast("Deleting tracks");
+			queryClient.invalidateQueries({
+				queryKey: likedSongsCountQuery.queryKey,
+			});
+			queryClient.invalidateQueries({
+				queryKey: likedSongsInfiniteQuery.queryKey,
+			});
+			clearAll();
+			setIsOpen(false);
+			toast.success("Tracks deleted");
+		},
+		onError: (error) => {
+			toast.error("Failed to remove tracks. Please try again.");
+			console.error("Error deleting tracks:", error);
+		},
+	});
+
 	const handleDeleteTracks = () => {
-		deleteTracksMutation.mutate({
-			data: {
-				playlistId,
-				trackIds: [...selectedTrackIds],
-			},
+		if (playlistId !== LIKED_SONGS_PLAYLIST_ID) {
+			deleteTracksMutation.mutate({
+				data: {
+					playlistId,
+					trackIds: [...selectedTrackIds],
+				},
+			});
+			return;
+		}
+
+		updateLikedTracksMutation.mutate({
+			data: { trackIds: [...selectedTrackIds], action: "DELETE" },
 		});
 	};
 
@@ -82,27 +116,32 @@ export default function DeletePlaylistTracksButton({
 					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
-					<AlertDialogCancel disabled={deleteTracksMutation.isPending}>
+					<AlertDialogCancel
+						disabled={
+							deleteTracksMutation.isPending ||
+							updateLikedTracksMutation.isPending
+						}
+					>
 						Cancel
 					</AlertDialogCancel>
 					<AlertDialogAction
-						render={
-							<Button
-								variant="destructive"
-								disabled={deleteTracksMutation.isPending}
-								onClick={handleDeleteTracks}
-							>
-								{deleteTracksMutation.isPending ? (
-									<>
-										<SpinnerIcon className="animate-spin" />
-										Removing...
-									</>
-								) : (
-									"Remove tracks"
-								)}
-							</Button>
+						disabled={
+							deleteTracksMutation.isPending ||
+							updateLikedTracksMutation.isPending
 						}
-					/>
+						onClick={handleDeleteTracks}
+						variant="destructive"
+					>
+						{deleteTracksMutation.isPending ||
+						updateLikedTracksMutation.isPending ? (
+							<>
+								<SpinnerIcon className="animate-spin" />
+								Removing...
+							</>
+						) : (
+							"Remove tracks"
+						)}
+					</AlertDialogAction>
 				</AlertDialogFooter>
 			</AlertDialogContent>
 		</AlertDialog>

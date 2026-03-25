@@ -109,7 +109,7 @@ export default function AddToPlaylistButton() {
 			clearAll();
 
 			toast.success("Tracks added");
-		} catch (_error) {
+		} catch {
 			toast.error("Failed to add tracks");
 		}
 	};

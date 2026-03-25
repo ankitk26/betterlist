@@ -3,11 +3,15 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { createFileRoute, useRouteContext } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { useMemo } from "react";
+import AddToPlaylistButton from "~/components/add-to-playlist-button";
+import DeletePlaylistTracksButton from "~/components/delete-playlist-tracks-button";
+import RemoveDuplicatesButton from "~/components/remove-duplicates-button";
 import TracksTable from "~/components/tracks-table";
 import TracksTableSkeleton from "~/components/tracks-table-skeleton";
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
 import { likedSongsInfiniteQuery } from "~/queries";
+import { LIKED_SONGS_PLAYLIST_ID } from "~/static/constants";
 
 export const Route = createFileRoute("/_protected/collection/tracks")({
 	component: RouteComponent,
@@ -76,6 +80,12 @@ function RouteComponent() {
 						)}
 					</div>
 				</div>
+			</div>
+
+			<div className="flex items-center gap-4">
+				<AddToPlaylistButton />
+				<DeletePlaylistTracksButton playlistId={LIKED_SONGS_PLAYLIST_ID} />
+				<RemoveDuplicatesButton tracks={tracks ?? []} />
 			</div>
 
 			{tracks.length > 0 && (

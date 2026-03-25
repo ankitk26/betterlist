@@ -4,19 +4,19 @@ import type { Playlist } from "~/types";
 import { Card, CardContent } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
 
-interface AddToPlaylistItemProps {
+type Props = {
 	playlist: Playlist;
 	isSelected: boolean;
 	isDisabled: boolean;
 	onToggle: (playlistId: string) => void;
-}
+};
 
 export function AddToPlaylistItem({
 	playlist,
 	isSelected,
 	isDisabled,
 	onToggle,
-}: AddToPlaylistItemProps) {
+}: Props) {
 	const coverImage = playlist.images?.[0]?.url;
 
 	return (
