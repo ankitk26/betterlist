@@ -1,7 +1,7 @@
 import { betterFetch } from "@better-fetch/fetch";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { spotifyApiBaseUrl } from "~/static/constants";
+import { SPOTIFY_API_BASE_URL } from "~/static/constants";
 import type { Track } from "~/types";
 import { getAuthSession } from "./get-auth-session";
 
@@ -32,7 +32,7 @@ export const getLikedSongs = createServerFn({ method: "GET" })
 		const { data: responseData, error } = await betterFetch<LikedSongs>(
 			endpoint,
 			{
-				baseURL: endpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+				baseURL: endpoint.startsWith("https") ? "" : SPOTIFY_API_BASE_URL,
 				headers: {
 					Authorization: `Bearer ${session.user.accessToken}`,
 				},

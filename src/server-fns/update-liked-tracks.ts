@@ -4,11 +4,11 @@ import { z } from "zod";
 import { SPOTIFY_API_BASE_URL } from "~/static/constants";
 import { getAuthSession } from "./get-auth-session";
 
-export const deleteTracksFromPlaylist = createServerFn({ method: "POST" })
+export const updateLikedTracks = createServerFn({ method: "POST" })
 	.inputValidator(
 		z.object({
 			trackIds: z.array(z.string()),
-			playlistId: z.string(),
+			action: z.enum(["ADD", "DELETE"]),
 		}),
 	)
 	.handler(async ({ data }) => {
@@ -17,16 +17,12 @@ export const deleteTracksFromPlaylist = createServerFn({ method: "POST" })
 			throw new Error("Invalid request");
 		}
 
-		if (!data.playlistId) {
-			throw new Error("Need playlist");
-		}
-
 		if (data.trackIds.length === 0) {
 			throw new Error("Need tracks");
 		}
 
-		// Process tracks in batches of 100
-		const batchSize = 100;
+		// Process tracks in batches of 40
+		const batchSize = 40;
 		const trackBatches = [];
 
 		for (let i = 0; i < data.trackIds.length; i += batchSize) {
@@ -34,20 +30,20 @@ export const deleteTracksFromPlaylist = createServerFn({ method: "POST" })
 		}
 
 		for (const trackBatch of trackBatches) {
-			const formattedTrackIds = trackBatch.map((trackId) => ({
-				uri: `spotify:track:${trackId}`,
-			}));
+			const formattedTrackIds = trackBatch.map(
+				(trackId) => `spotify:track:${trackId}`,
+			);
 
-			const endpoint = `/playlists/${data.playlistId}/items`;
+			const endpoint = `/me/library`;
 
 			const { error } = await betterFetch(endpoint, {
-				method: "DELETE",
+				method: data.action === "ADD" ? "PUT" : "DELETE",
 				baseURL: SPOTIFY_API_BASE_URL,
 				headers: {
 					Authorization: `Bearer ${session.user.accessToken}`,
 				},
-				body: {
-					tracks: formattedTrackIds,
+				query: {
+					uris: formattedTrackIds.join(","),
 				},
 			});
 

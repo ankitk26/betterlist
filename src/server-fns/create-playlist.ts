@@ -1,7 +1,7 @@
 import { betterFetch } from "@better-fetch/fetch";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { spotifyApiBaseUrl } from "~/static/constants";
+import { SPOTIFY_API_BASE_URL } from "~/static/constants";
 import type { Playlist } from "~/types";
 import { getAuthSession } from "./get-auth-session";
 
@@ -17,7 +17,7 @@ export const createPlaylist = createServerFn({ method: "POST" })
 
 		const { data: newPlaylist, error } = await betterFetch<Playlist>(endpoint, {
 			method: "POST",
-			baseURL: spotifyApiBaseUrl,
+			baseURL: SPOTIFY_API_BASE_URL,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},
