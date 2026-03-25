@@ -1,6 +1,6 @@
 import { useHotkey } from "@tanstack/react-hotkeys";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { useTheme } from "next-themes";
+import { useTheme } from "better-themes";
 import Header from "~/components/header";
 import Sidebar from "~/components/sidebar";
 import { ScrollArea } from "~/components/ui/scroll-area";

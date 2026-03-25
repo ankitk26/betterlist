@@ -7,7 +7,7 @@ import {
 	Outlet,
 	Scripts,
 } from "@tanstack/react-router";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ThemeProvider } from "better-themes";
 import type { ReactNode } from "react";
 import { Toaster } from "~/components/ui/sonner";
 import { authSessionQuery } from "~/queries";
@@ -55,7 +55,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 				<HeadContent />
 			</head>
 			<body>
-				<NextThemesProvider
+				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
 					disableTransitionOnChange
@@ -64,7 +64,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 					{children}
 					<Toaster style={{ fontFamily: "inherit" }} />
 					<ReactQueryDevtools buttonPosition="bottom-right" />
-				</NextThemesProvider>
+				</ThemeProvider>
 				<Scripts />
 			</body>
 		</html>
