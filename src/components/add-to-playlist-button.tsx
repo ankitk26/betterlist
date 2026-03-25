@@ -10,7 +10,7 @@ import {
 } from "~/queries";
 import { addTracksToPlaylist } from "~/server-fns/add-tracks-to-playlist";
 import { updateLikedTracks } from "~/server-fns/update-liked-tracks";
-import { likesSongsPlaylistCoverImage } from "~/static/constants";
+import { LIKED_SONGS_PLAYLIST_COVER_IMAGE } from "~/static/constants";
 import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
 import { AddToPlaylistItem } from "./add-to-playlist-item";
 import { Badge } from "./ui/badge";
@@ -196,7 +196,7 @@ export default function AddToPlaylistButton() {
 						}
 					/>
 					<img
-						src={likesSongsPlaylistCoverImage}
+						src={LIKED_SONGS_PLAYLIST_COVER_IMAGE}
 						alt="Liked Songs cover"
 						className="h-12 w-12 object-cover"
 					/>

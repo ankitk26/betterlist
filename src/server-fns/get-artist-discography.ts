@@ -1,7 +1,7 @@
 import { betterFetch } from "@better-fetch/fetch";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { spotifyApiBaseUrl } from "~/static/constants";
+import { SPOTIFY_API_BASE_URL } from "~/static/constants";
 import type { Album } from "~/types";
 import { getAuthSession } from "./get-auth-session";
 
@@ -19,7 +19,7 @@ export const getArtistDiscography = createServerFn({ method: "GET" })
 		const { data: albumData, error: albumError } = await betterFetch<{
 			items: Album[];
 		}>(albumsEndpoint, {
-			baseURL: albumsEndpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+			baseURL: albumsEndpoint.startsWith("https") ? "" : SPOTIFY_API_BASE_URL,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},
@@ -28,7 +28,7 @@ export const getArtistDiscography = createServerFn({ method: "GET" })
 		const { data: singleData, error: singleError } = await betterFetch<{
 			items: Album[];
 		}>(singlesEndpoint, {
-			baseURL: singlesEndpoint.startsWith("https") ? "" : spotifyApiBaseUrl,
+			baseURL: singlesEndpoint.startsWith("https") ? "" : SPOTIFY_API_BASE_URL,
 			headers: {
 				Authorization: `Bearer ${session.user.accessToken}`,
 			},

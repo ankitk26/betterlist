@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { likedSongsCountQuery } from "~/queries";
-import { likesSongsPlaylistCoverImage } from "~/static/constants";
+import { LIKED_SONGS_PLAYLIST_COVER_IMAGE } from "~/static/constants";
 import { useSidebarStore } from "~/stores/sidebar-store";
 import { Skeleton } from "./ui/skeleton";
 
@@ -26,7 +26,7 @@ export default function SidebarLikedSongs() {
 				alt="Liked playlist cover"
 				className="shrink-0"
 				height={48}
-				src={likesSongsPlaylistCoverImage}
+				src={LIKED_SONGS_PLAYLIST_COVER_IMAGE}
 				width={48}
 			/>
 

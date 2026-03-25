@@ -45,11 +45,11 @@ function RouteComponent() {
 			)}
 
 			{tracks.length === 0 && (
-				<div className="mt-12 bg-muted p-12 shadow-sm">
-					<div className="flex flex-col items-center space-y-3 text-center">
-						<p className="text-foreground">No tracks yet</p>
+				<div className="mt-12 border border-dashed border-border p-12">
+					<div className="flex flex-col items-center space-y-2 text-center">
+						<p className="text-lg font-medium text-foreground">No tracks yet</p>
 						<p className="text-sm text-muted-foreground">
-							This playlist is empty
+							This playlist is empty. Add some tracks to get started.
 						</p>
 					</div>
 				</div>
