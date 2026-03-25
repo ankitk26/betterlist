@@ -1,4 +1,5 @@
 import { Link, useParams } from "@tanstack/react-router";
+import { Badge } from "./ui/badge";
 
 const searchFilterTags = [
 	{ link: "", label: "All" },
@@ -16,13 +17,8 @@ export default function SearchFilters() {
 			{searchFilterTags.map((tag) => {
 				const href = `/search/$query/${tag.link}`;
 				return (
-					<Link
-						className="bg-secondary px-4 py-1 font-medium transition-colors"
-						key={tag.label}
-						params={{ query }}
-						to={href}
-					>
-						{tag.label}
+					<Link key={tag.label} params={{ query }} to={href}>
+						<Badge variant="secondary">{tag.label}</Badge>
 					</Link>
 				);
 			})}

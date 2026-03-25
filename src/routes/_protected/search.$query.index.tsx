@@ -35,7 +35,7 @@ function RouteComponent() {
 			{data.tracks && data.tracks.length > 0 && (
 				<div className="flex flex-col items-stretch">
 					<h1>Tracks</h1>
-					<TracksTable showAlbum showCover showSubtitle tracks={data.tracks} />
+					<TracksTable tracks={data.tracks} showAlbum showCover showSubtitle />
 				</div>
 			)}
 

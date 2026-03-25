@@ -17,6 +17,8 @@ export function getRouter() {
 	const router = createRouter({
 		routeTree,
 		scrollRestoration: true,
+		scrollToTopSelectors: ['[data-slot="scroll-area-viewport"]'],
+		scrollRestorationBehavior: "instant",
 		context: { queryClient, session: null },
 		defaultPreload: "intent",
 		defaultNotFoundComponent: () => <p>Not found</p>,
