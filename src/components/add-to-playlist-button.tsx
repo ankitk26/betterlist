@@ -1,11 +1,12 @@
-import { CheckIcon, SpinnerIcon, MusicNoteIcon } from "@phosphor-icons/react";
+import { SpinnerIcon } from "@phosphor-icons/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
-import { cn } from "~/lib/utils";
 import { playlistByIdQuery, userPlaylistsQuery } from "~/queries";
 import { addTracksToPlaylist } from "~/server-fns/add-tracks-to-playlist";
 import { usePlaylistEditorStore } from "~/stores/playlist-editor-store";
+import { AddToPlaylistItem } from "./add-to-playlist-item";
+import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import {
 	Dialog,
@@ -16,17 +17,19 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "./ui/dialog";
+import { ScrollArea } from "./ui/scroll-area";
 import { Skeleton } from "./ui/skeleton";
 
+const MAX_SELECTIONS = 5;
+
 export default function AddToPlaylistButton() {
-	const isTracksSelected = usePlaylistEditorStore(
-		(store) => store.selectedTrackIds.size === 0,
-	);
-	const selectedTracks = usePlaylistEditorStore(
+	const selectedTrackIds = usePlaylistEditorStore(
 		(store) => store.selectedTrackIds,
 	);
 	const clearAll = usePlaylistEditorStore((store) => store.clearAll);
-	const [selectedPlaylists, setSelectedPlaylists] = useState<string[]>([]);
+	const [selectedPlaylists, setSelectedPlaylists] = useState<Set<string>>(
+		new Set(),
+	);
 	const queryClient = useQueryClient();
 
 	const { data: allPlaylists, isPending } = useQuery(userPlaylistsQuery);
@@ -43,7 +46,7 @@ export default function AddToPlaylistButton() {
 			queryClient.invalidateQueries({
 				queryKey: userPlaylistsQuery.queryKey,
 			});
-			setSelectedPlaylists([]);
+			setSelectedPlaylists(new Set());
 			clearAll();
 		},
 		onError: () => {
@@ -54,103 +57,74 @@ export default function AddToPlaylistButton() {
 	const handleTracksAddition = () => {
 		addTracksToPlaylistsMutation.mutate({
 			data: {
-				playlistIds: selectedPlaylists,
-				trackIds: [...selectedTracks],
+				playlistIds: [...selectedPlaylists],
+				trackIds: [...selectedTrackIds],
 			},
 		});
 	};
 
 	const togglePlaylistSelection = (playlistId: string) => {
 		setSelectedPlaylists((prev) => {
-			if (prev.includes(playlistId)) {
-				return prev.filter((id) => id !== playlistId);
-			} else if (prev.length < 5) {
-				return [...prev, playlistId];
+			const next = new Set(prev);
+			if (next.has(playlistId)) {
+				next.delete(playlistId);
+			} else if (next.size < MAX_SELECTIONS) {
+				next.add(playlistId);
 			}
-			return prev;
+			return next;
 		});
 	};
+
+	const selectionCount = selectedPlaylists.size;
+	const isAtLimit = selectionCount >= MAX_SELECTIONS;
 
 	return (
 		<Dialog>
 			<DialogTrigger
 				render={
-					<Button disabled={isTracksSelected} variant="secondary">
+					<Button disabled={selectedTrackIds.size === 0} variant="secondary">
 						Add to playlist
 					</Button>
 				}
 			/>
 			<DialogContent className="max-w-2xl min-w-xl">
 				<DialogTitle>Add selected tracks to other playlists</DialogTitle>
-				<DialogDescription>Can select 5 playlists at a time</DialogDescription>
-				<div className="max-h-96 overflow-y-auto">
+				<div className="flex items-center gap-2">
+					<DialogDescription>
+						Can select 5 playlists at a time
+					</DialogDescription>
+					<Badge variant={isAtLimit ? "default" : "secondary"}>
+						{selectionCount}/{MAX_SELECTIONS}
+					</Badge>
+				</div>
+				<ScrollArea className="h-96">
 					{isPending ? (
-						<div className="space-y-3">
+						<div className="space-y-3 pr-3">
 							<Skeleton className="h-16 w-full" />
 							<Skeleton className="h-16 w-full" />
 							<Skeleton className="h-16 w-full" />
 						</div>
 					) : (
-						<div className="space-y-2">
-							{allPlaylists?.map((playlist) => {
-								const isSelected = selectedPlaylists.includes(playlist.id);
-								const coverImage = playlist.images?.[0]?.url;
-
-								return (
-									<button
-										key={playlist.id}
-										type="button"
-										onClick={() => togglePlaylistSelection(playlist.id)}
-										disabled={!isSelected && selectedPlaylists.length >= 5}
-										className={cn(
-											"flex w-full items-center gap-3 border p-3 transition-all hover:bg-accent/50",
-											isSelected
-												? "border-primary bg-primary/10"
-												: "border-border bg-card hover:border-accent-foreground/20",
-											!isSelected &&
-												selectedPlaylists.length >= 5 &&
-												"cursor-not-allowed opacity-50",
-										)}
-									>
-										<div className="relative">
-											{coverImage ? (
-												<img
-													src={coverImage || "/placeholder.svg"}
-													alt={`${playlist.name} cover`}
-													className="h-12 w-12 object-cover"
-												/>
-											) : (
-												<div className="flex h-12 w-12 items-center justify-center bg-muted">
-													<span className="text-xs text-muted-foreground">
-														<MusicNoteIcon />
-													</span>
-												</div>
-											)}
-											{isSelected && (
-												<div className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center bg-primary">
-													<CheckIcon className="h-3 w-3 text-primary-foreground" />
-												</div>
-											)}
-										</div>
-										<div className="flex-1 text-left">
-											<div className="line-clamp-1 text-sm font-medium">
-												{playlist.name}
-											</div>
-										</div>
-									</button>
-								);
-							})}
+						<div className="space-y-2 pr-3">
+							{allPlaylists?.map((playlist) => (
+								<AddToPlaylistItem
+									key={playlist.id}
+									playlist={playlist}
+									isSelected={selectedPlaylists.has(playlist.id)}
+									isDisabled={!selectedPlaylists.has(playlist.id) && isAtLimit}
+									onToggle={togglePlaylistSelection}
+								/>
+							))}
 						</div>
 					)}
-				</div>
+				</ScrollArea>
 
 				<DialogFooter>
 					<DialogClose render={<Button variant="outline">Cancel</Button>} />
 					<Button
 						onClick={handleTracksAddition}
 						disabled={
-							selectedPlaylists.length === 0 ||
-							addTracksToPlaylistsMutation.isPending
+							selectionCount === 0 || addTracksToPlaylistsMutation.isPending
 						}
 					>
 						{addTracksToPlaylistsMutation.isPending ? (
@@ -159,9 +133,7 @@ export default function AddToPlaylistButton() {
 								Adding...
 							</>
 						) : (
-							`Add to ${selectedPlaylists.length} playlist${
-								selectedPlaylists.length !== 1 ? "s" : ""
-							}`
+							`Add to ${selectionCount} playlist${selectionCount !== 1 ? "s" : ""}`
 						)}
 					</Button>
 				</DialogFooter>
