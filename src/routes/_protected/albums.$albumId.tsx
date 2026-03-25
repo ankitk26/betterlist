@@ -22,13 +22,15 @@ function RouteComponent() {
 		<div className="space-y-8">
 			{album && <AlbumHeader album={album} />}
 
-			<div className="space-y-1">
+			<div className="space-y-4">
 				<TracksTableActions />
-				<TracksTable
-					showHeader
-					showSubtitle
-					tracks={album ? album.tracks.items : []}
-				/>
+				<div>
+					<TracksTable
+						showHeader
+						showSubtitle
+						tracks={album ? album.tracks.items : []}
+					/>
+				</div>
 			</div>
 		</div>
 	);

@@ -61,6 +61,7 @@ function RouteComponent() {
 						playlistId={playlistId}
 						playlistName={playlist?.name ?? ""}
 						tracks={tracks}
+						playlistOwnerId={playlist?.owner.id}
 					/>
 					<TracksTable
 						showAlbum

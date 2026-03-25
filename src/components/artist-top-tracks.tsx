@@ -20,9 +20,11 @@ export default function ArtistTopTracks() {
 	return (
 		<div className="space-y-4">
 			<h1>Popular</h1>
-			<div className="space-y-1">
+			<div className="space-y-4">
 				<TracksTableActions />
-				<TracksTable showCover tracks={data ?? []} />
+				<div>
+					<TracksTable showCover tracks={data ?? []} />
+				</div>
 			</div>
 		</div>
 	);

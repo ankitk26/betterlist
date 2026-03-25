@@ -11,12 +11,14 @@ export const Route = createFileRoute("/_protected/artists/$artistId")({
 
 function RouteComponent() {
 	return (
-		<div className="space-y-16">
+		<div className="space-y-12">
 			<ArtistHero />
-			<ArtistTopTracks />
-			<ArtistDiscography />
-			<ArtistAppearsOn />
-			<ArtistCompilation />
+			<div className="space-y-16">
+				<ArtistTopTracks />
+				<ArtistDiscography />
+				<ArtistAppearsOn />
+				<ArtistCompilation />
+			</div>
 		</div>
 	);
 }

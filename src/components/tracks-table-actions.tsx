@@ -1,3 +1,4 @@
+import { useRouteContext } from "@tanstack/react-router";
 import type { Track } from "~/types";
 import AddToPlaylistButton from "./add-to-playlist-button";
 import DeletePlaylistTracksButton from "./delete-playlist-tracks-button";
@@ -8,22 +9,28 @@ type Props = {
 	playlistId?: string;
 	playlistName?: string;
 	tracks?: Track[];
+	playlistOwnerId?: string;
 };
 
 export default function TracksTableActions(props: Props) {
+	const { session } = useRouteContext({ from: "/_protected" });
+
 	return (
 		<div className="flex items-center gap-4">
 			<AddToPlaylistButton />
-			{props.playlistId && (
-				<>
-					<RenamePlaylistDialog
-						currentName={props.playlistName ?? ""}
-						playlistId={props.playlistId}
-					/>
-					<DeletePlaylistTracksButton playlistId={props.playlistId} />
-					<RemoveDuplicatesButton tracks={props.tracks ?? []} />
-				</>
-			)}
+
+			{props.playlistId &&
+				props.playlistOwnerId &&
+				props.playlistOwnerId === session.user.accountId && (
+					<>
+						<RenamePlaylistDialog
+							currentName={props.playlistName ?? ""}
+							playlistId={props.playlistId}
+						/>
+						<DeletePlaylistTracksButton playlistId={props.playlistId} />
+						<RemoveDuplicatesButton tracks={props.tracks ?? []} />
+					</>
+				)}
 		</div>
 	);
 }
