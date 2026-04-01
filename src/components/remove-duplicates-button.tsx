@@ -155,9 +155,11 @@ export default function RemoveDuplicatesButton({ playlistId, tracks }: Props) {
 
 	const doesPlaylistHaveDuplicates = Object.keys(duplicateTracks).length > 0;
 
-	// Check if any positions are selected (only relevant in manual mode)
-	const hasSelectedPositions = Object.values(selectedPositions).some(
-		(positions) => positions.length > 0,
+	// Check if any positions are selected for CURRENT duplicates only
+	// Filter out stale selections from previous duplicate sets
+	const hasSelectedPositions = Object.entries(selectedPositions).some(
+		([trackId, positions]) =>
+			duplicateTracks[trackId] !== undefined && positions.length > 0,
 	);
 
 	// Disable confirm button in manual mode if no positions selected
