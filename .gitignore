@@ -7,3 +7,4 @@ tasks.md
 dist
 .wrangler
 .dev.vars
+src/tests

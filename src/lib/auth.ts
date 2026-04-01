@@ -1,4 +1,3 @@
-import { getRequest } from "@tanstack/react-start/server";
 import { betterAuth } from "better-auth";
 import { customSession } from "better-auth/plugins";
 import { env } from "cloudflare:workers";
@@ -43,18 +42,6 @@ export const auth = betterAuth({
 		customSession(async ({ session: authSession, user: authUser }) => {
 			const { token, accountId } = await getUserAccount({ data: authSession });
 			if (!token) {
-				const request = getRequest();
-				if (request) {
-					try {
-						await auth.api.signOut({ headers: request.headers });
-					} catch (error) {
-						console.error(
-							`[${new Date().toISOString()}] [error signing out user after missing token]`,
-						);
-						console.error(error);
-					}
-				}
-
 				return {
 					session: authSession,
 					user: { ...authUser, accessToken: null, accountId },

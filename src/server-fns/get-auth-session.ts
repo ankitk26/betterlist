@@ -9,7 +9,19 @@ export const getAuthSession = createServerFn({ method: "GET" }).handler(
 			return null;
 		}
 
-		const session = await auth.api.getSession({ headers: request.headers });
-		return session;
+		try {
+			const session = await auth.api.getSession({ headers: request.headers });
+			if (!session?.user.accessToken) {
+				return null;
+			}
+
+			return session;
+		} catch (error) {
+			console.error(
+				`[${new Date().toISOString()}] [error fetching auth session]`,
+			);
+			console.error(error);
+			return null;
+		}
 	},
 );

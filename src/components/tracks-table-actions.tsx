@@ -28,7 +28,10 @@ export default function TracksTableActions(props: Props) {
 							playlistId={props.playlistId}
 						/>
 						<DeletePlaylistTracksButton playlistId={props.playlistId} />
-						<RemoveDuplicatesButton tracks={props.tracks ?? []} />
+						<RemoveDuplicatesButton
+							playlistId={props.playlistId}
+							tracks={props.tracks ?? []}
+						/>
 					</>
 				)}
 		</div>
