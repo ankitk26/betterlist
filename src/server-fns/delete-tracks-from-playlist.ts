@@ -47,7 +47,7 @@ export const deleteTracksFromPlaylist = createServerFn({ method: "POST" })
 					Authorization: `Bearer ${session.user.accessToken}`,
 				},
 				body: {
-					tracks: formattedTrackIds,
+					items: formattedTrackIds,
 				},
 			});
 
