@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { formatMs } from "~/lib/format-ms";
+import { cn } from "~/lib/utils";
 import type { Track } from "~/types";
 import TracksTableRowCheckbox from "./tracks-table-row-checkbox";
 import TracksTableTitleColumn from "./tracks-table-title-column";
@@ -22,7 +23,12 @@ export default function TracksTableRow({
 	canSelect = true,
 }: Props) {
 	return (
-		<div className="group grid grid-cols-12 px-4 py-2 transition-colors hover:bg-muted/50">
+		<div
+			className={cn(
+				"group grid grid-cols-12 px-4 py-2 transition-colors",
+				canSelect ? "hover:bg-muted/50" : "",
+			)}
+		>
 			<TracksTableRowCheckbox
 				canSelect={canSelect}
 				index={index}
