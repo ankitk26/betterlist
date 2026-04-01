@@ -26,5 +26,12 @@ function RouteComponent() {
 		return null;
 	}
 
-	return <TracksTable showCover showSubtitle tracks={data.tracks ?? []} />;
+	return (
+		<TracksTable
+			showCover
+			showSubtitle
+			tracks={data.tracks ?? []}
+			canSelect={false}
+		/>
+	);
 }

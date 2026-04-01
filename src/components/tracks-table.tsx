@@ -8,6 +8,7 @@ type Props = {
 	showCover?: boolean;
 	showAlbum?: boolean;
 	showSubtitle?: boolean;
+	canSelect?: boolean;
 };
 
 export default function TracksTable({
@@ -16,11 +17,16 @@ export default function TracksTable({
 	showCover = false,
 	showHeader = false,
 	showAlbum = false,
+	canSelect = true,
 }: Props) {
 	return (
 		<>
 			{showHeader && (
-				<TracksTableHeader showAlbum={showAlbum} tracks={tracks} />
+				<TracksTableHeader
+					showAlbum={showAlbum}
+					tracks={tracks}
+					canSelect={canSelect}
+				/>
 			)}
 
 			<div className="col-span-12 w-full">
@@ -28,6 +34,7 @@ export default function TracksTable({
 					?.filter((track) => track.name.trim().length > 0)
 					.map((track, index) => (
 						<TracksTableRow
+							canSelect={canSelect}
 							index={index}
 							key={`${track.id}_${index}`}
 							showAlbum={showAlbum}

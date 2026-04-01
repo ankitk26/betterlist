@@ -10,6 +10,7 @@ type Props = {
 	showAlbum: boolean;
 	showCover: boolean;
 	showSubtitle: boolean;
+	canSelect?: boolean;
 };
 
 export default function TracksTableRow({
@@ -18,10 +19,15 @@ export default function TracksTableRow({
 	showAlbum,
 	showCover,
 	showSubtitle,
+	canSelect = true,
 }: Props) {
 	return (
 		<div className="group grid grid-cols-12 px-4 py-2 transition-colors hover:bg-muted/50">
-			<TracksTableRowCheckbox index={index} trackId={track.id} />
+			<TracksTableRowCheckbox
+				canSelect={canSelect}
+				index={index}
+				trackId={track.id}
+			/>
 
 			<TracksTableTitleColumn
 				showAlbum={showAlbum}

@@ -5,9 +5,14 @@ import { Checkbox } from "./ui/checkbox";
 type Props = {
 	index: number;
 	trackId: string;
+	canSelect?: boolean;
 };
 
-function PureTracksTableRowCheckbox({ index, trackId }: Props) {
+function PureTracksTableRowCheckbox({
+	index,
+	trackId,
+	canSelect = true,
+}: Props) {
 	const isSelected = usePlaylistEditorStore((s) =>
 		s.selectedTrackIds.has(trackId),
 	);
@@ -22,6 +27,14 @@ function PureTracksTableRowCheckbox({ index, trackId }: Props) {
 			addTrack(trackId);
 		}
 	};
+
+	if (!canSelect) {
+		return (
+			<div className="col-span-1 flex items-center">
+				<span className="text-sm text-muted-foreground">{index + 1}</span>
+			</div>
+		);
+	}
 
 	return (
 		<div

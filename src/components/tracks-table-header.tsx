@@ -8,9 +8,11 @@ import { Separator } from "./ui/separator";
 export default function TracksTableHeader({
 	showAlbum,
 	tracks,
+	canSelect = true,
 }: {
 	showAlbum: boolean;
 	tracks: Track[];
+	canSelect?: boolean;
 }) {
 	const areAllTracksSelected = usePlaylistEditorStore(
 		(s) => s.selectedTrackIds.size === tracks.length,
@@ -25,31 +27,37 @@ export default function TracksTableHeader({
 		<>
 			<header className="grid grid-cols-12 gap-2 p-4 pb-1 text-muted-foreground">
 				<div className="group relative col-span-1 flex items-center text-left font-medium tracking-wider uppercase">
-					<span
-						className={`text-sm text-muted-foreground transition-opacity duration-100 ease-out ${
-							areTracksSelected ? "opacity-0" : "group-hover:opacity-0"
-						}`}
-					>
-						#
-					</span>
-					<div
-						className={`absolute inset-0 flex items-center transition-opacity ${
-							areTracksSelected
-								? "opacity-100"
-								: "opacity-0 group-hover:opacity-100"
-						}`}
-					>
-						<Checkbox
-							checked={areAllTracksSelected}
-							onCheckedChange={(checked) => {
-								if (checked) {
-									addAll(tracks.map((track) => track.id));
-								} else {
-									clearAll();
-								}
-							}}
-						/>
-					</div>
+					{canSelect ? (
+						<>
+							<span
+								className={`text-sm text-muted-foreground transition-opacity duration-100 ease-out ${
+									areTracksSelected ? "opacity-0" : "group-hover:opacity-0"
+								}`}
+							>
+								#
+							</span>
+							<div
+								className={`absolute inset-0 flex items-center transition-opacity ${
+									areTracksSelected
+										? "opacity-100"
+										: "opacity-0 group-hover:opacity-100"
+								}`}
+							>
+								<Checkbox
+									checked={areAllTracksSelected}
+									onCheckedChange={(checked) => {
+										if (checked) {
+											addAll(tracks.map((track) => track.id));
+										} else {
+											clearAll();
+										}
+									}}
+								/>
+							</div>
+						</>
+					) : (
+						<span className="text-sm text-muted-foreground">#</span>
+					)}
 				</div>
 
 				<div
