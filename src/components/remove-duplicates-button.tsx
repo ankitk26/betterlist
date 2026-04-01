@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { playlistTracksInfiniteQuery } from "~/queries";
 import { addTracksToPlaylist } from "~/server-fns/add-tracks-to-playlist";
 import { deleteTracksFromPlaylist } from "~/server-fns/delete-tracks-from-playlist";
+import { removeDuplicateTracks } from "~/server-fns/remove-duplicate-tracks";
 import type { Track } from "~/types";
 import DuplicateTrackItem from "./duplicate-track-item";
 import { Button } from "./ui/button";
@@ -50,12 +51,13 @@ export default function RemoveDuplicatesButton({ playlistId, tracks }: Props) {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 	// State to track the selected positions to keep for each duplicate track
+	// None selected by default - user must choose which positions to keep
 	const [selectedPositions, setSelectedPositions] = useState<
 		Record<string, number[]>
 	>(() => {
 		const initial: Record<string, number[]> = {};
-		for (const [trackId, positions] of Object.entries(duplicateTracks)) {
-			initial[trackId] = [...positions];
+		for (const trackId of Object.keys(duplicateTracks)) {
+			initial[trackId] = [];
 		}
 		return initial;
 	});
@@ -69,6 +71,9 @@ export default function RemoveDuplicatesButton({ playlistId, tracks }: Props) {
 	});
 	const addTracksMutation = useMutation({
 		mutationFn: addTracksToPlaylist,
+	});
+	const removeDuplicatesMutation = useMutation({
+		mutationFn: removeDuplicateTracks,
 	});
 
 	// Logic to set the state for tracking positions selected to keep
@@ -112,28 +117,40 @@ export default function RemoveDuplicatesButton({ playlistId, tracks }: Props) {
 		}
 	};
 
+	const removeDuplicatesWithPositions = async () => {
+		// Build the duplicates array for the server function
+		const duplicates = Object.entries(duplicateTracks).map(
+			([trackId, allPositions]) => ({
+				trackId,
+				allPositions,
+				positionsToKeep: selectedPositions[trackId] || [],
+			}),
+		);
+
+		toast.info("Removing duplicates...");
+		try {
+			await removeDuplicatesMutation.mutateAsync({
+				data: { playlistId, duplicates },
+			});
+			queryClient.invalidateQueries({
+				queryKey: playlistTracksInfiniteQuery(playlistId).queryKey,
+			});
+			toast.success("Duplicates are removed!");
+			setIsDialogOpen(false);
+		} catch {
+			toast.error("Error in removing duplicates", {
+				description: "Try again later",
+			});
+		}
+	};
+
 	// Final handler that will call the mutation to remove the duplicates
-	// TODO: Add the mutation calls here
-	const handleDuplicatesRemoval = () => {
+	const handleDuplicatesRemoval = async () => {
 		if (removeAllMode) {
-			simplyRemoveAllDuplicates();
-			return;
+			await simplyRemoveAllDuplicates();
+		} else {
+			await removeDuplicatesWithPositions();
 		}
-
-		const tracksToRemove: Array<{ trackId: string; position: number }> = [];
-
-		for (const [trackId, allPositions] of Object.entries(duplicateTracks)) {
-			const selected = selectedPositions[trackId] || [];
-
-			for (const position of allPositions) {
-				if (selected.includes(position)) {
-					tracksToRemove.push({ trackId, position });
-				}
-			}
-		}
-
-		console.log("Tracks to keep:", tracksToRemove);
-		return tracksToRemove;
 	};
 
 	const doesPlaylistHaveDuplicates = Object.keys(duplicateTracks).length > 0;
@@ -191,7 +208,15 @@ export default function RemoveDuplicatesButton({ playlistId, tracks }: Props) {
 							</Button>
 						}
 					/>
-					<Button type="submit" onClick={handleDuplicatesRemoval}>
+					<Button
+						type="submit"
+						onClick={handleDuplicatesRemoval}
+						disabled={
+							deleteTracksMutation.isPending ||
+							addTracksMutation.isPending ||
+							removeDuplicatesMutation.isPending
+						}
+					>
 						Confirm
 					</Button>
 				</DialogFooter>
