@@ -155,6 +155,18 @@ export default function RemoveDuplicatesButton({ playlistId, tracks }: Props) {
 
 	const doesPlaylistHaveDuplicates = Object.keys(duplicateTracks).length > 0;
 
+	// Check if any positions are selected (only relevant in manual mode)
+	const hasSelectedPositions = Object.values(selectedPositions).some(
+		(positions) => positions.length > 0,
+	);
+
+	// Disable confirm button in manual mode if no positions selected
+	const isConfirmDisabled =
+		deleteTracksMutation.isPending ||
+		addTracksMutation.isPending ||
+		removeDuplicatesMutation.isPending ||
+		(!removeAllMode && !hasSelectedPositions);
+
 	return (
 		<Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
 			<DialogTrigger
@@ -211,11 +223,7 @@ export default function RemoveDuplicatesButton({ playlistId, tracks }: Props) {
 					<Button
 						type="submit"
 						onClick={handleDuplicatesRemoval}
-						disabled={
-							deleteTracksMutation.isPending ||
-							addTracksMutation.isPending ||
-							removeDuplicatesMutation.isPending
-						}
+						disabled={isConfirmDisabled}
 					>
 						Confirm
 					</Button>
