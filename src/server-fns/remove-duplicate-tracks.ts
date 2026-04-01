@@ -31,8 +31,18 @@ export const removeDuplicateTracks = createServerFn({ method: "POST" })
 			throw new Error("Need duplicates");
 		}
 
-		// Step 1: Delete ALL duplicate track instances
-		const allTrackIdsToDelete = data.duplicates.map((d) => d.trackId);
+		// Filter to only process tracks where user selected at least one position to keep
+		// If no positions selected for a track, leave it completely untouched
+		const duplicatesToProcess = data.duplicates.filter(
+			(d) => d.positionsToKeep.length > 0,
+		);
+
+		if (duplicatesToProcess.length === 0) {
+			return { success: true, tracksReAdded: 0 };
+		}
+
+		// Step 1: Delete duplicate track instances (only for tracks being processed)
+		const allTrackIdsToDelete = duplicatesToProcess.map((d) => d.trackId);
 
 		// Process deletions in batches of 100
 		const batchSize = 100;
@@ -62,22 +72,21 @@ export const removeDuplicateTracks = createServerFn({ method: "POST" })
 		}
 
 		// Step 2: Collect all positions to keep with their track IDs
-		// Filter out tracks where no positions are selected
-		const tracksToReAdd = data.duplicates
-			.filter((d) => d.positionsToKeep.length > 0)
-			.flatMap((d) =>
-				d.positionsToKeep.map((position) => ({
-					trackId: d.trackId,
-					originalPosition: position,
-				})),
-			);
+		const tracksToReAdd = duplicatesToProcess.flatMap((d) =>
+			d.positionsToKeep.map((position) => ({
+				trackId: d.trackId,
+				originalPosition: position,
+			})),
+		);
 
 		// Sort by original position to process in order
 		tracksToReAdd.sort((a, b) => a.originalPosition - b.originalPosition);
 
 		// Step 3: Calculate adjusted positions and re-add tracks
-		// All original positions that were deleted
-		const allDeletedPositions = data.duplicates.flatMap((d) => d.allPositions);
+		// Only consider deleted positions from tracks being processed
+		const allDeletedPositions = duplicatesToProcess.flatMap(
+			(d) => d.allPositions,
+		);
 		allDeletedPositions.sort((a, b) => a - b);
 
 		// Add tracks one by one with calculated positions
